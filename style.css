@@ -1,0 +1,791 @@
+/* ══════════════════════════════════════════
+   Yenlik Abdissattar — Portfolio
+   style.css
+   ══════════════════════════════════════════ */
+
+/* ── Google Fonts: EB Garamond + Space Mono for futuristic accents ── */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Space+Mono:wght@400&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F6F6F4;
+  color: #111111;
+  font-family: 'EB Garamond', Georgia, serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+video {
+  display: block;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION — Trigger Button
+   ══════════════════════════════════════════ */
+
+#nav-trigger {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+/* Three-line icon */
+.nav-trigger-icon {
+  font-size: 1.3rem;
+  color: #1A1A1A;
+  line-height: 1;
+}
+
+/* Small serif label beside icon */
+.nav-trigger-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── Navigation Panel (slides in from left) ── */
+#nav-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  z-index: 600;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  overflow-y: auto;
+  padding: 2rem 2rem 3rem;
+}
+
+#nav-panel.is-open {
+  transform: translateX(0);
+}
+
+/* ── Page Overlay (behind nav panel) ── */
+#nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 550;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+#nav-overlay.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Nav Panel Interior ── */
+
+.nav-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.nav-panel-name {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: #1A1A1A;
+}
+
+/* Close button */
+#nav-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #9A9A9A;
+  padding: 0;
+  line-height: 1;
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+#nav-close:hover {
+  color: #1A1A1A;
+}
+
+/* Category label inside nav panel */
+.nav-category-label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Project links inside nav panel */
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  margin-bottom: 0.3rem;
+}
+
+.nav-links a {
+  font-size: 1rem;
+  color: #1A1A1A;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a:hover {
+  color: #9A9A9A;
+}
+
+/* Home link at top of nav panel */
+.nav-home-link {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 1.6rem;
+  font-family: 'Space Mono', monospace;
+}
+
+.nav-home-link:hover {
+  color: #9A9A9A;
+}
+
+/* Contact link at bottom of nav panel */
+.nav-contact-link {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-top: 1.8rem;
+}
+
+.nav-contact-link:hover {
+  color: #1A1A1A;
+}
+
+/* ══════════════════════════════════════════
+   LANDING — Section 1
+   ══════════════════════════════════════════ */
+
+#landing {
+  position: relative;
+  height: 100vh;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+/* Name — top-right, small, not dominant */
+.landing-name {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #ADADAD;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Caption — bottom-left */
+.landing-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: #ADADAD;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Container that holds all floating contour images */
+#contour-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each blind contour image */
+.contour {
+  position: absolute;
+  display: block;
+  object-fit: contain;
+  /* width, top, left, rotation set by JS */
+}
+
+/* Floating drift keyframes — each image picks one */
+@keyframes drift-a {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  33%  { transform: translate(18px, -22px) rotate(calc(var(--r) + 2deg)); }
+  66%  { transform: translate(-14px, 16px) rotate(calc(var(--r) - 1.5deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+@keyframes drift-b {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  40%  { transform: translate(-20px, 14px)  rotate(calc(var(--r) - 2deg)); }
+  75%  { transform: translate(12px, -18px)  rotate(calc(var(--r) + 1deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+@keyframes drift-c {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  50%  { transform: translate(22px, 20px)   rotate(calc(var(--r) + 3deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+
+/* ══════════════════════════════════════════
+   PROJECTS — Section 2
+   ══════════════════════════════════════════ */
+
+#projects {
+  padding: 8rem 6rem 10rem;
+}
+
+/* Category divider label */
+.category-divider {
+  text-align: left;
+  margin: 10rem 0 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.category-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #DADAD8;
+}
+
+.category-divider:first-child {
+  margin-top: 0;
+}
+
+.category-divider span {
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  font-family: 'Space Mono', monospace;
+  white-space: nowrap;
+}
+
+/* ── Project Grids ── */
+
+.projects-grid {
+  display: grid;
+  gap: 4rem 3rem;
+}
+
+/* 2-column — Film */
+.projects-grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 3-column — Editorial, Art, Illustration */
+.projects-grid--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 4-column — Colour Design tiles */
+.projects-grid--4col {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Project Card ── */
+
+.project-card {
+  display: block;
+}
+
+/* Media block — the image or video area */
+.project-card-media {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.10),
+    0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover .project-card-media {
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.16),
+    0 2px 8px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* 16:9 for video cards */
+.project-card-media--video {
+  aspect-ratio: 16 / 9;
+  background-color: #0A0A0A;
+}
+
+/* Image cards: natural dimensions (no crop) */
+.project-card-media--image {
+  min-height: 120px; /* ensures placeholders are visible */
+}
+
+/* Image cards with slideshow: fixed ratio for abs-positioned slides */
+.project-card-media--slide {
+  aspect-ratio: 4 / 5;
+}
+
+/* 1:1 square for colour tiles */
+.project-card-media--square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Thumbnail image inside media block */
+.project-card-media--image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-media--slide img,
+.project-card-media--square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-media--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card:hover .project-card-media img,
+.project-card:hover .project-card-media video {
+  opacity: 0.88;
+}
+
+/* Play button overlay for video card placeholders */
+.play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.4rem;
+  pointer-events: none;
+}
+
+/* Placeholder text inside media blocks with no image */
+.placeholder-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: #9A9A9A;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  background: #EBEBEB;
+}
+
+/* Card title */
+.project-card-title {
+  font-size: 0.9rem;
+  color: #111111;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
+}
+
+/* Card description — not shown on art/colour tiles */
+.project-card-desc {
+  font-size: 0.72rem;
+  color: #ADADAD;
+  letter-spacing: 0.01em;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* Art cards: title only */
+.project-card--art .project-card-desc {
+  display: none;
+}
+
+/* Colour tiles: smaller title */
+.project-card--colour .project-card-title {
+  font-size: 0.78rem;
+}
+
+.project-card--colour .project-card-desc {
+  display: none;
+}
+
+/* ── Cycling preview slides (colour, gouache, postcards) ── */
+.colour-slide,
+.gouache-slide,
+.postcard-prev-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.colour-slide--active,
+.gouache-slide--active,
+.postcard-prev-slide--active {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════
+   3D POSTCARD SLIDER (illustration-postcards.html)
+   ══════════════════════════════════════════ */
+
+.postcard-3d-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* The track holds all slides absolutely */
+.postcard-3d-track {
+  position: relative;
+  width: 100%;
+  /* height driven by first image */
+}
+
+.pc-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform: translateX(110%) rotateY(-22deg);
+  opacity: 0;
+  transition:
+    transform 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.85s ease;
+  pointer-events: none;
+}
+
+.pc-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Active slide — front and center */
+.pc-slide--active {
+  position: relative; /* takes up space for track height */
+  transform: translateX(0) rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Exiting slide — slides out to left with 3D rotation */
+.pc-slide--exit {
+  position: absolute;
+  transform: translateX(-110%) rotateY(22deg);
+  opacity: 0;
+}
+
+/* Slide counter dots */
+.pc-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.pc-dot {
+  width: 16px;
+  height: 1px;
+  background: #DADAD8;
+  transition: background 0.3s, width 0.3s;
+  cursor: pointer;
+}
+
+.pc-dot--active {
+  background: #111111;
+  width: 28px;
+}
+
+/* ══════════════════════════════════════════
+   EDITORIAL PAGES GRID (artforum, time detail pages)
+   ══════════════════════════════════════════ */
+
+/* Mockups shown 2-up */
+.visuals-mockups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+/* Individual pages shown in 3-column grid */
+.visuals-pages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.visuals-pages-grid img,
+.visuals-mockups img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* Shadow on 3D slider images */
+.pc-slide img {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* Section label within visuals column (colour-design groups) */
+.visuals-section-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  font-family: 'Space Mono', monospace;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 2-column grid variant for postcards */
+.visuals-pages-grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ══════════════════════════════════════════
+   CONTACT — Section 3
+   ══════════════════════════════════════════ */
+
+#contact {
+  padding: 12rem 6rem 8rem;
+  border-top: 1px solid #DADAD8;
+}
+
+.contact-name {
+  font-size: 1rem;
+  color: #111111;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5rem;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.85rem;
+  align-items: baseline;
+}
+
+/* "Email", "Instagram" etc. label */
+.contact-key {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #9A9A9A;
+  min-width: 90px;
+}
+
+.contact-val {
+  color: #1A1A1A;
+}
+
+.contact-val:hover {
+  color: #9A9A9A;
+}
+
+/* ══════════════════════════════════════════
+   PROJECT DETAIL PAGES
+   ══════════════════════════════════════════ */
+
+/* Two-column layout: text left, visuals right */
+.project-page {
+  display: grid;
+  grid-template-columns: 26% 1fr;
+  min-height: 100vh;
+  align-items: start;
+}
+
+/* ── Left: text column ── */
+.project-text {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 2.2rem 2rem 3rem 3rem;
+  scrollbar-width: none;
+}
+
+.project-text::-webkit-scrollbar {
+  display: none;
+}
+
+/* ← Back link */
+.back-link {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-bottom: 1.4rem;
+}
+
+.back-link:hover {
+  color: #1A1A1A;
+}
+
+/* Project header block */
+.project-header {
+  margin-bottom: 1.6rem;
+}
+
+/* Small category above title */
+.project-meta-category {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-bottom: 0.4rem;
+}
+
+/* Main title */
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #1A1A1A;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+/* Year · Category meta line */
+.project-meta {
+  font-size: 0.65rem;
+  color: #ADADAD;
+  letter-spacing: 0.05em;
+}
+
+/* Individual content section */
+.project-section {
+  margin-bottom: 1.2rem;
+}
+
+/* Section heading label */
+.section-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+
+.project-section p {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: #1A1A1A;
+}
+
+/* ── Right: visuals column ── */
+.project-visuals {
+  padding: 2.2rem 3rem 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Every image fills the full column width */
+.project-visuals img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* Video fills full column width */
+.project-visuals video {
+  width: 100%;
+  display: block;
+  background: #000;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+}
+
+/* Placeholder block (no image yet) */
+.media-placeholder {
+  width: 100%;
+  background-color: #EBEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+}
+
+.media-placeholder--video {
+  aspect-ratio: 16 / 9;
+}
+
+.media-placeholder span {
+  font-size: 0.65rem;
+  color: #ADADAD;
+  letter-spacing: 0.06em;
+}
