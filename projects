@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black and White · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Art &amp; Sketching</p>
+        <h1 class="project-title">Black and White</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section"><h2 class="section-label">Tools</h2><p>Gouache</p></div>
+    </div>
+    <div class="project-visuals">
+      <div class="media-placeholder"><span>[image]</span></div>
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colour Studies · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Art &amp; Sketching</p>
+        <h1 class="project-title">Colour Studies</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section"><h2 class="section-label">Tools</h2><p>Gouache</p></div>
+    </div>
+    <div class="project-visuals">
+      <div class="media-placeholder"><span>[image]</span></div>
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Composition &amp; Form · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Art &amp; Sketching</p>
+        <h1 class="project-title">Composition &amp; Form Studies</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Studies focused on composition through reduction, contrast, and spatial relationships.</p>
+      </div>
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Gouache</p>
+      </div>
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Compositions were developed by simplifying real-world forms into geometric structures, focusing on the interaction between positive and negative space. High-contrast black and white was used to emphasize balance, rhythm, and hierarchy.</p>
+      </div>
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Strengthened my understanding of composition as foundational — how space, rather than form alone, defines visual structure.</p>
+      </div>
+    </div>
+    <div class="project-visuals">
+      <img src="../assets/images/art-composition/Composition 1 sketch.jpg" alt="Composition 1 — Black and White Sketch">
+      <img src="../assets/images/art-composition/Composition 1 negative and posticespace.jpg" alt="Composition 1 — Negative and Positive Space">
+      <img src="../assets/images/art-composition/Composition2.jpg" alt="Composition 2">
+      <img src="../assets/images/art-composition/IMG_9683 4.jpg" alt="Sketch study">
+      <img src="../assets/images/art-composition/IMG_9684 4.jpg" alt="Sketch study">
+      <img src="../assets/images/art-composition/IMG_9685 2.jpg" alt="Sketch study">
+      <img src="../assets/images/art-composition/IMG_9685 4.jpg" alt="Sketch study">
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perspective · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Art &amp; Sketching</p>
+        <h1 class="project-title">Perspective</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section"><h2 class="section-label">Tools</h2><p>Gouache</p></div>
+    </div>
+    <div class="project-visuals">
+      <img src="../assets/images/art-composition/Perspective study1.jpg" alt="Perspective study 1">
+      <img src="../assets/images/art-composition/Perspective study2.jpg" alt="Perspective study 2">
+      <img src="../assets/images/art-composition/Perspective study3.jpg" alt="Perspective study 3">
+      <img src="../assets/images/art-composition/Perspective study4.jpg" alt="Perspective study 4">
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portrait · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Art &amp; Sketching</p>
+        <h1 class="project-title">Portrait</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section"><h2 class="section-label">Tools</h2><p>Gouache</p></div>
+    </div>
+    <div class="project-visuals">
+      <img src="../assets/images/art-composition/Portrait.jpg" alt="Portrait">
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colour Design · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background-color: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-design.html">All Colour Design</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Colour Design</p>
+        <h1 class="project-title">Colour Design</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>A series of colour theory exercises exploring perception, harmony, contrast, and psychological effect through hands-on study.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Gouache, Adobe Illustrator</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Works</h2>
+        <p>
+          Refinement — Original<br>
+          Refinement — Monochrome<br>
+          Refinement — Complementary<br>
+          Colour Wheel<br>
+          Colour Chart<br>
+          Visual Memory<br>
+          Different Hue, Same Value<br>
+          Colour Cube<br>
+          Colour Mixing<br>
+          Refinement Colour Mixing<br>
+          Ground Subtraction<br>
+          Colour Psychology<br>
+          Colour Harmony<br>
+          Colour Analysis
+        </p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+
+      <p class="visuals-section-label">Refinement — Gouache</p>
+      <div class="visuals-pages-grid">
+        <img src="../assets/images/colour-design/refinement colours guache original the cat.png" alt="Refinement — Original">
+        <img src="../assets/images/colour-design/refinement colours guache the cat monochrome.png" alt="Refinement — Monochrome">
+        <img src="../assets/images/colour-design/refinement colours guache the cat complimentary colours.png" alt="Refinement — Complementary">
+      </div>
+
+      <p class="visuals-section-label">Colour Theory Exercises</p>
+      <div class="visuals-pages-grid">
+        <img src="../assets/images/colour-design/Colour Wheel 1.0.png" alt="Colour Wheel">
+        <img src="../assets/images/colour-design/Colour Chart.jpg" alt="Colour Chart">
+        <img src="../assets/images/colour-design/Visual Memory.png" alt="Visual Memory">
+        <img src="../assets/images/colour-design/Different Hue, Same Value.png" alt="Different Hue, Same Value">
+        <img src="../assets/images/colour-design/Colour Cube.png" alt="Colour Cube">
+        <img src="../assets/images/colour-design/Ground Subtraction.png" alt="Ground Subtraction">
+      </div>
+
+      <p class="visuals-section-label">Colour Mixing</p>
+      <div class="visuals-mockups">
+        <img src="../assets/images/colour-design/Colour Mixing.png" alt="Colour Mixing">
+        <img src="../assets/images/colour-design/Refinement Colour Mixing.png" alt="Refinement Colour Mixing">
+      </div>
+
+      <p class="visuals-section-label">Colour Psychology &amp; Harmony</p>
+      <div class="visuals-mockups">
+        <img src="../assets/images/colour-design/Colour Phsycology.png" alt="Colour Psychology">
+        <img src="../assets/images/colour-design/Colour Harmony.png" alt="Colour Harmony">
+      </div>
+
+      <p class="visuals-section-label">Colour Analysis</p>
+      <div class="visuals-mockups">
+        <img src="../assets/images/colour-design/Colour Analysis application1.png" alt="Colour Analysis — Application 1">
+        <img src="../assets/images/colour-design/Colour Analysis application2.png" alt="Colour Analysis — Application 2">
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9 Panels (Aaron Siskind) · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Editorial Design</p>
+        <h1 class="project-title">9 Panels (Aaron Siskind)</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Nine-panel composition combining text and Aaron Siskind's abstract photography.</p>
+      </div>
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator, Adobe Photoshop</p>
+      </div>
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Combined selected text with Siskind's photography into a 9-panel grid, focusing on sequencing, rhythm, and conceptual alignment between image and text.</p>
+      </div>
+    </div>
+    <div class="project-visuals">
+      <img src="../assets/images/editorial-9panels/print final.jpg" alt="9 Panels (Aaron Siskind) — Final Print">
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artforum — Bad Habits · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Editorial Design</p>
+        <h1 class="project-title">Artforum — Bad Habits</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Self-initiated editorial magazine exploring contemporary anxieties and visual culture.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator, Adobe Photoshop</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Explored a more experimental layout approach, focusing on image-text relationships, spacing, and visual tension inspired by contemporary art publications.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Learned how to push design boundaries while maintaining intention, and how spacing and composition can carry conceptual meaning.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <!-- Cover — full width -->
+      <img src="../assets/images/editorial-artforum/ARTFORUM Cover page.png" alt="Artforum — Bad Habits cover">
+
+      <!-- Mockups — 2-column grid -->
+      <div class="visuals-mockups">
+        <img src="../assets/images/editorial-artforum/ARTFORUM mock up cover and p1,2.png" alt="Artforum mockup cover and P1-2">
+        <img src="../assets/images/editorial-artforum/ARTFORUM mock up cover and p3-4.png" alt="Artforum mockup P3-4">
+        <img src="../assets/images/editorial-artforum/ARTFORUM mock up cover and p5-6.png" alt="Artforum mockup P5-6">
+      </div>
+
+      <!-- Individual pages — 3-column grid -->
+      <div class="visuals-pages-grid">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P1.png" alt="Artforum P1">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P2.png" alt="Artforum P2">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P3.png" alt="Artforum P3">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P4.png" alt="Artforum P4">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P5.png" alt="Artforum P5">
+        <img src="../assets/images/editorial-artforum/ARTFORUM P6.png" alt="Artforum P6">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baskerville Typography Study · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Editorial Design</p>
+        <h1 class="project-title">Baskerville Typography Study</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Editorial exploration of Baskerville's type history and visual perception.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator, Adobe Photoshop</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Analyzed Baskerville's structure and characteristics, then translated them into a poster and book cover, focusing on contrast, elegance, and typographic composition.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Developed a deeper appreciation for typography as both a historical and expressive tool, not just a functional element.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <!-- Mockups — 2-column -->
+      <div class="visuals-mockups">
+        <img src="../assets/images/editorial-baskerville/baskerville poster mockup.jpg" alt="Baskerville Poster — mockup">
+        <img src="../assets/images/editorial-baskerville/baskerville book cover mockup.jpg" alt="Baskerville Book Cover — mockup">
+      </div>
+      <!-- Flat designs — 2-column -->
+      <div class="visuals-mockups">
+        <img src="../assets/images/editorial-baskerville/Baskerville Poster.jpg" alt="Baskerville Poster">
+        <img src="../assets/images/editorial-baskerville/Baskerville Book Cover.jpg" alt="Baskerville Book Cover">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcards · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button id="nav-trigger" aria-label="Open navigation menu"><span class="nav-trigger-icon">≡</span><span class="nav-trigger-label">Menu</span></button>
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header"><span class="nav-panel-name">Yenlik Abdissattar</span><button id="nav-close" aria-label="Close navigation">×</button></div>
+    <a href="../index.html" class="nav-home-link">Home</a>
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links"><li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li><li><a href="film-gazebo.html">Gazebo</a></li><li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li><li><a href="film-runwai.html">RunwAI — Fashion Show</a></li><li><a href="film-dust.html">DUST</a></li></ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links"><li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li><li><a href="editorial-time.html">TIME — Architecture Issue</a></li><li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li><li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li><li><a href="editorial-postcards.html">Postcards</a></li></ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links"><li><a href="art-portrait.html">Portrait</a></li><li><a href="art-perspective.html">Perspective</a></li><li><a href="art-blackandwhite.html">Black and White</a></li><li><a href="art-colour-studies.html">Colour Studies</a></li><li><a href="art-composition-form.html">Composition &amp; Form</a></li></ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links"><li><a href="colour-wheel.html">Colour Wheel</a></li><li><a href="colour-chart.html">Colour Chart</a></li><li><a href="colour-visual-memory.html">Visual Memory</a></li><li><a href="colour-hue-value.html">Different Hue, Same Value</a></li><li><a href="colour-cube.html">Colour Cube</a></li><li><a href="colour-mixing.html">Colour Mixing</a></li><li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li><li><a href="colour-psychology.html">Colour Psychology</a></li><li><a href="colour-analysis.html">Colour Analysis</a></li><li><a href="colour-harmony.html">Colour Harmony</a></li></ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links"><li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li><li><a href="illustration-postcards.html">Postcard Illustrations</a></li><li><a href="illustration-gouache.html">Gouache Works</a></li></ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+      <header class="project-header">
+        <p class="project-meta-category">Editorial Design</p>
+        <h1 class="project-title">Postcards</h1>
+        <p class="project-meta">2025</p>
+      </header>
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Colour-driven postcard illustrations exploring everyday life.</p>
+      </div>
+    </div>
+    <div class="project-visuals">
+      <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 1.jpg" alt="Postcard Illustration 1">
+      <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 2.jpg" alt="Postcard Illustration 2">
+      <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 3.jpg" alt="Postcard Illustration 3">
+      <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 4.jpg" alt="Postcard Illustration 4">
+      <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 5.jpg" alt="Postcard Illustration 5">
+    </div>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIME — Architecture Issue · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Editorial Design</p>
+        <h1 class="project-title">TIME — Architecture Issue</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Editorial layout focused on architectural narratives and visual hierarchy.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator, Adobe Photoshop</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Built on a structured grid system focusing on clarity and readability. Developed consistent typographic hierarchy across spreads, aligning text and image for smooth information flow.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Strengthened my ability to work within strict design systems and improved my understanding of editorial hierarchy and clarity.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <!-- Cover — full width (updated, more saturated) -->
+      <img src="../assets/images/editorial-time/TIMES Cover.jpg" alt="TIME — Architecture Issue cover">
+
+      <!-- Mockups — 2-column grid -->
+      <div class="visuals-mockups">
+        <img src="../assets/images/editorial-time/TIME mockup cover and p1-2.jpg" alt="TIME mockup cover and P1-2">
+        <img src="../assets/images/editorial-time/TIME mockup cover and p3-4.jpg" alt="TIME mockup P3-4">
+        <img src="../assets/images/editorial-time/TIME mockup cover and p5-6.jpg" alt="TIME mockup P5-6">
+      </div>
+
+      <!-- Individual pages — 3-column grid -->
+      <div class="visuals-pages-grid">
+        <img src="../assets/images/editorial-time/TIME P1.jpg" alt="TIME P1">
+        <img src="../assets/images/editorial-time/TIME P2.jpg" alt="TIME P2">
+        <img src="../assets/images/editorial-time/TIME P3.jpg" alt="TIME P3">
+        <img src="../assets/images/editorial-time/TIME P4.jpg" alt="TIME P4">
+        <img src="../assets/images/editorial-time/TIME P5.jpg" alt="TIME P5">
+        <img src="../assets/images/editorial-time/TIME P6.jpg" alt="TIME P6">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUST · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-design.html">All Colour Design</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Film &amp; Motion Graphics</p>
+        <h1 class="project-title">DUST</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Motion graphics exploring texture, grain, and the materiality of moving image.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe After Effects, Adobe Premiere Pro</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>An investigation into the visual language of dust, grain, and surface — using motion as a means to render the invisible visible. Layers of texture are animated to create a sense of atmospheric depth and material presence.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <video controls loop>
+        <source src="../assets/videos/film-dust/DUST motion graphics.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly Me to the Moon · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Film &amp; Motion Graphics</p>
+        <h1 class="project-title">Fly Me to the Moon</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Motion graphics translating a six-panel visual structure into a time-based narrative.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe After Effects, Adobe Illustrator</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Beginning with storyboard development, each panel was reinterpreted as a sequential scene with its own pacing and visual identity. Assets were designed in Illustrator and animated in After Effects, with a focus on rhythm, continuity, and controlled transitions.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Reinforced my understanding of motion as a narrative tool — how timing, structure, and visual hierarchy guide perception.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <video controls loop>
+        <source src="../assets/videos/film-fly-me-to-the-moon/flymetothemoon motion graphic.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gazebo · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Film &amp; Motion Graphics</p>
+        <h1 class="project-title">Gazebo</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Constructed image narrative built from thrifted photographs taken in Singapore.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator, Adobe Photoshop</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Using a collection of thrifted photographs taken in Singapore, I developed a visual system centered around the "gazebo" as a symbolic space of convergence. Through layering, cropping, and compositional manipulation, disparate images were recontextualized into a cohesive narrative.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Expanded my approach to storytelling by embracing randomness as a generative tool — how constraints drive more intentional design outcomes.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <video controls loop>
+        <source src="../assets/videos/film-gazebo/GAZEBO motion graphics.MP4" type="video/mp4">
+      </video>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RunwAI — Fashion Show · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">AI</p>
+        <h1 class="project-title">RunwAI — Fashion Show</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>AI-generated fashion runway combining generative visuals and cinematic editing.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>ComfyUI, AI Image/Video Generation, Adobe Premiere Pro, Adobe Illustrator</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Garments were designed conceptually, then translated into AI-generated visuals through a structured ComfyUI pipeline. A LoRA-based workflow maintained stylistic consistency across models, outfits, and environments. Outputs were sequenced into a runway-style video, with poster designs extending the project into editorial format.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Expanded my understanding of AI as a design tool — building structured workflows that allow creative control within generative systems.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <video controls loop>
+        <source src="../assets/videos/film-runwai/RunwAI video.mp4" type="video/mp4">
+      </video>
+      <video controls loop>
+        <source src="../assets/videos/film-runwai/RunwAI fashion show_ Yenlik Abdissattar_Process.mp4" type="video/mp4">
+      </video>
+      <div class="media-placeholder"><span>[poster — add JPG when ready]</span></div>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silence of the Dawn · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-wheel.html">Colour Wheel</a></li>
+      <li><a href="colour-chart.html">Colour Chart</a></li>
+      <li><a href="colour-visual-memory.html">Visual Memory</a></li>
+      <li><a href="colour-hue-value.html">Different Hue, Same Value</a></li>
+      <li><a href="colour-cube.html">Colour Cube</a></li>
+      <li><a href="colour-mixing.html">Colour Mixing</a></li>
+      <li><a href="colour-ground-subtraction.html">Ground Subtraction</a></li>
+      <li><a href="colour-psychology.html">Colour Psychology</a></li>
+      <li><a href="colour-analysis.html">Colour Analysis</a></li>
+      <li><a href="colour-harmony.html">Colour Harmony</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Film &amp; Motion Graphics</p>
+        <h1 class="project-title">Silence of the Dawn</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Observational documentary capturing the stillness of Singapore at dawn.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Premiere Pro, Audacity</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Process</h2>
+        <p>Filming took place during early morning hours, focusing on quiet urban landscapes, subtle motion, and ambient sound. Editing prioritized restraint — long takes, minimal cuts, careful sound design — to preserve the environment's authenticity.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Reflections</h2>
+        <p>Refined my sensitivity to pacing, atmosphere, and sound as integral components of visual storytelling.</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <video controls loop>
+        <source src="../assets/videos/film-silence-of-the-dawn/silence of the dawn final documentary filmmaking 2025-2 Yenlik Abdissattar.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artforum Cover Illustration · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background-color: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-design.html">All Colour Design</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Illustration</p>
+        <h1 class="project-title">Artforum Cover Illustration</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Original illustration created for the cover of the self-initiated Artforum — Bad Habits editorial project.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <img src="../assets/images/illustration/artforum cover illustration design.jpg" alt="Artforum Cover Illustration">
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gouache Works · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background-color: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+      <li><a href="film-dust.html">DUST</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-design.html">All Colour Design</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Illustration</p>
+        <h1 class="project-title">Gouache Works</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>Gouache paintings of everyday subjects — exploring colour mixing, rendering, and observation through still life and character studies.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Gouache</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <img src="../assets/images/illustration/Landscape guache.jpg" alt="Landscape — Gouache">
+      <img src="../assets/images/illustration/Sushi Guache.jpg" alt="Sushi — Gouache">
+      <img src="../assets/images/illustration/WALL-E guache.jpg" alt="WALL-E — Gouache">
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcard Illustrations · Yenlik Abdissattar</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background-color: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+  <button id="nav-trigger" aria-label="Open navigation menu">
+    <span class="nav-trigger-icon">≡</span>
+    <span class="nav-trigger-label">Menu</span>
+  </button>
+
+  <nav id="nav-panel" aria-hidden="true">
+    <div class="nav-panel-header">
+      <span class="nav-panel-name">Yenlik Abdissattar</span>
+      <button id="nav-close" aria-label="Close navigation">×</button>
+    </div>
+
+    <a href="../index.html" class="nav-home-link">Home</a>
+
+    <span class="nav-category-label">Film &amp; Motion Graphics</span>
+    <ul class="nav-links">
+      <li><a href="film-fly-me-to-the-moon.html">Fly Me to the Moon</a></li>
+      <li><a href="film-gazebo.html">Gazebo</a></li>
+      <li><a href="film-silence-of-the-dawn.html">Silence of the Dawn</a></li>
+      <li><a href="film-runwai.html">RunwAI — Fashion Show</a></li>
+    </ul>
+    <span class="nav-category-label">Editorial Design</span>
+    <ul class="nav-links">
+      <li><a href="editorial-artforum.html">Artforum — Bad Habits</a></li>
+      <li><a href="editorial-time.html">TIME — Architecture Issue</a></li>
+      <li><a href="editorial-baskerville.html">Baskerville Typography Study</a></li>
+      <li><a href="editorial-9panels.html">9 Panels (Aaron Siskind)</a></li>
+      <li><a href="editorial-postcards.html">Postcards</a></li>
+    </ul>
+    <span class="nav-category-label">Art &amp; Sketching</span>
+    <ul class="nav-links">
+      <li><a href="art-portrait.html">Portrait</a></li>
+      <li><a href="art-perspective.html">Perspective</a></li>
+      <li><a href="art-blackandwhite.html">Black and White</a></li>
+      <li><a href="art-colour-studies.html">Colour Studies</a></li>
+      <li><a href="art-composition-form.html">Composition &amp; Form</a></li>
+    </ul>
+    <span class="nav-category-label">Colour Design</span>
+    <ul class="nav-links">
+      <li><a href="colour-design.html">All Colour Design</a></li>
+    </ul>
+    <span class="nav-category-label">Illustration</span>
+    <ul class="nav-links">
+      <li><a href="illustration-artforum-cover.html">Artforum Cover Illustration</a></li>
+      <li><a href="illustration-postcards.html">Postcard Illustrations</a></li>
+      <li><a href="illustration-gouache.html">Gouache Works</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-contact-link">Contact</a>
+  </nav>
+
+  <div id="nav-overlay"></div>
+
+  <main class="project-page">
+
+    <div class="project-text">
+      <a href="../index.html" class="back-link">← Back</a>
+
+      <header class="project-header">
+        <p class="project-meta-category">Illustration</p>
+        <h1 class="project-title">Postcard Illustrations</h1>
+        <p class="project-meta">2025</p>
+      </header>
+
+      <div class="project-section">
+        <h2 class="section-label">Overview</h2>
+        <p>A series of five illustrated postcards exploring colour, composition, and everyday subject matter.</p>
+      </div>
+
+      <div class="project-section">
+        <h2 class="section-label">Tools</h2>
+        <p>Adobe Illustrator</p>
+      </div>
+    </div>
+
+    <div class="project-visuals">
+      <div class="visuals-pages-grid visuals-pages-grid--2col">
+        <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 1.jpg" alt="Postcard Illustration 1">
+        <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 2.jpg" alt="Postcard Illustration 2">
+        <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 3.jpg" alt="Postcard Illustration 3">
+        <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 4.jpg" alt="Postcard Illustration 4">
+        <img src="../assets/images/illustration/POSTCARD ILLUSTRATION 5.jpg" alt="Postcard Illustration 5">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
