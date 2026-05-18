@@ -5,6 +5,50 @@
 
 (function () {
 
+  /* ── Mobile navigation (injected for all pages) ── */
+  if (window.innerWidth <= 768) {
+    var isSubPage = window.location.pathname.indexOf('/projects/') !== -1;
+    var base = isSubPage ? '../' : '';
+
+    var mobileBtn = document.createElement('button');
+    mobileBtn.id = 'mobile-nav-btn';
+    mobileBtn.setAttribute('aria-label', 'Open menu');
+    mobileBtn.textContent = '≡';
+    document.body.appendChild(mobileBtn);
+
+    var mobileDrawer = document.createElement('div');
+    mobileDrawer.id = 'mobile-nav-drawer';
+    mobileDrawer.innerHTML =
+      '<button id="mobile-nav-close-btn" aria-label="Close menu">✕</button>' +
+      '<nav class="mobile-nav-links">' +
+        '<a href="' + base + 'index.html">Home</a>' +
+        '<a href="' + base + 'about.html">About</a>' +
+        '<a href="' + base + 'index.html#cat-editorial">Editorial</a>' +
+        '<a href="' + base + 'index.html#cat-film">Film</a>' +
+        '<a href="' + base + 'index.html#cat-ai">AI</a>' +
+        '<a href="' + base + 'index.html#cat-art">Art</a>' +
+        '<a href="' + base + 'index.html#cat-colour">Colour Design</a>' +
+        '<a href="' + base + 'index.html#cat-illustration">Illustration</a>' +
+      '</nav>' +
+      '<div class="mobile-nav-sub">' +
+        '<a href="' + base + 'index.html#contact">Contact</a>' +
+      '</div>';
+    document.body.appendChild(mobileDrawer);
+
+    function openMobileNav() {
+      mobileDrawer.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+      mobileDrawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    mobileBtn.addEventListener('click', openMobileNav);
+    mobileDrawer.querySelector('#mobile-nav-close-btn').addEventListener('click', closeMobileNav);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMobileNav(); });
+  }
+
   /* ── Navigation toggle (side panel — kept for project pages that still use it) ── */
   var trigger = document.getElementById('nav-trigger');
   var panel   = document.getElementById('nav-panel');
