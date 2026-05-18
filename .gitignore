@@ -1,0 +1,12 @@
+# Large video files — served from Cloudinary, not needed in repo
+*.mp4
+*.MP4
+*.mov
+*.MOV
+
+# Local project source files
+projects for web/
+projects/
+
+# macOS
+.DS_Store

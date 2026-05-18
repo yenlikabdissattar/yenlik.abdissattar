@@ -1,0 +1,1800 @@
+/* ══════════════════════════════════════════
+   Yenlik Abdissattar — Portfolio
+   style.css
+   ══════════════════════════════════════════ */
+
+/* ── Bodoni Moda — loaded from Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Only quotes are italic — global reset ── */
+em, i {
+  font-style: normal;
+}
+
+blockquote em, blockquote i,
+q em, q i {
+  font-style: italic;
+}
+
+/* ── Base — Gill Sans for everything ── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 58px;
+}
+
+body {
+  background-color: #FAFAF8;
+  color: #1A1A1A;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── Bodoni stack — titles, category labels, landing name ── */
+.landing-name,
+.nav-panel-name,
+.nav-category-label,
+.category-divider span,
+.project-card-title,
+.project-title,
+.project-meta-category,
+blockquote {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+video {
+  display: block;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION — Trigger Button
+   ══════════════════════════════════════════ */
+
+#nav-trigger {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+/* Three-line icon */
+.nav-trigger-icon {
+  font-size: 1.3rem;
+  color: #1A1A1A;
+  line-height: 1;
+}
+
+/* Small label beside icon */
+.nav-trigger-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+}
+
+/* ── Navigation Panel (slides in from left) ── */
+#nav-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  z-index: 600;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  overflow-y: auto;
+  padding: 2rem 2rem 3rem;
+}
+
+#nav-panel.is-open {
+  transform: translateX(0);
+}
+
+/* ── Page Overlay (behind nav panel) ── */
+#nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 550;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+#nav-overlay.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Nav Panel Interior ── */
+
+.nav-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+/* Nav panel name — Bodoni via global rule */
+.nav-panel-name {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: #1A1A1A;
+}
+
+/* Close button */
+#nav-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #9A9A9A;
+  padding: 0;
+  line-height: 1;
+}
+
+#nav-close:hover {
+  color: #1A1A1A;
+}
+
+/* Category label inside nav panel — Bodoni via global rule */
+.nav-category-label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #9A9A9A;
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Project links inside nav panel — Gill Sans via body */
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  margin-bottom: 0.3rem;
+}
+
+.nav-links a {
+  font-size: 1rem;
+  color: #1A1A1A;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a:hover {
+  color: #9A9A9A;
+}
+
+/* Home link */
+.nav-home-link {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 1.6rem;
+}
+
+.nav-home-link:hover {
+  color: #9A9A9A;
+}
+
+/* Contact link */
+.nav-contact-link {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-top: 1.8rem;
+}
+
+.nav-contact-link:hover {
+  color: #1A1A1A;
+}
+
+/* ══════════════════════════════════════════
+   TOP NAVIGATION — wrapper + mega menu
+   ══════════════════════════════════════════ */
+
+/* Fixed wrapper — hover on this reveals the mega */
+#top-nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
+/* The bar itself */
+#top-nav {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.8rem;
+  background: rgba(250, 250, 248, 0.90);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid rgba(26, 26, 26, 0.08);
+}
+
+.top-nav-logo {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: #1A1A1A;
+  white-space: nowrap;
+}
+
+.top-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.top-nav-link {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  cursor: pointer;
+  transition: color 0.18s;
+  white-space: nowrap;
+}
+
+.top-nav-link:hover { color: #1A1A1A; }
+
+/* ── Mega menu panel ── */
+#top-nav-mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+#top-nav:hover ~ #top-nav-mega,
+#top-nav-mega:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.22s ease 0.2s, transform 0.22s ease 0.2s;
+}
+
+.mega-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 1.6rem 2.8rem;
+  background: rgba(250, 250, 248, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid rgba(26, 26, 26, 0.08);
+}
+
+.mega-categories {
+  display: flex;
+  gap: 2.4rem;
+  flex: 1;
+}
+
+.mega-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.mega-cat-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  margin-bottom: 0.4rem;
+  display: block;
+  transition: color 0.15s;
+}
+
+.mega-cat-label:hover { color: #555; }
+
+.mega-project {
+  font-size: 0.44rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B0B0B0;
+  display: block;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.mega-project:hover { color: #1A1A1A; }
+
+/* About preview */
+.mega-about {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.6rem;
+  padding-left: 2.8rem;
+  margin-left: auto;
+  border-left: 0.5px solid rgba(26, 26, 26, 0.08);
+  text-decoration: none;
+  width: 340px;
+  flex-shrink: 0;
+}
+
+.mega-about img {
+  width: 120px;
+  flex-shrink: 0;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.mega-about:hover img { opacity: 1; }
+
+.mega-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+}
+
+.mega-about-label {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: #1A1A1A;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.mega-about-role {
+  font-size: 0.44rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ADADAD;
+}
+
+.mega-about-bio {
+  font-size: 0.5rem;
+  letter-spacing: 0.04em;
+  color: #9A9A9A;
+  line-height: 1.7;
+  max-width: 18ch;
+  margin-top: 0.4rem;
+}
+
+/* ══════════════════════════════════════════
+   LANDING — Section 1
+   ══════════════════════════════════════════ */
+
+#landing {
+  position: relative;
+  height: 100vh;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+/* Name — top-right, Bodoni via global rule */
+.landing-name {
+  position: absolute;
+  top: 3.8rem;
+  right: 2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #9A9A9A;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Caption — bottom-left, Gill Sans via body */
+.landing-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: #9A9A9A;
+  z-index: 10;
+  pointer-events: none;
+}
+
+
+/* Container for floating contour images */
+#contour-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each blind contour image */
+.contour {
+  position: absolute;
+  display: block;
+  object-fit: contain;
+  /* width, top, left, rotation set by JS */
+}
+
+/* Balloon drift keyframes */
+@keyframes drift-a {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  33%  { transform: translate(18px, -22px) rotate(calc(var(--r) + 2deg)); }
+  66%  { transform: translate(-14px, 16px) rotate(calc(var(--r) - 1.5deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+@keyframes drift-b {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  40%  { transform: translate(-20px, 14px)  rotate(calc(var(--r) - 2deg)); }
+  75%  { transform: translate(12px, -18px)  rotate(calc(var(--r) + 1deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+@keyframes drift-c {
+  0%   { transform: translate(0, 0)    rotate(var(--r)); }
+  50%  { transform: translate(22px, 20px)   rotate(calc(var(--r) + 3deg)); }
+  100% { transform: translate(0, 0)    rotate(var(--r)); }
+}
+
+/* ══════════════════════════════════════════
+   META STRIP
+   ══════════════════════════════════════════ */
+
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 9px 5rem;
+  border-bottom: 0.5px solid rgba(26,26,26,0.1);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+}
+
+.meta-strip span:not(:last-child) {
+  border-right: 0.5px solid rgba(26,26,26,0.1);
+  padding-right: 1.4rem;
+}
+
+.meta-strip span:not(:first-child) {
+  padding-left: 1.4rem;
+}
+
+.meta-strip__live {
+  color: #1A1A1A;
+}
+
+.meta-strip__live::before {
+  content: '● ';
+  color: #c4ff00;
+  animation: meta-pulse 2.2s ease-in-out infinite;
+  display: inline;
+}
+
+@keyframes meta-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
+
+/* ══════════════════════════════════════════
+   REGISTRATION CORNER MARKS
+   ══════════════════════════════════════════ */
+
+.reg-marks::before,
+.reg-marks::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0.5px solid rgba(26,26,26,0.2);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.reg-marks::before {
+  top: 22px;
+  left: 22px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.reg-marks::after {
+  bottom: 22px;
+  right: 22px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ══════════════════════════════════════════
+   MARQUEE TICKER
+   ══════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════
+   PROJECTS — Section 2
+   ══════════════════════════════════════════ */
+
+#projects {
+  padding: 6rem 5rem 10rem;
+}
+
+/* ── Category divider label — ~50vh breathing room, no line ── */
+.category-divider {
+  text-align: left;
+  margin: 4rem 0 2rem;
+}
+
+/* First divider — no top margin needed */
+.category-divider:first-child {
+  margin-top: 0;
+}
+
+/* Category label text — Bodoni via global rule */
+.category-divider span {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: #ADADAD;
+  white-space: nowrap;
+}
+
+/* ── White-background section wrapper (Art & Sketching, Colour Design) ── */
+.section-white {
+  background-color: #FFFFFF;
+  margin-top: 4rem;
+  margin-left: -5rem;
+  margin-right: -5rem;
+  padding: 0 5rem 6rem;
+}
+
+/* Inside white sections, category-divider resets its top margin */
+.section-white .category-divider {
+  margin-top: 0;
+  padding-top: 4rem;
+}
+
+/* ── AI Hero — single full-width block, not a grid ── */
+.ai-hero {
+  width: 100%;
+}
+
+/* ── Project Grids ── */
+
+.projects-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Film — asymmetric 3-col grid, alternating large/small rhythm
+   Row 1: [  large 2/3  ][small 1/3]
+   Row 2: [small 1/3][  large 2/3  ]             */
+.projects-grid--film {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.projects-grid--film .project-card:nth-child(1) { grid-column: span 2; }
+.projects-grid--film .project-card:nth-child(2) { grid-column: span 1; }
+.projects-grid--film .project-card:nth-child(3) { grid-column: span 1; }
+.projects-grid--film .project-card:nth-child(4) { grid-column: span 2; }
+
+/* 3-column — Editorial, Art, Illustration, Colour Design */
+.projects-grid--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Editorial: 5th tile spans 2 cols — avoids orphan, anchors the row */
+.projects-grid--editorial .project-card:nth-child(5) {
+  grid-column: span 2;
+}
+
+/* ── Project Card ── */
+
+.project-card {
+  display: block;
+}
+
+/* Media block */
+.project-card-media {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.10),
+    0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Hover lift + glow ── */
+.project-card:hover .project-card-media {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 32px rgba(200,200,210,0.45),
+    0 0 24px rgba(255,255,255,0.6),
+    0 12px 40px rgba(0,0,0,0.14);
+}
+
+/* 16:9 for video cards */
+.project-card-media--video {
+  aspect-ratio: 16 / 9;
+  background-color: #0A0A0A;
+}
+
+/* Image cards: natural dimensions, no crop */
+.project-card-media--image {
+  min-height: 250px;
+}
+
+/* Placeholder image cards: fixed aspect-ratio so placeholder fills properly */
+.project-card-media--placeholder {
+  aspect-ratio: 4 / 5;
+  min-height: unset;
+}
+
+/* Image cards with slideshow */
+.project-card-media--slide {
+  aspect-ratio: 4 / 5;
+}
+
+.project-card-media--image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-media--slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-media--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card:hover .project-card-media img,
+.project-card:hover .project-card-media video {
+  opacity: 0.88;
+}
+
+/* Placeholder block */
+.placeholder-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: #9A9A9A;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  background: #EBEBEB;
+}
+
+/* Card title — Bodoni via global rule */
+.project-card-title {
+  font-size: 0.9rem;
+  color: #1A1A1A;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
+}
+
+/* Card description — Gill Sans, light gray, not italic */
+.project-card-desc {
+  font-size: 0.72rem;
+  color: #9A9A9A;
+  letter-spacing: 0.01em;
+  line-height: 1.55;
+}
+
+/* Art & Colour cards: title only */
+.project-card--art .project-card-desc,
+.project-card--colour .project-card-desc {
+  display: none;
+}
+
+/* Colour tile title: slightly smaller */
+.project-card--colour .project-card-title {
+  font-size: 0.78rem;
+}
+
+/* ── Cycling preview slides (gouache) ── */
+.gouache-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.gouache-slide--active {
+  opacity: 1;
+}
+
+/* ── Homepage Postcard 3D Carousel ── */
+.postcard-home-stage {
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  overflow: hidden;
+  position: relative;
+  min-height: 250px;
+}
+
+.postcard-home-track {
+  position: relative;
+  width: 100%;
+}
+
+.pc-home-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateX(110%) rotateY(-18deg);
+  opacity: 0;
+  transition:
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.7s ease;
+  pointer-events: none;
+}
+
+.pc-home-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pc-home-slide--active {
+  position: relative;
+  transform: translateX(0) rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pc-home-slide--exit {
+  position: absolute;
+  transform: translateX(-110%) rotateY(18deg);
+  opacity: 0;
+}
+
+/* ══════════════════════════════════════════
+   3D POSTCARD SLIDER (illustration-postcards.html)
+   ══════════════════════════════════════════ */
+
+.postcard-3d-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.postcard-3d-track {
+  position: relative;
+  width: 100%;
+}
+
+.pc-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform: translateX(110%) rotateY(-22deg);
+  opacity: 0;
+  transition:
+    transform 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.85s ease;
+  pointer-events: none;
+}
+
+.pc-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pc-slide--active {
+  position: relative;
+  transform: translateX(0) rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pc-slide--exit {
+  position: absolute;
+  transform: translateX(-110%) rotateY(22deg);
+  opacity: 0;
+}
+
+.pc-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.pc-dot {
+  width: 16px;
+  height: 1px;
+  background: #DADAD8;
+  transition: background 0.3s, width 0.3s;
+  cursor: pointer;
+}
+
+.pc-dot--active {
+  background: #1A1A1A;
+  width: 28px;
+}
+
+/* ══════════════════════════════════════════
+   EDITORIAL PAGES GRID (artforum, time detail pages)
+   ══════════════════════════════════════════ */
+
+.visuals-mockups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.visuals-pages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.visuals-pages-grid img,
+.visuals-mockups img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.pc-slide img {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.visuals-section-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.visuals-pages-grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Postcard carousel wrapper — constrained to postcard size */
+.project-visuals--postcard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.project-visuals--postcard .postcard-3d-stage {
+  width: 320px;
+  perspective: 900px;
+}
+
+.project-visuals--postcard .postcard-3d-track {
+  width: 320px;
+}
+
+.project-visuals--postcard .pc-slide img {
+  width: 320px;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ══════════════════════════════════════════
+   CONTACT — Section 3
+   ══════════════════════════════════════════ */
+
+#contact {
+  padding: 12rem 6rem 8rem;
+  /* no border-top — whitespace separator only */
+}
+
+.contact-name {
+  font-size: 1rem;
+  color: #1A1A1A;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5rem;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.85rem;
+  align-items: baseline;
+}
+
+.contact-key {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #9A9A9A;
+  min-width: 90px;
+}
+
+.contact-val {
+  color: #1A1A1A;
+}
+
+.contact-val:hover {
+  color: #9A9A9A;
+}
+
+/* ══════════════════════════════════════════
+   RUNWAI — Special full-bleed black layout
+   ══════════════════════════════════════════ */
+
+.runwai-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #FAFAF8;
+}
+
+/* Left: sticky video column — fills full viewport height */
+.runwai-video-col {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.runwai-video-col video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right: scrollable text + images column */
+.runwai-text-col {
+  padding: 2.8rem 3rem 5rem 2.5rem;
+  overflow-y: auto;
+}
+
+/* Override text colours for dark bg */
+.runwai-page .back-link,
+.runwai-page .project-meta-category,
+.runwai-page .project-meta,
+.runwai-page .section-label {
+  background: rgba(250, 250, 248, 0.12);
+  color: rgba(250, 250, 248, 0.7);
+}
+
+.runwai-page .project-title,
+.runwai-page .project-section p {
+  color: #FAFAF8;
+}
+
+.runwai-page .back-link:hover {
+  color: #FAFAF8;
+}
+
+/* Magazine images on RunwAI page */
+.runwai-magazine {
+  margin-top: 3rem;
+}
+
+.runwai-magazine-poster {
+  width: 100%;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.runwai-magazine-pages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.runwai-magazine-pages img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Process video below magazine */
+.runwai-process-video {
+  width: 100%;
+  display: block;
+  margin-top: 0.4rem;
+}
+
+/* ══════════════════════════════════════════
+   PROJECT DETAIL PAGES
+   ══════════════════════════════════════════ */
+
+/* Two-column layout: text left, visuals right */
+.project-page {
+  display: grid;
+  grid-template-columns: 26% 1fr;
+  min-height: 100vh;
+  align-items: start;
+}
+
+/* ── Left: text column ── */
+.project-text {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 4rem 2rem 3rem 3rem;
+  scrollbar-width: none;
+}
+
+.project-text::-webkit-scrollbar {
+  display: none;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-bottom: 1.4rem;
+}
+
+.back-link:hover {
+  color: #1A1A1A;
+}
+
+/* Project header block */
+.project-header {
+  margin-bottom: 1.6rem;
+}
+
+/* Category above title — Bodoni via global rule */
+.project-meta-category {
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #ADADAD;
+  margin-bottom: 0.4rem;
+}
+
+/* Main title — Bodoni via global rule */
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #1A1A1A;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+/* Year · Category meta line */
+.project-meta {
+  font-size: 0.65rem;
+  color: #ADADAD;
+  letter-spacing: 0.05em;
+}
+
+/* Content section */
+.project-section {
+  margin-bottom: 1.2rem;
+}
+
+/* Section heading label — xray tag */
+.section-label {
+  display: inline-block;
+  background: #1A1A1A;
+  color: #FAFAF8;
+  font-size: 0.48rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0.22rem 0.55rem 0.18rem;
+  margin-bottom: 0.55rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scan shimmer — fires once on page load */
+.section-label::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.45) 50%,
+    transparent 100%
+  );
+  animation: section-scan 0.9s ease forwards;
+  pointer-events: none;
+}
+
+.project-section:nth-child(1) .section-label::after { animation-delay: 0.25s; }
+.project-section:nth-child(2) .section-label::after { animation-delay: 0.5s; }
+.project-section:nth-child(3) .section-label::after { animation-delay: 0.75s; }
+.project-section:nth-child(4) .section-label::after { animation-delay: 1.0s; }
+.project-section:nth-child(5) .section-label::after { animation-delay: 1.25s; }
+
+@keyframes section-scan {
+  0%   { left: -80%; }
+  100% { left: 120%; }
+}
+
+.project-section p {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: #1A1A1A;
+}
+
+/* ── Right: visuals column — 2-col grid, first item full-width ── */
+.project-visuals {
+  padding: 2.2rem 3rem 4rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+/* First visual (hero) always spans full width */
+.project-visuals > *:first-child {
+  grid-column: span 2;
+}
+
+/* Videos always span full width */
+.project-visuals > video {
+  grid-column: span 2;
+}
+
+.project-visuals img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.project-visuals video {
+  width: 100%;
+  display: block;
+  background: #000;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+}
+
+/* ══════════════════════════════════════════
+   EDITORIAL MAGAZINE LAYOUT
+   ══════════════════════════════════════════ */
+
+/* Right column — editorial variant (replaces .project-visuals) */
+.project-visuals-editorial {
+  padding: 2.2rem 0 6rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  min-width: 0;
+}
+
+/* Horizontal scroll strip */
+.mag-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.mag-scroll:active {
+  cursor: grabbing;
+}
+
+.mag-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mag-scroll-track {
+  display: flex;
+  gap: 3px;
+  align-items: stretch;
+  width: max-content;
+  padding-right: 3rem;
+}
+
+/* All pages: fixed height, auto width — same size across images */
+.mag-scroll-track img {
+  height: 74vh;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+  background: #F0EEEA;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.09);
+}
+
+/* Static mockup grid below the scroll */
+.mag-mockups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-right: 3rem;
+}
+
+.mag-mockups img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ══════════════════════════════════════════
+   3D MAGAZINE FLIPPER
+   ══════════════════════════════════════════ */
+
+.mag3d-viewer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-right: 3rem;
+  padding-top: 1rem;
+}
+
+.mag3d-book {
+  position: relative;
+  height: 66vh;
+  /* Always full spread width in DOM.
+     clip-path hides the left half in cover mode,
+     translateX(-25%) re-centres the visible right half. */
+  width: calc(66vh * 1.44);
+  perspective: 2600px;
+  background: #fff;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,0.2),
+    0 8px 24px rgba(0,0,0,0.1);
+  clip-path: inset(0 0 0 50%);
+  transform: translateX(-25%);
+  transition:
+    clip-path 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    transform  0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.55s ease;
+}
+
+.mag3d-book.is-spread {
+  clip-path: inset(0 0 0 0%);
+  transform: translateX(0);
+  box-shadow:
+    0 22px 64px rgba(0,0,0,0.16),
+    0 5px 18px rgba(0,0,0,0.08);
+}
+
+/* Left half */
+.mag3d-left {
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Right half */
+.mag3d-right {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+.mag3d-left img,
+.mag3d-right img,
+.mag3d-flipper-front img,
+.mag3d-flipper-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Spine-side inner shadows for page depth */
+.mag3d-right::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 32px; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.11), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mag3d-left::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 32px; height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.11), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Spine — only visible when open */
+.mag3d-spine {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 2px);
+  width: 4px; height: 100%;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(to right,
+    rgba(0,0,0,0.18),
+    rgba(255,255,255,0.2),
+    rgba(0,0,0,0.18)
+  );
+  transition: opacity 0.4s ease;
+}
+
+.mag3d-book.is-spread .mag3d-spine {
+  opacity: 1;
+}
+
+/* Shadow the right (or left) static page receives while a page lifts over it */
+.mag3d-page-shadow {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  z-index: 8;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(0,0,0,0.22), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+/* Flipping page */
+.mag3d-flipper {
+  position: absolute;
+  top: 0;
+  width: 50%; height: 100%;
+  transform-style: preserve-3d;
+  z-index: 10;
+  visibility: hidden;
+  will-change: transform;
+  transition: transform 0.82s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.mag3d-flipper-front,
+.mag3d-flipper-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  background: #fff;
+}
+
+.mag3d-flipper-back {
+  transform: rotateY(180deg);
+}
+
+/* Fold crease gradient on each face */
+.mag3d-flipper-front::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.09) 0%, transparent 22%);
+  pointer-events: none;
+}
+
+.mag3d-flipper-back::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.09) 0%, transparent 22%);
+  pointer-events: none;
+}
+
+/* Placeholder block */
+.media-placeholder {
+  width: 100%;
+  background-color: #EBEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+}
+
+.media-placeholder--video {
+  aspect-ratio: 16 / 9;
+}
+
+.media-placeholder span {
+  font-size: 0.65rem;
+  color: #ADADAD;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════
+   PROJECT LIST — one per line
+   ══════════════════════════════════════════ */
+
+.project-list {
+  width: 100%;
+}
+
+.project-list--2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+
+.project-list--2col .project-row:last-child {
+  border-bottom: none;
+}
+
+.project-list--2col .project-row:nth-last-child(-n+2) {
+  border-bottom: 1px solid rgba(26, 26, 26, 0.07);
+}
+
+.project-list--2col .project-row {
+  grid-template-columns: 160px 1fr 50px;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 210px 1fr 60px;
+  align-items: center;
+  gap: 2.4rem;
+  padding: 1.6rem 0;
+  padding-left: 0;
+  border-top: 1px solid rgba(26, 26, 26, 0.07);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: padding-left 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* stagger entrance */
+  opacity: 0;
+  transform: translateY(7px);
+  animation: row-rise 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--row-i, 0) * 55ms + 120ms);
+}
+
+@keyframes row-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Blue gradient wash — transparent left, strong right (towards content) */
+.project-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: linear-gradient(to right,
+    rgba(14, 33, 72, 0.18) 0%,
+    rgba(14, 33, 72, 0.06) 55%,
+    transparent 100%
+  );
+  transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-list .project-row:last-child {
+  border-bottom: 1px solid rgba(26, 26, 26, 0.07);
+}
+
+.project-row:hover {
+  padding-left: 12px;
+}
+
+.project-row:hover::before {
+  width: 260px;
+}
+
+/* Thumbnail */
+.project-row-thumb {
+  width: 210px;
+  height: 132px;
+  overflow: hidden;
+  background: #EBEBEB;
+  flex-shrink: 0;
+}
+
+.project-row-thumb img,
+.project-row-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Title + description */
+.project-row-body {
+  min-width: 0;
+}
+
+.project-row-title {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.3rem;
+}
+
+.project-row-desc {
+  font-size: 0.72rem;
+  color: #ADADAD;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-row-year {
+  font-size: 0.65rem;
+  color: #C8C8C8;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+/* WIP project — currently building */
+.project-row--wip { cursor: default; }
+.project-row--wip:hover { padding-left: 0; }
+.project-row--wip:hover::before { width: 0; }
+
+.project-row-thumb--wip {
+  background: #F0EFEC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px dashed rgba(26, 26, 26, 0.18);
+}
+
+.wip-label {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+}
+
+/* ══════════════════════════════════════════
+   X-RAY SCREEN — index.html load effect
+   ══════════════════════════════════════════ */
+
+#xray-screen {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9992;
+  background: #fff;
+  mix-blend-mode: difference;
+  animation: xray-fade 1.2s ease forwards;
+}
+
+/* Bright scan line that sweeps top → bottom */
+#xray-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 35%,
+    rgba(255, 255, 255, 1)   50%,
+    rgba(255, 255, 255, 0.6) 65%,
+    transparent 100%
+  );
+  animation: xray-scan 0.9s cubic-bezier(0.4, 0, 0.55, 1) forwards;
+}
+
+@keyframes xray-scan {
+  0%   { top: -80px; }
+  100% { top: 100vh; }
+}
+
+@keyframes xray-fade {
+  0%,  55% { opacity: 1; }
+  100%      { opacity: 0; }
+}
+
+/* ── X-ray intro text ── */
+#xray-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9994;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  gap: 0.6rem;
+}
+
+.xray-intro-name {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-size: clamp(1.6rem, 4.5vw, 4rem);
+  font-weight: 400;
+  color: #FAFAF8;
+  letter-spacing: 0.08em;
+  animation: xray-name-in 1.4s ease forwards;
+}
+
+.xray-intro-tag {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.5);
+  animation: xray-tag-in 1.4s ease forwards;
+}
+
+@keyframes xray-name-in {
+  0%        { opacity: 0; letter-spacing: 0.5em; }
+  18%       { opacity: 1; letter-spacing: 0.2em; }
+  55%       { opacity: 1; letter-spacing: 0.2em; }
+  80%, 100% { opacity: 0; letter-spacing: 0.2em; }
+}
+
+@keyframes xray-tag-in {
+  0%, 12%   { opacity: 0; }
+  28%       { opacity: 1; }
+  55%       { opacity: 1; }
+  80%, 100% { opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   CONTOUR LIGHTBOX
+   ══════════════════════════════════════════ */
+
+/* Contour images are clickable */
+.contour {
+  cursor: pointer;
+}
+
+#contour-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  z-index: 9993;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+#contour-lightbox.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#contour-lb-img {
+  max-width: 80vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+#contour-lb-close {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #9A9A9A;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+#contour-lb-close:hover {
+  color: #1A1A1A;
+}
+
+/* ══════════════════════════════════════════
+   PAGE WIPE — project page entry transition
+   ══════════════════════════════════════════ */
+
+.page-wipe {
+  position: fixed;
+  inset: 0;
+  background: #FAFAF8;
+  z-index: 9991;
+  pointer-events: none;
+  transform-origin: right center;
+  animation: page-wipe-out 0.85s cubic-bezier(0.77, 0, 0.18, 1) 0.05s both;
+}
+
+@keyframes page-wipe-out {
+  0%   { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+
+/* ══════════════════════════════════════════
+   BACKGROUND EFFECTS
+   ══════════════════════════════════════════ */
+
+/* Film grain — subtle archival texture over everything */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
