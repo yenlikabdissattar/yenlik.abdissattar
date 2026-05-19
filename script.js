@@ -485,4 +485,136 @@
     });
   });
 
+
+  /* ── Quick-view modal ── */
+  var qvOverlay = document.getElementById('qv-overlay');
+  var qvClose   = document.getElementById('qv-close');
+  var qvMedia   = document.getElementById('qv-media');
+  var qvCat     = document.getElementById('qv-cat');
+  var qvTitle   = document.getElementById('qv-title');
+  var qvMeta    = document.getElementById('qv-meta');
+  var qvDesc    = document.getElementById('qv-desc');
+  var qvLink    = document.getElementById('qv-link');
+
+  if (qvOverlay && qvClose) {
+
+    var qvActiveVideo = null;
+
+    function openQv(row) {
+      var titleEl = row.querySelector('.project-row-title');
+      var descEl  = row.querySelector('.project-row-desc');
+      var yearEl  = row.querySelector('.project-row-year');
+      var title   = titleEl ? titleEl.textContent.trim() : '';
+      var desc    = descEl  ? descEl.textContent.trim()  : '';
+      var year    = yearEl  ? yearEl.textContent.trim()  : '';
+      var href    = row.getAttribute('href');
+
+      /* Derive category from preceding .category-divider sibling */
+      var list   = row.closest('.project-list');
+      var prev   = list ? list.previousElementSibling : null;
+      var catSpan = prev ? prev.querySelector('span') : null;
+      var cat    = catSpan ? catSpan.textContent.trim() : '';
+
+      /* Detect primary media from DOM */
+      var thumbSrc = row.querySelector('.project-row-thumb video source');
+      var thumbImg = row.querySelector('.project-row-thumb img');
+      var videoSrc = thumbSrc ? thumbSrc.getAttribute('src') : null;
+      /* Strip Cloudinary width param so modal gets full-res */
+      var imgSrc = null;
+      if (thumbImg) {
+        imgSrc = thumbImg.getAttribute('src')
+          .replace(/(?:,w_420|w_420,)/g, '')
+          .replace(/,(?=\/)/g, '');
+      }
+
+      /* Extra images from data attribute */
+      var extraImgs = (row.getAttribute('data-qv-imgs') || '')
+        .split('|')
+        .map(function (s) { return s.trim(); })
+        .filter(Boolean);
+
+      /* Populate text */
+      qvCat.textContent   = cat;
+      qvTitle.textContent = title;
+      qvMeta.textContent  = year;
+      qvDesc.textContent  = desc;
+      qvLink.href = href;
+
+      /* Build media */
+      qvMedia.innerHTML = '';
+      qvActiveVideo     = null;
+
+      if (videoSrc) {
+        qvMedia.className = 'qv-media--video';
+        var vid = document.createElement('video');
+        vid.setAttribute('autoplay', '');
+        vid.setAttribute('muted', '');
+        vid.setAttribute('loop', '');
+        vid.setAttribute('playsinline', '');
+        var vsrc = document.createElement('source');
+        vsrc.src  = videoSrc;
+        vsrc.type = 'video/mp4';
+        vid.appendChild(vsrc);
+        qvMedia.appendChild(vid);
+        qvActiveVideo = vid;
+      } else {
+        qvMedia.className = 'qv-media--images';
+        var allImgs = (imgSrc ? [imgSrc] : []).concat(extraImgs).slice(0, 3);
+        if (allImgs.length) {
+          var grid = document.createElement('div');
+          grid.className = 'qv-img-grid qv-img-grid--' + allImgs.length;
+          allImgs.forEach(function (url) {
+            var img = document.createElement('img');
+            img.src = url;
+            img.alt = '';
+            img.loading = 'lazy';
+            grid.appendChild(img);
+          });
+          qvMedia.appendChild(grid);
+        }
+      }
+
+      /* Open */
+      qvOverlay.classList.add('is-open');
+      qvOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeQv() {
+      qvOverlay.classList.remove('is-open');
+      qvOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (qvActiveVideo) {
+        qvActiveVideo.pause();
+        qvActiveVideo = null;
+      }
+    }
+
+    /* Attach click to every project row on the index page */
+    document.querySelectorAll('.project-row').forEach(function (row) {
+      row.addEventListener('click', function (e) {
+        /* Let modifier-key clicks (new tab) through */
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        openQv(row);
+      });
+    });
+
+    /* Close handlers */
+    qvClose.addEventListener('click', closeQv);
+
+    qvOverlay.addEventListener('click', function (e) {
+      if (e.target === qvOverlay) closeQv();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && qvOverlay.classList.contains('is-open')) closeQv();
+    });
+
+    /* Navigate on view-project click — close modal first to reset overflow */
+    qvLink.addEventListener('click', function () {
+      document.body.style.overflow = '';
+    });
+  }
+
 }());

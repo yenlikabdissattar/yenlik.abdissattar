@@ -1799,6 +1799,244 @@ body::after {
 }
 
 /* ══════════════════════════════════════════
+   QUICK-VIEW MODAL
+   ══════════════════════════════════════════ */
+
+#qv-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 250, 248, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.26s ease;
+}
+
+#qv-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel — two-column card */
+#qv-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58% 42%;
+  width: 100%;
+  max-width: 900px;
+  height: min(78vh, 560px);
+  background: #FAFAF8;
+  box-shadow:
+    0 16px 56px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transform: scale(0.97) translateY(8px);
+  transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#qv-overlay.is-open #qv-panel {
+  transform: scale(1) translateY(0);
+}
+
+/* Registration corner marks */
+#qv-panel::before,
+#qv-panel::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 0.5px solid rgba(26, 26, 26, 0.18);
+  z-index: 15;
+  pointer-events: none;
+}
+
+#qv-panel::before {
+  top: 14px;
+  left: 14px;
+  border-right: none;
+  border-bottom: none;
+}
+
+#qv-panel::after {
+  bottom: 14px;
+  right: 14px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Close button */
+#qv-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.3rem;
+  z-index: 20;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #9A9A9A;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.3rem;
+  transition: color 0.15s;
+}
+
+#qv-close:hover { color: #1A1A1A; }
+
+/* ── Media side (left 58%) ── */
+#qv-media {
+  overflow: hidden;
+  background: #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#qv-media.qv-media--images {
+  background: #F0EEEA;
+}
+
+#qv-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Image grids — fill the entire media area */
+.qv-img-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 2px;
+}
+
+.qv-img-grid--1 {
+  grid-template-columns: 1fr;
+}
+
+.qv-img-grid--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 3 imgs: first spans both cols, two below */
+.qv-img-grid--3 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.qv-img-grid--3 img:first-child {
+  grid-column: span 2;
+}
+
+.qv-img-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Info side (right 42%) ── */
+#qv-info {
+  padding: 2.6rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  border-left: 0.5px solid rgba(26, 26, 26, 0.07);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#qv-info::-webkit-scrollbar { display: none; }
+
+.qv-cat {
+  font-size: 0.48rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-bottom: 1.1rem;
+}
+
+#qv-title {
+  font-family: 'Bodoni Moda', 'Bodoni 72', Bodoni, Didot, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.7rem;
+  text-transform: none;
+}
+
+.qv-meta {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: #C8C8C8;
+  margin-bottom: 1rem;
+}
+
+.qv-desc {
+  font-size: 0.7rem;
+  color: #9A9A9A;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+.qv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.52rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  margin-top: 2rem;
+  padding-bottom: 0.18rem;
+  border-bottom: 0.5px solid rgba(26, 26, 26, 0.28);
+  align-self: flex-start;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.qv-link:hover {
+  color: #9A9A9A;
+  border-color: rgba(26, 26, 26, 0.10);
+}
+
+/* Mobile — panel slides up from bottom */
+@media (max-width: 768px) {
+  #qv-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  #qv-panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: 48vw auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 90vh;
+    transform: translateY(24px);
+  }
+
+  #qv-overlay.is-open #qv-panel {
+    transform: translateY(0);
+  }
+
+  #qv-info {
+    padding: 1.6rem 1.4rem 2rem;
+    border-left: none;
+    border-top: 0.5px solid rgba(26, 26, 26, 0.07);
+  }
+
+  #qv-title { font-size: 1.05rem; }
+}
+
+/* ══════════════════════════════════════════
    MOBILE NAV — injected by script.js
    ══════════════════════════════════════════ */
 
