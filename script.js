@@ -1,8 +1,8 @@
 /* Yenlik Abdissattar — Issue 01
    - Vertical wheel movement slides the issue sideways; when it stops,
      the issue settles on the nearest column line of the 8-column screen.
-   - Project panels show one image at a time: hover a thumbnail to look,
-     click to keep it.
+   - Each project's image box swipes through all its pictures on its own;
+     hover a thumbnail to look, click to jump there.
    - Counter, progress line, films that play only on screen, and the
      three-line project text. No libraries. */
 (() => {
@@ -145,10 +145,31 @@
     b.textContent = v.muted ? 'Sound on' : 'Sound off';
   });
 
-  /* ---- one image at a time: hover to look, click to keep ---- */
+  /* ---- image box: swipes through every picture on its own ---- */
   const imgURL = (pid, w) => `${CLOUD}/image/upload/f_auto,q_auto,c_limit,w_${w}/${pid}`;
   const vidURL = (pid) => `${CLOUD}/video/upload/q_auto,vc_auto,w_1280/${pid}.mp4`;
   const posterURL = (pid) => `${CLOUD}/video/upload/so_2,f_auto,q_auto,w_1280/${pid}.jpg`;
+  const HOLD = 3500;          // ms each picture stays
+  const HOLD_FILM = 9000;     // films get longer
+
+  const makeMedia = (d, title) => {
+    let el;
+    if (d.type === 'video') {
+      el = document.createElement('video');
+      Object.assign(el, { muted: true, loop: true, playsInline: true, poster: posterURL(d.pid) });
+      el.dataset.src = vidURL(d.pid);
+      el.setAttribute('aria-label', `${title}, film`);
+    } else {
+      el = document.createElement('img');
+      el.src = imgURL(d.pid, 1200);
+      el.srcset = [640, 1200, 2000].filter((w) => w <= Math.max(+d.w, 640)).map((w) => `${imgURL(d.pid, w)} ${w}w`).join(', ');
+      el.sizes = '(max-width: 720px) 100vw, 50vw';
+      el.alt = `${title}, ${d.cap.toLowerCase()}`;
+      el.decoding = 'async';
+    }
+    el.width = +d.w; el.height = +d.h;
+    return el;
+  };
 
   document.querySelectorAll('.strip').forEach((strip) => {
     const panel = strip.closest('.panel');
@@ -157,48 +178,76 @@
     const capT = panel.querySelector('.cap-t');
     const thumbs = [...strip.querySelectorAll('.thumb')];
     const title = panel.dataset.label;
-    let kept = thumbs[0];
-    let shown = thumbs[0];
+    let kept = 0;            // the picture the box returns to
+    let shown = 0;           // the picture on screen now
+    let timer = null;
+    let onScreen = false;
+    let held = false;        // pointer or focus is on the thumbnails
 
-    const show = (t) => {
-      if (t === shown) return;
-      shown = t;
-      const d = t.dataset;
-      let el;
-      if (d.type === 'video') {
-        el = document.createElement('video');
-        Object.assign(el, { muted: true, loop: true, playsInline: true, poster: posterURL(d.pid) });
-        el.dataset.src = vidURL(d.pid);
-        el.setAttribute('aria-label', `${title}, film`);
-      } else {
-        el = document.createElement('img');
-        el.src = imgURL(d.pid, 1200);
-        el.srcset = [640, 1200, 2000].filter((w) => w <= Math.max(+d.w, 640)).map((w) => `${imgURL(d.pid, w)} ${w}w`).join(', ');
-        el.sizes = '(max-width: 720px) 100vw, 50vw';
-        el.alt = `${title}, ${d.cap.toLowerCase()}`;
-        el.decoding = 'async';
+    // wrap the first picture in a slide
+    const first = document.createElement('div');
+    first.className = 'slide';
+    first.append(...stage.childNodes);
+    stage.replaceChildren(first);
+    stage.setAttribute('aria-live', 'off');
+
+    const mark = (i) => thumbs.forEach((t, k) => t.setAttribute('aria-pressed', String(k === i)));
+
+    const show = (i, dir = 1) => {
+      if (i === shown) return;
+      const t = thumbs[i];
+      const old = stage.lastElementChild;
+      const slide = document.createElement('div');
+      const media = makeMedia(t.dataset, title);
+      slide.className = 'slide ' + (calm.matches ? '' : dir > 0 ? 'from-right' : 'from-left');
+      slide.append(media);
+      stage.append(slide);
+      if (media.tagName === 'VIDEO') watch(media);
+      const oldVid = old && old.querySelector('video');
+      if (calm.matches) { old && old.remove(); }
+      else {
+        slide.getBoundingClientRect();                   // start the move from off-screen
+        slide.classList.remove('from-right', 'from-left');
+        if (old) {
+          old.classList.add(dir > 0 ? 'to-left' : 'to-right');
+          old.addEventListener('transitionend', () => old.remove(), { once: true });
+          setTimeout(() => old.isConnected && old.remove(), 900);
+        }
       }
-      el.width = +d.w; el.height = +d.h;
-      const old = stage.firstElementChild;
-      if (old && old.tagName === 'VIDEO') io.unobserve(old);
-      stage.replaceChildren(el);
-      if (el.tagName === 'VIDEO') watch(el);
-      if (capI) capI.textContent = `${+d.i + 1} / ${thumbs.length}`;
-      if (capT) capT.textContent = d.cap;
+      if (oldVid) { io.unobserve(oldVid); oldVid.pause(); }
+      shown = i;
+      if (capI) capI.textContent = `${i + 1} / ${thumbs.length}`;
+      if (capT) capT.textContent = t.dataset.cap;
     };
 
-    thumbs.forEach((t) => {
-      t.addEventListener('mouseenter', () => show(t));
-      t.addEventListener('focus', () => show(t));
-      t.addEventListener('click', () => {
-        kept.setAttribute('aria-pressed', 'false');
-        kept = t;
-        t.setAttribute('aria-pressed', 'true');
-        show(t);
-      });
+    const stop = () => { clearTimeout(timer); timer = null; };
+    const run = () => {
+      stop();
+      if (calm.matches || !onScreen || held || document.hidden) return;
+      const hold = thumbs[shown].dataset.type === 'video' ? HOLD_FILM : HOLD;
+      timer = setTimeout(() => {
+        kept = (shown + 1) % thumbs.length;
+        mark(kept);
+        show(kept, 1);
+        run();
+      }, hold);
+    };
+
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; run(); }, { threshold: 0.6 }).observe(stage);
+    document.addEventListener('visibilitychange', run);
+
+    thumbs.forEach((t, i) => {
+      t.addEventListener('mouseenter', () => { held = true; stop(); show(i, i >= shown ? 1 : -1); });
+      t.addEventListener('focus', () => { held = true; stop(); });
+      t.addEventListener('click', () => { kept = i; mark(i); show(i, i >= shown ? 1 : -1); });
     });
-    strip.addEventListener('mouseleave', () => show(kept));
-    strip.addEventListener('focusout', (e) => { if (!strip.contains(e.relatedTarget)) show(kept); });
+    strip.addEventListener('mouseleave', () => { held = false; show(kept, kept >= shown ? 1 : -1); run(); });
+    strip.addEventListener('focusout', (e) => {
+      if (strip.contains(e.relatedTarget)) return;
+      held = false; show(kept, kept >= shown ? 1 : -1); run();
+    });
+    stage.addEventListener('mouseenter', () => { held = true; stop(); });   // hold still while looking
+    stage.addEventListener('mouseleave', () => { held = false; run(); });
 
     /* arrow keys move through the thumbnails */
     strip.addEventListener('keydown', (e) => {
@@ -206,8 +255,8 @@
       const i = thumbs.indexOf(document.activeElement);
       if (i < 0) return;
       e.preventDefault(); e.stopPropagation();
-      const n = thumbs[(i + (e.key === 'ArrowRight' ? 1 : -1) + thumbs.length) % thumbs.length];
-      n.focus(); n.click();
+      const n = (i + (e.key === 'ArrowRight' ? 1 : -1) + thumbs.length) % thumbs.length;
+      thumbs[n].focus(); thumbs[n].click();
     });
   });
 })();
