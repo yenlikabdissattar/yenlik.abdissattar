@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yenlik Abdissattar</title>
 <meta name="description" content="Yenlik Abdissattar, designer in Seoul: editorial design, film and the moving image.">
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:wght@900&display=swap">
 <style>
-/* One sideways strip on an invisible grid: the screen is 8 columns by 8 rows.
-   Row 1 holds a single line about each project, rows 2 to 7 hold the work,
-   row 8 holds the project's name. */
+/* One row of work moves sideways across an invisible 8-column grid.
+   The piece nearest the middle of the screen grows; its project's name is set
+   large along the bottom and its one line sits top left. */
 :root {
-  --paper: #e8edf0;   /* ground */
-  --ink: #293785;     /* names, lines, links */
-  --dusk: #496da2;    /* the one-line descriptions */
+  --paper: #ffffff;   /* ground */
+  --ink: #293785;     /* names, the current project */
+  --dusk: #496da2;    /* one-line descriptions, other projects */
+  --mount: #e8edf0;   /* the ground prints sit on */
 
   --cond: "YA Light Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;   /* Helvetica Light Condensed */
   --black: "YA Black", "Roboto", "Arial Black", sans-serif;                        /* Helvetica Black */
 
-  --cols: 8;
   --vh: 100vh;
-  --c: calc(100vw / var(--cols));
-  --r: calc(var(--vh) / 8);
-  --g: 12px;          /* breathing room inside each cell */
+  --c: calc(100vw / 8);   /* one column */
+  --g: 16px;              /* edge gutter */
+  --base: 0.70;           /* where the row stands, as a share of the screen height */
 }
 @supports (height: 100dvh) { :root { --vh: 100dvh; } }
 
@@ -46,166 +46,275 @@ body {
   background: var(--paper); color: var(--ink);
   font-family: var(--cond); font-weight: 300;
   -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
 }
-h1, h2, p, ol { margin: 0; padding: 0; font-weight: inherit; }
-ol { list-style: none; }
+p, h1, figure { margin: 0; }
 a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; }
-a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
-.strip {
-  height: 100%;
-  overflow-x: auto; overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  display: grid;
-  grid-template-rows: repeat(8, minmax(0, 1fr));
-  grid-auto-columns: var(--c);
-  grid-template-columns: repeat(98, var(--c));
+/* corners */
+.top {
+  position: fixed; z-index: 3; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--g);
+  padding: var(--g) max(var(--g), env(safe-area-inset-right, 0px)) 0 max(var(--g), env(safe-area-inset-left, 0px));
+  font-family: var(--black); font-weight: 900; font-size: 14px; line-height: 18px;
 }
-.strip::-webkit-scrollbar { display: none; }
-.cell { min-width: 0; min-height: 0; padding: var(--g); }
+.top nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px 20px; }
+.top nav a { color: var(--dusk); }
+.top nav a[aria-current="true"] { color: var(--ink); }
+.top a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
-/* the work: pictures sit inside their cells, against the cell's lower left */
-.plate { display: flex; align-items: flex-end; justify-content: flex-start; }
-.plate img, .plate video {
-  display: block; width: auto; height: auto;
-  max-width: 100%; max-height: 100%;
-  background: var(--paper);
+/* top left: what the current piece is */
+.meta {
+  position: fixed; z-index: 2;
+  left: calc(var(--c) + var(--g)); top: calc(var(--vh) * 0.08);
+  width: calc(var(--c) * 3);
+}
+.kind { font-family: var(--black); font-weight: 900; font-size: 14px; line-height: 18px; }
+.line { margin-top: 6px; font-size: 22px; line-height: 25px; color: var(--dusk); text-wrap: pretty; }
+
+/* the row */
+.stage { position: fixed; inset: 0; z-index: 1; overflow: hidden; cursor: grab; }
+.stage.dragging { cursor: grabbing; }
+.it {
+  position: absolute; left: 0; top: 0;
+  will-change: transform, width, height;
+  cursor: pointer;
+}
+.it img, .it video { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+/* prints sit on a pale mount so white pages read against the white ground */
+.it.m { background: var(--mount); display: flex; align-items: center; justify-content: center; }
+.it.m img { width: 86%; height: 86%; object-fit: contain; }
+.tag {
+  position: absolute; left: 0; bottom: 100%; padding-bottom: 6px;
+  font-family: var(--black); font-weight: 900; font-size: 12px; line-height: 14px; white-space: nowrap;
 }
 
-/* row 1: what it is, and one line */
-.meta { align-self: end; padding-bottom: 0; }
-.kind { font-family: var(--black); font-weight: 900; font-size: 15px; line-height: 18px; }
-.line { margin-top: 4px; font-size: 19px; line-height: 22px; color: var(--dusk); max-width: 34ch; text-wrap: pretty; }
-
-/* row 8: the name, set large and thin */
-.foot { display: flex; align-items: flex-end; padding-top: 0; overflow: visible; scroll-snap-align: start; }
-.title {
-  font-size: calc(var(--r) * 1.05); line-height: .82;
-  letter-spacing: -0.01em; white-space: nowrap;
-  font-stretch: condensed;
+/* bottom: the project's name, large and thin */
+.big {
+  position: fixed; z-index: 0; left: max(var(--g), env(safe-area-inset-left, 0px)); bottom: calc(var(--vh) * 0.015);
+  font-size: calc(var(--vh) * 0.2); line-height: .8; letter-spacing: -0.02em;
+  white-space: nowrap; font-stretch: condensed;
+}
+.mail {
+  position: fixed; z-index: 2; right: max(var(--g), env(safe-area-inset-right, 0px)); bottom: var(--g);
+  font-family: var(--black); font-weight: 900; font-size: 14px; line-height: 18px; user-select: all;
 }
 
-/* cover */
-.cover-name { display: flex; align-items: flex-end; scroll-snap-align: start; }
-.name {
-  font-size: min(calc(var(--r) * 1.45), 15vw); line-height: .84;
-  letter-spacing: -0.02em; white-space: nowrap; font-stretch: condensed;
-}
-.cover-index { display: flex; align-items: center; }
-.index { width: 100%; }
-.index a { display: flex; align-items: baseline; gap: 16px; padding: 4px 0; }
-.ix-t { font-size: calc(var(--r) * .5); line-height: 1; letter-spacing: -0.01em; }
-.ix-y { font-family: var(--black); font-weight: 900; font-size: 15px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-/* contact */
-.contact { align-self: start; }
-.mail { margin-top: 8px; font-size: calc(var(--r) * .32); line-height: 1.1; user-select: all; overflow-wrap: anywhere; }
-.link { margin-top: 8px; font-family: var(--black); font-weight: 900; font-size: 15px; }
-.link a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-
-/* phones: half as many columns on screen */
 @media (max-width: 720px) {
-  :root { --cols: 4; --g: 8px; }
-  .line { font-size: 16px; line-height: 19px; }
-  .kind, .ix-y, .link { font-size: 13px; }
-  .name { font-size: min(calc(var(--r) * 1.2), 19vw); }
+  :root { --c: calc(100vw / 4); --base: 0.66; }
+  .top { font-size: 12px; }
+  .top nav { gap: 2px 12px; max-width: 60%; }
+  .meta { left: max(var(--g), env(safe-area-inset-left, 0px)); top: calc(var(--vh) * 0.13); width: calc(100vw - 2 * var(--g)); }
+  .line { font-size: 18px; line-height: 21px; max-width: 30ch; }
+  .big { font-size: calc(var(--vh) * 0.11); }
+  .mail { font-size: 12px; bottom: auto; top: calc(var(--vh) * 0.70 + 12px); }
 }
-@media (prefers-reduced-motion: reduce) { .strip { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-<main class="strip" aria-label="Yenlik Abdissattar, selected work">
-<div class="cell meta" style="grid-column:1/span 3;grid-row:1/2"><p class="line">Designer in Seoul, working across editorial design, film and the moving image.</p></div>
-<div class="cell cover-index" style="grid-column:5/span 4;grid-row:2/6"><ol class="index"><li><a href="#time"><span class="ix-t">TIME</span><span class="ix-y">2025</span></a></li><li><a href="#dust"><span class="ix-t">Dust</span><span class="ix-y">2025</span></a></li><li><a href="#wander"><span class="ix-t">Wander</span><span class="ix-y">2026</span></a></li><li><a href="#silence-of-the-dawn"><span class="ix-t">Silence of the Dawn</span><span class="ix-y">2025</span></a></li><li><a href="#calendar"><span class="ix-t">Calendar</span><span class="ix-y">2026</span></a></li></ol></div>
-<div class="cell cover-name" style="grid-column:1/span 8;grid-row:6/9"><h1 class="name">Yenlik<br>Abdissattar</h1></div>
-<div class="cell plate" style="grid-column:10/span 2;grid-row:2/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIMES_Cover_i4sa3m" width="595" height="793" alt="TIME, cover" decoding="async"></div>
-<div class="cell plate" style="grid-column:12/span 4;grid-row:2/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_mockup_cover_and_p1-2_hqb730" width="1200" height="800" alt="TIME, cover and pages 1 and 2" decoding="async"></div>
-<div class="cell plate" style="grid-column:16/span 4;grid-row:2/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_mockup_cover_and_p3-4_yaozyn" width="1200" height="800" alt="TIME, pages 3 and 4" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:20/span 4;grid-row:2/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_mockup_cover_and_p5-6_pxlgwu" width="1200" height="800" alt="TIME, pages 5 and 6" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:24/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P1_ius51a" width="1600" height="1600" alt="TIME, page 1" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:25/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P2_gvivxx" width="1600" height="1600" alt="TIME, page 2" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:26/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P3_gehxkx" width="1600" height="1600" alt="TIME, page 3" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:27/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P4_ck7sao" width="1600" height="1600" alt="TIME, page 4" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:28/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P5_ds68go" width="1600" height="1600" alt="TIME, page 5" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:29/span 1;grid-row:4/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P6_dq36np" width="1600" height="1600" alt="TIME, page 6" decoding="async" loading="lazy"></div>
-<div class="cell meta" style="grid-column:10/span 3;grid-row:1/2"><p class="kind">Editorial design, 2025</p><p class="line">A reimagined architecture issue, built on a strict grid.</p></div>
-<div class="cell foot" style="grid-column:10/span 20;grid-row:8/9"><h2 class="title" id="time">TIME</h2></div>
-<div class="cell plate" style="grid-column:31/span 5;grid-row:2/8"><video src="https://res.cloudinary.com/dnarrwa1m/video/upload/q_auto,vc_h264,w_1280/DUST_motion_graphics_wxet73.mp4" poster="https://res.cloudinary.com/dnarrwa1m/video/upload/so_20,q_auto,f_jpg,w_1280/DUST_motion_graphics_wxet73.jpg" width="1080" height="1080" muted loop playsinline preload="metadata" aria-label="Dust, motion graphics"></video></div>
-<div class="cell meta" style="grid-column:31/span 3;grid-row:1/2"><p class="kind">Motion graphics, 2025</p><p class="line">Grain, texture and surface, animated.</p></div>
-<div class="cell foot" style="grid-column:31/span 5;grid-row:8/9"><h2 class="title" id="dust">Dust</h2></div>
-<div class="cell plate" style="grid-column:37/span 5;grid-row:2/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-01" width="2000" height="1394" alt="Wander, cover spread" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:42/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-02" width="2000" height="1445" alt="Wander, spread 2" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:42/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-03" width="2000" height="1445" alt="Wander, spread 3" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:45/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-04" width="2000" height="1445" alt="Wander, spread 4" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:45/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-05" width="2000" height="1445" alt="Wander, spread 5" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:48/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-06" width="2000" height="1445" alt="Wander, spread 6" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:48/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-07" width="2000" height="1445" alt="Wander, spread 7" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:51/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-08" width="2000" height="1445" alt="Wander, spread 8" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:51/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-09" width="2000" height="1445" alt="Wander, spread 9" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:54/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-10" width="2000" height="1445" alt="Wander, spread 10" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:54/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-11" width="2000" height="1445" alt="Wander, spread 11" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:57/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-12" width="2000" height="1445" alt="Wander, spread 12" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:57/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-13" width="2000" height="1445" alt="Wander, spread 13" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:60/span 3;grid-row:2/5"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-14" width="2000" height="1445" alt="Wander, spread 14" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:60/span 3;grid-row:5/8"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-15" width="2000" height="1445" alt="Wander, spread 15" decoding="async" loading="lazy"></div>
-<div class="cell meta" style="grid-column:37/span 3;grid-row:1/2"><p class="kind">Book design, 2026</p><p class="line">A book built around stories by Jorge Luis Borges, shown spread by spread.</p></div>
-<div class="cell foot" style="grid-column:37/span 26;grid-row:8/9"><h2 class="title" id="wander">Wander</h2></div>
-<div class="cell plate" style="grid-column:64/span 8;grid-row:2/8"><video src="https://res.cloudinary.com/dnarrwa1m/video/upload/q_auto,vc_h264,w_1280/silence_of_the_dawn_final_documentary_filmmaking_2025-2_Yenlik_Abdissattar_sy74ak.mp4" poster="https://res.cloudinary.com/dnarrwa1m/video/upload/so_30,q_auto,f_jpg,w_1280/silence_of_the_dawn_final_documentary_filmmaking_2025-2_Yenlik_Abdissattar_sy74ak.jpg" width="1280" height="720" muted loop playsinline preload="metadata" aria-label="Silence of the Dawn, documentary"></video></div>
-<div class="cell meta" style="grid-column:64/span 3;grid-row:1/2"><p class="kind">Documentary, 2025</p><p class="line">Singapore before sunrise, filmed in long, quiet takes.</p></div>
-<div class="cell foot" style="grid-column:64/span 8;grid-row:8/9"><h2 class="title" id="silence-of-the-dawn">Silence of the Dawn</h2></div>
-<div class="cell plate" style="grid-column:73/span 5;grid-row:2/8"><img src="media/cal-01.jpg" width="1600" height="1600" alt="Calendar, January" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:78/span 2;grid-row:2/5"><img src="media/cal-02.jpg" width="1600" height="1600" alt="Calendar, February" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:78/span 2;grid-row:5/8"><img src="media/cal-03.jpg" width="1600" height="1600" alt="Calendar, March" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:80/span 2;grid-row:2/5"><img src="media/cal-04.jpg" width="1600" height="1600" alt="Calendar, April" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:80/span 2;grid-row:5/8"><img src="media/cal-05.jpg" width="1600" height="1600" alt="Calendar, May" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:82/span 2;grid-row:2/5"><img src="media/cal-06.jpg" width="1600" height="1600" alt="Calendar, June" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:82/span 2;grid-row:5/8"><img src="media/cal-07.jpg" width="1600" height="1600" alt="Calendar, July" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:84/span 2;grid-row:2/5"><img src="media/cal-08.jpg" width="1600" height="1600" alt="Calendar, August" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:84/span 2;grid-row:5/8"><img src="media/cal-09.jpg" width="1600" height="1600" alt="Calendar, September" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:86/span 2;grid-row:2/5"><img src="media/cal-10.jpg" width="1600" height="1600" alt="Calendar, October" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:86/span 2;grid-row:5/8"><img src="media/cal-11.jpg" width="1600" height="1600" alt="Calendar, November" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:88/span 2;grid-row:2/5"><img src="media/cal-12.jpg" width="1600" height="1600" alt="Calendar, December" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:90/span 4;grid-row:2/5"><img src="media/cal-tree.jpg" width="1181" height="709" alt="Calendar, month grid beside a tree" decoding="async" loading="lazy"></div>
-<div class="cell plate" style="grid-column:90/span 4;grid-row:5/8"><img src="media/cal-type.jpg" width="1181" height="709" alt="Calendar, February set as halftone type" decoding="async" loading="lazy"></div>
-<div class="cell meta" style="grid-column:73/span 3;grid-row:1/2"><p class="kind">Visual systems, 2026</p><p class="line">A year of street photographs, with the days set into each picture.</p></div>
-<div class="cell foot" style="grid-column:73/span 21;grid-row:8/9"><h2 class="title" id="calendar">Calendar</h2></div>
-<div class="cell contact" style="grid-column:95/span 4;grid-row:2/5"><p class="kind">Contact</p><p class="mail">yenlik.abdissattar@gmail.com</p><p class="link"><a href="https://www.linkedin.com/in/yenlik-abdissattar-b777a5235" rel="noopener" target="_blank">LinkedIn</a></p></div>
-<div class="cell foot" style="grid-column:95/span 4;grid-row:8/9"><h2 class="title" id="contact">Contact</h2></div>
+<header class="top"><a class="me" href="#">Yenlik Abdissattar</a><nav aria-label="Projects"><a href="#time" data-go="time">TIME</a><a href="#dust" data-go="dust">Dust</a><a href="#wander" data-go="wander">Wander</a><a href="#silence-of-the-dawn" data-go="silence-of-the-dawn">Silence of the Dawn</a><a href="#calendar" data-go="calendar">Calendar</a></nav></header>
+<div class="meta" aria-live="polite"><p class="kind">Designer, Seoul</p><p class="line">Editorial design, film and the moving image. Scroll to move through the work.</p></div>
+<main class="stage" aria-label="Selected work">
+<figure class="it m" data-p="time" data-ar="0.7503" tabindex="0" id="time"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIMES_Cover_i4sa3m" width="595" height="793" alt="TIME, cover" decoding="async"><figcaption class="tag">TIME</figcaption></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P1_ius51a" width="1200" height="1600" alt="TIME, page 1" decoding="async"></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P2_gvivxx" width="1200" height="1600" alt="TIME, page 2" decoding="async"></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P3_gehxkx" width="1200" height="1600" alt="TIME, page 3" decoding="async"></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P4_ck7sao" width="1200" height="1600" alt="TIME, page 4" decoding="async"></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P5_ds68go" width="1200" height="1600" alt="TIME, page 5" decoding="async"></figure>
+<figure class="it m" data-p="time" data-ar="0.7500" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/TIME_P6_dq36np" width="1200" height="1600" alt="TIME, page 6" decoding="async"></figure>
+<figure class="it" data-p="dust" data-ar="1.0000" tabindex="0" id="dust"><video src="https://res.cloudinary.com/dnarrwa1m/video/upload/q_auto,vc_h264,w_1280/DUST_motion_graphics_wxet73.mp4" poster="https://res.cloudinary.com/dnarrwa1m/video/upload/so_20,q_auto,f_jpg,w_1280/DUST_motion_graphics_wxet73.jpg" width="1080" height="1080" muted loop playsinline preload="metadata" aria-label="Dust, film"></video><figcaption class="tag">Dust</figcaption></figure>
+<figure class="it m" data-p="wander" data-ar="1.4347" tabindex="0" id="wander"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-01" width="2000" height="1394" alt="Wander, cover spread" decoding="async"><figcaption class="tag">Wander</figcaption></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-02" width="2000" height="1445" alt="Wander, spread 2" decoding="async"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-03" width="2000" height="1445" alt="Wander, spread 3" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-04" width="2000" height="1445" alt="Wander, spread 4" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-05" width="2000" height="1445" alt="Wander, spread 5" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-06" width="2000" height="1445" alt="Wander, spread 6" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-07" width="2000" height="1445" alt="Wander, spread 7" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-08" width="2000" height="1445" alt="Wander, spread 8" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-09" width="2000" height="1445" alt="Wander, spread 9" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-10" width="2000" height="1445" alt="Wander, spread 10" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-11" width="2000" height="1445" alt="Wander, spread 11" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-12" width="2000" height="1445" alt="Wander, spread 12" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-13" width="2000" height="1445" alt="Wander, spread 13" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-14" width="2000" height="1445" alt="Wander, spread 14" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="wander" data-ar="1.3841" tabindex="0"><img src="https://res.cloudinary.com/dnarrwa1m/image/upload/f_auto,q_auto,c_limit,w_1600/wander-15" width="2000" height="1445" alt="Wander, spread 15" decoding="async" loading="lazy"></figure>
+<figure class="it" data-p="silence-of-the-dawn" data-ar="1.7778" tabindex="0" id="silence-of-the-dawn"><video src="https://res.cloudinary.com/dnarrwa1m/video/upload/q_auto,vc_h264,w_1280/silence_of_the_dawn_final_documentary_filmmaking_2025-2_Yenlik_Abdissattar_sy74ak.mp4" poster="https://res.cloudinary.com/dnarrwa1m/video/upload/so_30,q_auto,f_jpg,w_1280/silence_of_the_dawn_final_documentary_filmmaking_2025-2_Yenlik_Abdissattar_sy74ak.jpg" width="1280" height="720" muted loop playsinline preload="metadata" aria-label="Silence of the Dawn, film"></video><figcaption class="tag">Silence of the Dawn</figcaption></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0" id="calendar"><img src="media/cal-01.jpg" width="1600" height="1600" alt="Calendar, january" decoding="async" loading="lazy"><figcaption class="tag">Calendar</figcaption></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-02.jpg" width="1600" height="1600" alt="Calendar, february" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-03.jpg" width="1600" height="1600" alt="Calendar, march" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-04.jpg" width="1600" height="1600" alt="Calendar, april" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-05.jpg" width="1600" height="1600" alt="Calendar, may" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-06.jpg" width="1600" height="1600" alt="Calendar, june" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-07.jpg" width="1600" height="1600" alt="Calendar, july" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-08.jpg" width="1600" height="1600" alt="Calendar, august" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-09.jpg" width="1600" height="1600" alt="Calendar, september" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-10.jpg" width="1600" height="1600" alt="Calendar, october" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-11.jpg" width="1600" height="1600" alt="Calendar, november" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.0000" tabindex="0"><img src="media/cal-12.jpg" width="1600" height="1600" alt="Calendar, december" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.6657" tabindex="0"><img src="media/cal-tree.jpg" width="1181" height="709" alt="Calendar, month grid beside a tree" decoding="async" loading="lazy"></figure>
+<figure class="it m" data-p="calendar" data-ar="1.6657" tabindex="0"><img src="media/cal-type.jpg" width="1181" height="709" alt="Calendar, february, set as halftone type" decoding="async" loading="lazy"></figure>
 </main>
+<h1 class="big">Yenlik Abdissattar</h1>
+<p class="mail">yenlik.abdissattar@gmail.com</p>
 <script>
 (() => {
-  const strip = document.querySelector('.strip');
+  const DATA = {"time": {"title": "TIME", "kind": "Editorial design, 2025", "line": "A reimagined architecture issue, built on a strict grid."}, "dust": {"title": "Dust", "kind": "Motion graphics, 2025", "line": "Grain, texture and surface, animated."}, "wander": {"title": "Wander", "kind": "Book design, 2026", "line": "A book built around stories by Jorge Luis Borges, shown spread by spread."}, "silence-of-the-dawn": {"title": "Silence of the Dawn", "kind": "Documentary, 2025", "line": "Singapore before sunrise, filmed in long, quiet takes."}, "calendar": {"title": "Calendar", "kind": "Visual systems, 2026", "line": "A year of street photographs, with the days set into each picture."}};
+  const INTRO = { title: 'Yenlik Abdissattar', kind: 'Designer, Seoul',
+                  line: 'Editorial design, film and the moving image. Scroll to move through the work.' };
+  const stage = document.querySelector('.stage');
+  const items = [...document.querySelectorAll('.it')];
+  const big = document.querySelector('.big'), kind = document.querySelector('.kind'), line = document.querySelector('.line');
+  const links = [...document.querySelectorAll('[data-go]')];
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
-  // a vertical wheel moves the strip sideways
-  strip.addEventListener('wheel', (e) => {
-    if (e.ctrlKey || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+  const ar = items.map((el) => +el.dataset.ar);
+
+  let B, M, GAP, CX, BASE, x0 = [], w0 = [], end = 0, minPos = 0, maxPos = 0;
+  let pos = 0, target = 0, current = null, raf = 0;
+
+  function measure() {
+    const W = innerWidth, H = innerHeight, phone = W <= 720;
+    B = H * (phone ? 0.12 : 0.15);          // resting height of a piece
+    M = H * (phone ? 0.38 : 0.47);          // height of the piece at the centre
+    GAP = phone ? 8 : 12;
+    CX = W * 0.5;
+    BASE = H * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--base'));
+    let x = 0;
+    x0 = []; w0 = [];
+    ar.forEach((a, i) => { w0[i] = B * a; x0[i] = x; x += w0[i] + GAP; });
+    end = x - GAP;
+    minPos = -W * 0.32;                     // a little empty room before the first piece: the introduction
+    maxPos = x0[x0.length - 1] + w0[w0.length - 1] / 2;
+    target = Math.min(Math.max(target, minPos), maxPos);
+  }
+
+  const ease = (t) => t * t * (3 - 2 * t);
+  // the name along the bottom shrinks only when it would not fit the screen
+  function fitBig() {
+    big.style.fontSize = '';
+    const room = innerWidth - 32 - (innerWidth > 720 ? document.querySelector('.mail').offsetWidth + 24 : 0);
+    if (big.scrollWidth > room) big.style.fontSize = (parseFloat(getComputedStyle(big).fontSize) * room / big.scrollWidth) + 'px';
+  }
+  function render() {
+    const reach = B * 2.4;                  // how far the growth spreads to the neighbours
+    const h = [], W = [];
+    for (let i = 0; i < items.length; i++) {
+      const d = Math.abs(x0[i] + w0[i] / 2 - pos);
+      const f = Math.max(0, 1 - d / reach);
+      h[i] = Math.min(B + (M - B) * ease(f), Math.max(B, innerWidth * 0.84 / ar[i]));
+      W[i] = h[i] * ar[i];
+    }
+    // where `pos` falls in the resting row, mapped onto the grown row
+    let X = 0, anchor = 0, k = 0;
+    if (pos <= x0[0]) anchor = pos - x0[0];
+    else {
+      for (k = 0; k < items.length; k++) {
+        const span = w0[k] + GAP;
+        if (pos < x0[k] + span || k === items.length - 1) {
+          const t = Math.min((pos - x0[k]) / span, 1);
+          let Xk = 0; for (let j = 0; j < k; j++) Xk += W[j] + GAP;
+          anchor = Xk + t * (W[k] + GAP);
+          break;
+        }
+      }
+    }
+    const shift = CX - anchor;
+    for (let i = 0; i < items.length; i++) {
+      const s = items[i].style;
+      s.width = W[i] + 'px'; s.height = h[i] + 'px';
+      s.transform = `translate3d(${(X + shift).toFixed(1)}px, ${(BASE - h[i]).toFixed(1)}px, 0)`;
+      X += W[i] + GAP;
+    }
+    // which project is at the centre
+    let p = null;
+    if (pos >= x0[0] - GAP) {
+      let best = Infinity;
+      for (let i = 0; i < items.length; i++) {
+        const d = Math.abs(x0[i] + w0[i] / 2 - pos);
+        if (d < best) { best = d; p = items[i].dataset.p; }
+      }
+    }
+    if (p !== current) {
+      current = p;
+      const d = p ? DATA[p] : INTRO;
+      big.textContent = d.title; kind.textContent = d.kind; line.textContent = d.line;
+      fitBig();
+      links.forEach((a) => a.setAttribute('aria-current', String(a.dataset.go === p)));
+    }
+  }
+
+  function tick() {
+    const k = calm.matches ? 1 : 0.12;
+    pos += (target - pos) * k;
+    if (Math.abs(target - pos) < 0.3) pos = target;
+    render();
+    raf = pos !== target ? requestAnimationFrame(tick) : 0;
+  }
+  const go = (t) => { target = Math.min(Math.max(t, minPos), maxPos); if (!raf) raf = requestAnimationFrame(tick); };
+  const centreOf = (i) => x0[i] + w0[i] / 2;
+
+  // wheel and trackpad
+  addEventListener('wheel', (e) => {
+    if (e.ctrlKey || document.querySelector('dialog[open]')) return;
     e.preventDefault();
-    const unit = e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? strip.clientWidth : 1;
-    strip.scrollLeft += e.deltaY * unit;
+    const unit = e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerWidth : 1;
+    const d = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * unit;
+    go(target + d * 0.55);
   }, { passive: false });
-  // keys: one screen at a time
-  addEventListener('keydown', (e) => {
-    const w = strip.clientWidth, b = calm.matches ? 'auto' : 'smooth';
-    if (['PageDown', 'ArrowDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) { e.preventDefault(); strip.scrollBy({ left: w, behavior: b }); }
-    else if (['PageUp', 'ArrowUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) { e.preventDefault(); strip.scrollBy({ left: -w, behavior: b }); }
-    else if (e.key === 'Home') { e.preventDefault(); strip.scrollTo({ left: 0, behavior: b }); }
-    else if (e.key === 'End') { e.preventDefault(); strip.scrollTo({ left: strip.scrollWidth, behavior: b }); }
+
+  // drag and swipe
+  let drag = null;
+  stage.addEventListener('pointerdown', (e) => {
+    drag = { x: e.clientX, t: target, moved: false, id: e.pointerId };
   });
-  // index links scroll the strip
-  document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-    const t = document.getElementById(a.getAttribute('href').slice(1));
-    if (!t) return;
+  addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 4 && !drag.moved) { drag.moved = true; stage.classList.add('dragging'); stage.setPointerCapture?.(drag.id); }
+    if (drag.moved) go(drag.t - dx * 0.6);
+  });
+  addEventListener('pointerup', (e) => {
+    if (!drag) return;
+    const moved = drag.moved; drag = null; stage.classList.remove('dragging');
+    if (!moved) {
+      const el = e.target.closest?.('.it');
+      if (el) go(centreOf(items.indexOf(el)));
+    }
+  });
+
+  // keys: one piece at a time
+  const nearest = () => { let b = 0, bd = Infinity; items.forEach((_, i) => { const d = Math.abs(centreOf(i) - target); if (d < bd) { bd = d; b = i; } }); return b; };
+  addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'ArrowDown', 'PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) { e.preventDefault(); go(target < x0[0] ? centreOf(0) : centreOf(Math.min(nearest() + 1, items.length - 1))); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) { e.preventDefault(); const i = nearest(); go(i === 0 ? minPos : centreOf(i - 1)); }
+    else if (e.key === 'Home') { e.preventDefault(); go(minPos); }
+    else if (e.key === 'End') { e.preventDefault(); go(maxPos); }
+  });
+  items.forEach((el, i) => el.addEventListener('focus', () => go(centreOf(i))));
+
+  // project links
+  links.forEach((a) => a.addEventListener('click', (e) => {
     e.preventDefault();
-    strip.scrollTo({ left: t.closest('.cell').offsetLeft - strip.offsetLeft, behavior: calm.matches ? 'auto' : 'smooth' });
+    const i = items.findIndex((el) => el.dataset.p === a.dataset.go);
+    if (i >= 0) go(centreOf(i));
   }));
-  // films loop quietly while on screen
+  document.querySelector('.me').addEventListener('click', (e) => { e.preventDefault(); go(minPos); });
+
+  // films loop quietly while they can be seen
   const io = new IntersectionObserver((es) => es.forEach(({ target: v, isIntersecting: on }) => {
     if (on && !calm.matches) v.play().catch(() => {}); else v.pause();
-  }), { root: strip, threshold: 0.3 });
-  document.querySelectorAll('video').forEach((v) => { if (calm.matches) v.controls = true; io.observe(v); });
+  }), { threshold: 0.2 });
+  document.querySelectorAll('video').forEach((v) => io.observe(v));
+
+  addEventListener('resize', () => { fitBig(); const i = target < x0[0] ? -1 : nearest(); measure(); if (i >= 0) { target = centreOf(i); } pos = target; render(); });
+  measure();
+  const start = location.hash && items.findIndex((el) => el.id === location.hash.slice(1));
+  pos = target = start > 0 ? centreOf(start) : minPos;
+  render();
+  fitBig();
+  document.fonts?.ready.then(fitBig);
 })();
 </script>
 </body>
