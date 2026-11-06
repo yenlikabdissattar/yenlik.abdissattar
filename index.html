@@ -201,7 +201,7 @@ a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="drift" aria-hidden="true"><img src="media/bc-01.webp" alt="" decoding="async"><img src="media/bc-02.webp" alt="" decoding="async"><img src="media/bc-03.webp" alt="" decoding="async"><img src="media/bc-04.webp" alt="" decoding="async"><img src="media/bc-05.webp" alt="" decoding="async"><img src="media/bc-06.webp" alt="" decoding="async"><img src="media/bc-07.webp" alt="" decoding="async"><img src="media/bc-08.webp" alt="" decoding="async"><img src="media/bc-09.webp" alt="" decoding="async"><img src="media/bc-10.webp" alt="" decoding="async"><img src="media/bc-11.webp" alt="" decoding="async"><img src="media/bc-12.webp" alt="" decoding="async"><img src="media/bc-13.webp" alt="" decoding="async"><img src="media/bc-14.webp" alt="" decoding="async"><img src="media/bc-15.webp" alt="" decoding="async"></div>
+<div class="drift" aria-hidden="true"><img src="media/bc-01.webp" data-ar="0.612" alt="" decoding="async"><img src="media/bc-02.webp" data-ar="0.892" alt="" decoding="async"><img src="media/bc-03.webp" data-ar="0.767" alt="" decoding="async"><img src="media/bc-04.webp" data-ar="0.633" alt="" decoding="async"><img src="media/bc-05.webp" data-ar="0.898" alt="" decoding="async"><img src="media/bc-06.webp" data-ar="0.832" alt="" decoding="async"><img src="media/bc-07.webp" data-ar="0.868" alt="" decoding="async"><img src="media/bc-08.webp" data-ar="1.357" alt="" decoding="async"><img src="media/bc-09.webp" data-ar="0.663" alt="" decoding="async"><img src="media/bc-10.webp" data-ar="0.817" alt="" decoding="async"><img src="media/bc-11.webp" data-ar="1.758" alt="" decoding="async"><img src="media/bc-12.webp" data-ar="1.306" alt="" decoding="async"><img src="media/bc-13.webp" data-ar="0.726" alt="" decoding="async"><img src="media/bc-14.webp" data-ar="0.846" alt="" decoding="async"><img src="media/bc-15.webp" data-ar="0.867" alt="" decoding="async"></div>
 <header class="top"><a class="me" href="#">Yenlik Abdissattar</a><nav aria-label="Projects"><a href="#time" data-go="time">TIME</a><a href="#dust" data-go="dust">Dust</a><a href="#wander" data-go="wander">Wander</a><a href="#silence-of-the-dawn" data-go="silence-of-the-dawn">Silence of the Dawn</a><a href="#snippets" data-go="snippets">Snippets</a></nav></header>
 <div class="meta" aria-live="polite"><p class="kind">Designer, Seoul</p><p class="line">Editorial design, film and the moving image. Scroll to move through the work, click a piece to open it.</p></div>
 <main class="stage" aria-label="Selected work">
@@ -231,35 +231,81 @@ a { color: inherit; text-decoration: none; }
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
   const ar = items.map((el) => +el.dataset.ar);
 
-  // the blind contours wander slowly around the page, each at its own size
-  const drift = [...document.querySelectorAll('.drift img')].map((img, i) => {
-    const r = Math.random, a = r() * Math.PI * 2, sp = 6 + r() * 14;
-    return { img, s: 0.12 + r() * r() * 0.42, x: r(), y: r(), vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
-             rot: (r() - 0.5) * 24, vr: (r() - 0.5) * 3, w: 0, h: 0 };
+  // the blind contours wander slowly around the page, each at its own size.
+  // They may overlap only at their edges: the middle 80% of each drawing never touches another's,
+  // and when two meet they bounce apart. The space they move in is a little larger than the screen,
+  // so some are always just out of view.
+  const EDGE = 0.2;                                   // where two meet, they may overlap by at most 20% of the smaller one
+  const drift = [...document.querySelectorAll('.drift img')].map((img) => {
+    const r = Math.random, a = r() * Math.PI * 2, sp = 8 + r() * 14;
+    return { img, ar: +img.dataset.ar, s: 0.14 + r() * r() * 0.4, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+             r0: (r() - 0.5) * 6, ph: r() * 6.28, wob: 0.15 + r() * 0.25, x: 0, y: 0, w: 0, h: 0 };
   });
-  function sizeDrift() {
-    const m = Math.min(innerWidth, innerHeight * 1.4);
-    drift.forEach((d) => {
-      d.w = m * d.s; d.img.style.width = d.w + 'px';
-      d.h = d.img.naturalWidth ? d.w * d.img.naturalHeight / d.img.naturalWidth : d.w * 1.2;
-      if (d.x <= 1) { d.x = d.x * innerWidth - d.w / 2; d.y = d.y * innerHeight - d.h / 2; }
-    });
+  let FX = 0, FY = 0, FW = 1, FH = 1, clock = 0;
+  // how far apart two centres must stay, across and up-down
+  const gapX = (a, b) => (a.w + b.w) / 2 - EDGE * Math.min(a.w, b.w);
+  const gapY = (a, b) => (a.h + b.h) / 2 - EDGE * Math.min(a.h, b.h);
+  const wrapD = (v, L) => v - L * Math.round(v / L);           // shortest distance in the wrapped space
+  function hits(d, others) {
+    return others.some((o) => Math.abs(wrapD(d.x - o.x, FW)) < gapX(d, o) && Math.abs(wrapD(d.y - o.y, FH)) < gapY(d, o));
   }
-  function placeDrift(dt) {
+  function layoutDrift() {
+    const W = innerWidth, H = innerHeight, m = Math.min(W, H * 1.4);
+    let k = 1;
+    for (let pass = 0; pass < 12; pass++) {
+      drift.forEach((d) => { d.w = m * d.s * k; d.h = d.w / d.ar; });
+      const mw = Math.max(...drift.map((d) => d.w)), mh = Math.max(...drift.map((d) => d.h));
+      FX = -mw / 2; FY = -mh / 2; FW = W + mw; FH = H + mh;
+      const need = drift.reduce((t, d) => t + d.w * d.h * 0.7, 0);
+      const fit = Math.min(1, Math.sqrt(0.42 * FW * FH / need));
+      if (fit > 0.98) break; k *= fit;
+    }
+    // drop them in one at a time where they do not clash; shrink a little if the screen is crowded
+    const placed = [];
     for (const d of drift) {
-      d.x += d.vx * dt; d.y += d.vy * dt; d.rot += d.vr * dt;
-      if (d.x > innerWidth) d.x = -d.w; else if (d.x < -d.w) d.x = innerWidth;
-      if (d.y > innerHeight) d.y = -d.h; else if (d.y < -d.h) d.y = innerHeight;
-      d.img.style.transform = `translate3d(${d.x.toFixed(1)}px, ${d.y.toFixed(1)}px, 0) rotate(${d.rot.toFixed(2)}deg)`;
+      d.img.style.width = d.w + 'px';
+      let ok = false;
+      for (let t = 0; t < 400 && !ok; t++) {
+        d.x = FX + Math.random() * FW; d.y = FY + Math.random() * FH;
+        ok = !hits(d, placed);
+        if (!ok && t % 100 === 99) { d.w *= 0.85; d.h = d.w / d.ar; d.img.style.width = d.w + 'px'; }
+      }
+      placed.push(d);
     }
   }
-  drift.forEach((d) => d.img.complete ? null : d.img.addEventListener('load', () => { d.h = d.w * d.img.naturalHeight / d.img.naturalWidth; }, { once: true }));
-  sizeDrift(); placeDrift(0);
-  addEventListener('resize', sizeDrift);
+  function stepDrift(dt) {
+    clock += dt;
+    for (const d of drift) {
+      d.x += d.vx * dt; d.y += d.vy * dt;
+      d.x = FX + ((d.x - FX) % FW + FW) % FW; d.y = FY + ((d.y - FY) % FH + FH) % FH;
+    }
+    for (let i = 0; i < drift.length; i++) for (let j = i + 1; j < drift.length; j++) {
+      const a = drift[i], b = drift[j];
+      const dx = wrapD(b.x - a.x, FW), dy = wrapD(b.y - a.y, FH);
+      const px = gapX(a, b) - Math.abs(dx), py = gapY(a, b) - Math.abs(dy);
+      if (px <= 0 || py <= 0) continue;
+      if (px < py) {                                   // meet side to side: push apart, trade horizontal speeds
+        const sx = Math.sign(dx) || 1; a.x -= sx * px / 2; b.x += sx * px / 2;
+        if ((b.vx - a.vx) * sx < 0) { const t = a.vx; a.vx = b.vx; b.vx = t; }
+      } else {                                         // meet top to bottom
+        const sy = Math.sign(dy) || 1; a.y -= sy * py / 2; b.y += sy * py / 2;
+        if ((b.vy - a.vy) * sy < 0) { const t = a.vy; a.vy = b.vy; b.vy = t; }
+      }
+    }
+    placeDrift();
+  }
+  function placeDrift() {
+    for (const d of drift) {
+      const rot = d.r0 + Math.sin(clock * d.wob + d.ph) * 1.5;
+      d.img.style.transform = `translate3d(${(d.x - d.w / 2).toFixed(1)}px, ${(d.y - d.h / 2).toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+    }
+  }
+  layoutDrift(); placeDrift();
+  addEventListener('resize', () => { layoutDrift(); placeDrift(); });
   let last = performance.now();
   (function float(now) {
     const dt = Math.min((now - last) / 1000, 0.1); last = now;
-    if (!calm.matches && !document.hidden && !document.querySelector('dialog[open]')) placeDrift(dt);
+    if (!calm.matches && !document.hidden && !document.querySelector('dialog[open]')) stepDrift(dt);
     requestAnimationFrame(float);
   })(last);
 
