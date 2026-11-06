@@ -79,11 +79,16 @@ a { color: inherit; text-decoration: none; }
 .kind { font-family: var(--black); font-weight: 900; font-size: 14px; line-height: 18px; }
 .line { margin-top: 6px; font-size: 22px; line-height: 25px; color: var(--dusk); text-wrap: pretty; }
 
+/* background: the blind contour drawings, drifting */
+.drift { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.drift img { position: absolute; left: 0; top: 0; height: auto; opacity: .5; will-change: transform; user-select: none; }
+
 /* the row */
 .stage { position: fixed; inset: 0; z-index: 1; overflow: hidden; cursor: grab; }
 .stage.dragging { cursor: grabbing; }
 .it {
   position: absolute; left: 0; top: 0;
+  box-shadow: 0 2px 3px rgb(20 24 60 / .16), 0 14px 18px -6px rgb(20 24 60 / .26), 0 40px 46px -18px rgb(20 24 60 / .34);
   will-change: transform, width, height;
   cursor: pointer;
 }
@@ -196,6 +201,7 @@ a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
+<div class="drift" aria-hidden="true"><img src="media/bc-01.webp" alt="" decoding="async"><img src="media/bc-02.webp" alt="" decoding="async"><img src="media/bc-03.webp" alt="" decoding="async"><img src="media/bc-04.webp" alt="" decoding="async"><img src="media/bc-05.webp" alt="" decoding="async"><img src="media/bc-06.webp" alt="" decoding="async"><img src="media/bc-07.webp" alt="" decoding="async"><img src="media/bc-08.webp" alt="" decoding="async"><img src="media/bc-09.webp" alt="" decoding="async"><img src="media/bc-10.webp" alt="" decoding="async"><img src="media/bc-11.webp" alt="" decoding="async"><img src="media/bc-12.webp" alt="" decoding="async"><img src="media/bc-13.webp" alt="" decoding="async"><img src="media/bc-14.webp" alt="" decoding="async"><img src="media/bc-15.webp" alt="" decoding="async"></div>
 <header class="top"><a class="me" href="#">Yenlik Abdissattar</a><nav aria-label="Projects"><a href="#time" data-go="time">TIME</a><a href="#dust" data-go="dust">Dust</a><a href="#wander" data-go="wander">Wander</a><a href="#silence-of-the-dawn" data-go="silence-of-the-dawn">Silence of the Dawn</a><a href="#snippets" data-go="snippets">Snippets</a></nav></header>
 <div class="meta" aria-live="polite"><p class="kind">Designer, Seoul</p><p class="line">Editorial design, film and the moving image. Scroll to move through the work, click a piece to open it.</p></div>
 <main class="stage" aria-label="Selected work">
@@ -224,6 +230,38 @@ a { color: inherit; text-decoration: none; }
   const links = [...document.querySelectorAll('[data-go]')];
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
   const ar = items.map((el) => +el.dataset.ar);
+
+  // the blind contours wander slowly around the page, each at its own size
+  const drift = [...document.querySelectorAll('.drift img')].map((img, i) => {
+    const r = Math.random, a = r() * Math.PI * 2, sp = 6 + r() * 14;
+    return { img, s: 0.12 + r() * r() * 0.42, x: r(), y: r(), vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+             rot: (r() - 0.5) * 24, vr: (r() - 0.5) * 3, w: 0, h: 0 };
+  });
+  function sizeDrift() {
+    const m = Math.min(innerWidth, innerHeight * 1.4);
+    drift.forEach((d) => {
+      d.w = m * d.s; d.img.style.width = d.w + 'px';
+      d.h = d.img.naturalWidth ? d.w * d.img.naturalHeight / d.img.naturalWidth : d.w * 1.2;
+      if (d.x <= 1) { d.x = d.x * innerWidth - d.w / 2; d.y = d.y * innerHeight - d.h / 2; }
+    });
+  }
+  function placeDrift(dt) {
+    for (const d of drift) {
+      d.x += d.vx * dt; d.y += d.vy * dt; d.rot += d.vr * dt;
+      if (d.x > innerWidth) d.x = -d.w; else if (d.x < -d.w) d.x = innerWidth;
+      if (d.y > innerHeight) d.y = -d.h; else if (d.y < -d.h) d.y = innerHeight;
+      d.img.style.transform = `translate3d(${d.x.toFixed(1)}px, ${d.y.toFixed(1)}px, 0) rotate(${d.rot.toFixed(2)}deg)`;
+    }
+  }
+  drift.forEach((d) => d.img.complete ? null : d.img.addEventListener('load', () => { d.h = d.w * d.img.naturalHeight / d.img.naturalWidth; }, { once: true }));
+  sizeDrift(); placeDrift(0);
+  addEventListener('resize', sizeDrift);
+  let last = performance.now();
+  (function float(now) {
+    const dt = Math.min((now - last) / 1000, 0.1); last = now;
+    if (!calm.matches && !document.hidden && !document.querySelector('dialog[open]')) placeDrift(dt);
+    requestAnimationFrame(float);
+  })(last);
 
   let B, M, GAP, CX, BASE, x0 = [], w0 = [], end = 0, minPos = 0, maxPos = 0;
   let pos = 0, target = 0, current = null, raf = 0;
