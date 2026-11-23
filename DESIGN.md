@@ -42,9 +42,9 @@ Main column = B to D (4–12). Title = A to C (1–9).
 
 ### Home page
 
-1. **Landing** — one screen, white. The fifteen blind contours drift slowly and fade as you scroll. Bottom left, small: "Under three minutes blind contours". Bottom right, small: discipline line.
-2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, Film and Motion, AI, Art) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
-3. **Contact** — the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
+1. **Landing** — one screen, white. The fifteen blind contours drift slowly behind the name in big type, one line on what she does and is looking for, and three links (See the work, CV, Email). Top right, small: "Under three minutes blind contours". Everything fades as you scroll.
+2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, AI, Film and Motion, Foundations) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
+3. **About and contact** — a short About with CV links, then the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
 
 ### Case study page (every project)
 
@@ -58,14 +58,16 @@ Main column = B to D (4–12). Title = A to C (1–9).
 
 ### Exceptions, on purpose
 
-- **Art** (Drawing, Colour Design, Illustration): plates are white, so the work sits on the page itself.
+- **Foundations** (drawing, colour, illustration, digital tools): one page of four chapters, each a big title, one paragraph and nine plates. Plates are white, so the work sits on the page itself.
+- **Companion piece**: Wander ends with Dust and 9 Panels, the motion and print work built on the same idea.
+- **Flip through**: Wander, TIME and RunwAI can be turned page by page in 3D.
 - **RunwAI**: the page is black. The runway film fills the left half, full height, and stays while you scroll; on the right, the title block, then the magazine cover with the pages beside it, then the process film.
 
 ---
 
 ## 3. Typography
 
-One family, Helvetica Neue (Helvetica, Arial). Weights 400 and 500.
+Helvetica, served from Adobe Fonts so every computer sees it: Neue Haas Grotesk Text (400, 500) for text and Neue Haas Grotesk Display (500) for big type. Fallback: Helvetica Neue, Helvetica, Arial. The kit only loads on yenlikabdissattar.github.io and localhost; opening a file directly falls back to Helvetica Neue.
 
 | Style | Size / line | Weight | Tracking | Use |
 |---|---|---|---|---|
@@ -100,8 +102,8 @@ Black and white carry the site. Blue appears only when you interact.
 | Contents | Opens from the three lines on click, or on hover with a mouse. Six columns: the five sections with their projects, then Information. Esc closes. |
 | Card | 4:3 preview, number, title, year, discipline. Hover: lifts 2px, image zooms 3%, title turns blue, page preview appears. |
 | Filter | Text buttons; the active one is medium weight and underlined; other cards dim to 12%. |
-| Plate | 4:3 (16:9 for heroes and films), padding 7%, image contained, never cropped. |
-| Film | Muted, looping, no controls, plays only while on screen. Served from Cloudinary. |
+| Plate | 4:3 (16:9 for heroes and films, 3:4 for rows of phone screens or portraits), padding 7%, image contained. Mockup photos close to the plate's shape fill it edge to edge (`bleed`), so there is never a box inside a box; white grounds melt into the plate. |
+| Film | Muted, looping, no controls, plays only while on screen. Previews loop an 8-second clip from a chosen still; project films skip black intros and offer "Watch the full film with sound". Served from Cloudinary at 1280px. |
 | Viewer | Full screen on the page colour; Previous / Next / Close; arrows and Esc. |
 | Link | Underline draws in on hover. |
 
@@ -131,35 +133,45 @@ Black and white carry the site. Blue appears only when you interact.
 
 | No. | Project | Section | Discipline | Year | Preview |
 |---|---|---|---|---|---|
-| 01 | Wander | Editorial Design | Book design | 2026 | Book mockup |
-| 02 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
-| 03 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
-| 04 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
-| 05 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
-| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film loop |
-| 07 | Dust | Film and Motion | Motion graphics, editorial | 2025 | Film loop |
-| 08 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film loop |
-| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film loop |
-| 10 | Digital Tools | Film and Motion | Motion, 3D, interactive | 2025 | Bus stop mockup |
-| 11 | RunwAI | AI | AI, film, editorial | 2025 | Film loop |
-| 12 | Drawing | Art | Drawing | 2025 | Still life |
-| 13 | Colour Design | Art | Colour, painting | 2025 | Gouache |
-| 14 | Illustration | Art | Illustration | 2025 | Postcard |
+| 01 | Wander (with Dust and 9 Panels) | Editorial Design | Book design | 2026 | Book mockup |
+| 02 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
+| 03 | RunwAI | AI | AI, film, editorial | 2025 | Film clip |
+| 04 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
+| 05 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
+| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film clip |
+| 07 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film clip |
+| 08 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
+| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film clip |
+| 10 | Foundations | Foundations | Coursework | 2025 | Gouache |
 
-Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose).
+Order is by strength, not by section. Film previews loop an 8-second clip that starts on a chosen still. Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose). Old addresses for Dust, Drawing, Colour Design, Illustration and Digital Tools forward to their new pages.
 
 ---
 
 ## 9. Files
 
 ```
-index.html            landing, index, contact
+index.html            landing, index, about and contact
+cv.html / cv.pdf      one-page CV in the same system
 work/<project>.html   one case study per project
 css/site.css          tokens, grid, type, components, themes
+css/tokens.css        your overrides from the edit panel (loaded after site.css)
+js/tune.js            local edit panel: sliders, colours, project calendar (press E)
+js/project-log.js     project dates, duration, role, team, course (from the edit panel)
 js/site.js            contents menu, floating contours, page preview, filter, films, viewer
 media/bc-*.webp       blind contours for the landing
-rmedia/               images, max 1600px
+rmedia/               images: WebP at 1600px and 800px (srcset), JPEG originals
 DESIGN.md             this file
 ```
 
 Adding a project: copy a page in `work/`, replace its text and images, add a card to the Index grid in `index.html` (with its `data-cat` and `data-peek`), and a link in the Contents menu on every page.
+
+---
+
+## 10. Editing locally
+
+Open the site from your computer (double-click index.html, or run `python3 -m http.server` in the folder and open localhost:8000 so the web font loads). Press **E**.
+
+- **Design tab:** sliders for margin, gutter, cards per row, big text, text and small sizes, plate padding, blind contour size and speed, and colour pickers. Changes show live on every page and are remembered on that computer. **Download tokens.css** and replace `css/tokens.css` to make them permanent, then push.
+- **Projects tab:** a timeline of all projects (2024–2026) and, for each project, a calendar: click the first day, then the last. Add role, team and course. The case study pages show Dates, Duration, Role, Team and Course. **Download project-log.js** and replace `js/project-log.js`, then push.
+- The panel never loads on the live site unless you add `?edit` to the address.
