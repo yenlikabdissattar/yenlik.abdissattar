@@ -110,7 +110,7 @@
   /* Page preview: hovering a project shows its case study in miniature */
   var peek = document.querySelector('.peek');
   if(peek && matchMedia('(hover:hover)').matches){
-    var cards = document.querySelectorAll('.card[data-peek]');
+    var cards = document.querySelectorAll('.card[data-peek], .entry[data-peek]');
     cards.forEach(function(c){
       c.addEventListener('mouseenter', function(){
         var d = JSON.parse(c.getAttribute('data-peek'));
@@ -136,7 +136,7 @@
   flts.forEach(function(b){ b.addEventListener('click', function(){
     var f = b.getAttribute('data-f');
     flts.forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
-    document.querySelectorAll('#cards .card').forEach(function(c){
+    document.querySelectorAll('#cards .card, #cards .entry').forEach(function(c){
       var off = f !== 'all' && c.getAttribute('data-cat') !== f;
       c.classList.toggle('dim', off); if(off) c.setAttribute('tabindex','-1'); else c.removeAttribute('tabindex');
     });
@@ -360,4 +360,32 @@
   if(location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]edit\b/.test(location.search)){
     var s = document.createElement('script'); s.src = (document.querySelector('script[src$="js/site.js"]').getAttribute('src').replace('site.js', 'tune.js')); document.body.appendChild(s);
   }
+})();
+
+/* Snippets box: drag to turn, click or the button to open and close the flaps */
+(function(){
+  document.querySelectorAll('.pk-block').forEach(function(sec){
+    var stage = sec.querySelector('.pk-stage'), box = sec.querySelector('.pk'), btn = sec.querySelector('.pk-toggle');
+    var sides = sec.querySelectorAll('.pk-side'), rz = -34, rx = 60, drag = null;
+    function light(){ // light from the upper left: each wall darkens as it turns away
+      sides.forEach(function(s, k){
+        var a = (rz + k * 90) * Math.PI / 180; // outward normal of side k points along +y rotated by a
+        var l = .72 + .2 * Math.cos(a - Math.PI * .2);
+        s.querySelector('.pk-wo').style.setProperty('--l', l.toFixed(3));
+      });
+    }
+    function set(){ box.style.setProperty('--rz', rz + 'deg'); box.style.setProperty('--rx', rx + 'deg'); light(); }
+    function toggle(){ var o = box.classList.toggle('open'); btn.setAttribute('aria-pressed', o); btn.textContent = o ? 'Close the box' : 'Open the box'; }
+    btn.addEventListener('click', toggle);
+    stage.addEventListener('pointerdown', function(e){ drag = {x:e.clientX, y:e.clientY, rz:rz, rx:rx, moved:false}; stage.setPointerCapture(e.pointerId); });
+    stage.addEventListener('pointermove', function(e){
+      if(!drag) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if(Math.abs(dx) + Math.abs(dy) > 5){ drag.moved = true; stage.classList.add('drag'); }
+      rz = drag.rz - dx * .4; rx = Math.max(30, Math.min(78, drag.rx - dy * .25)); set();
+    });
+    function end(){ if(!drag) return; var m = drag.moved; drag = null; stage.classList.remove('drag'); if(!m) toggle(); }
+    stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', function(){ drag = null; stage.classList.remove('drag'); });
+    set();
+  });
 })();
