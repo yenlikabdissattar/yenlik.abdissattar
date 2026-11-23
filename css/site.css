@@ -308,3 +308,10 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
   transform:rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a))) translate(-50%,-50%);transition:color .2s}
 .pointer-nav a:hover,.pointer-nav a:focus-visible{color:var(--accent)}
 @media (max-width:640px){ .pointer-nav{top:40%;--r:104px} }
+
+/* One blind contour, still, on the right of the first screen; its eyes follow you */
+.landing .contour{position:absolute;right:var(--m);top:calc(var(--head) + 2vh);height:calc(100svh - var(--head) - 2vh - 150px);aspect-ratio:749/900;z-index:1}
+.landing .contour img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.landing .contour .eye{width:3.4%}
+@media (max-width:900px){ .landing .contour{height:auto;width:58vw;right:-2vw;top:calc(var(--head) + 8px)} }
+@media (max-width:640px){ .landing .contour{width:66vw;top:calc(var(--head) + 36px)} .pointer-nav{top:58%} }
