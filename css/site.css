@@ -13,7 +13,8 @@
   --g:clamp(10px,1vw,16px);     /* gutter */
   --head:52px;                  /* fixed header height */
 
-  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --sans:"neue-haas-grotesk-text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --display:"neue-haas-grotesk-display","Helvetica Neue",Helvetica,Arial,sans-serif;
   --serif:"Times New Roman",Times,serif;   /* quotes only, always italic */
   --sm:12px; --sm-lh:16px;      /* small: labels, meta, captions of the system */
   --tx:14px; --tx-lh:20px;      /* text: paragraphs */
@@ -41,7 +42,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 
 /* ---------- Type: small or big ---------- */
 .sm{font-size:var(--sm);line-height:var(--sm-lh)}
-.big{font-size:var(--big);line-height:.9;font-weight:500;letter-spacing:-.045em}
+.big{font-family:var(--display);font-size:var(--big);line-height:.9;font-weight:500;letter-spacing:-.04em}
 .b{font-weight:500}
 .num{font-variant-numeric:tabular-nums}
 .link{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .35s var(--ease),color .2s}
@@ -82,7 +83,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 @media (max-width:640px){ .menu{min-height:100svh} .menu .col{grid-column:1/-1} .menu .col li{padding:0} .menu .col li a{display:block;padding:12px 0} }
 
 /* ---------- Plates: every image sits on one ---------- */
-.plate{background:var(--plate);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:7%;overflow:hidden;position:relative}
+.plate{background:var(--plate);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--plate-pad,7%);overflow:hidden;position:relative}
 .plate img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transition:transform .6s var(--ease)}
 .plate.sixteen{aspect-ratio:16/9;padding:4%}
 .plate.film{padding:0;background:#000}
@@ -103,7 +104,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .cat-head{align-items:end;margin-bottom:20px}
 .cat-head .d{text-align:right}
 .cards{row-gap:28px}
-.card{grid-column:span 3;display:block;transition:transform .35s var(--ease)}
+.card{grid-column:span var(--card-span,3);display:block;transition:transform .35s var(--ease)}
 .card .plate{aspect-ratio:4/3;padding:0}
 .card .plate img,.card .plate video{width:100%;height:100%;max-height:none;object-fit:cover;transition:transform .7s var(--ease)}
 .card:hover{transform:translateY(-2px)}
@@ -263,3 +264,8 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 }
 .plate.bleed{padding:0}
 .plate.bleed img{width:100%;height:100%;max-height:none;object-fit:cover;mix-blend-mode:normal}
+
+/* About portrait */
+.portrait{aspect-ratio:3/4;overflow:hidden;background:var(--plate)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.about-links{display:flex;flex-direction:column;gap:8px}

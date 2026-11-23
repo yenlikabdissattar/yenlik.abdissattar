@@ -38,7 +38,7 @@
     size(); addEventListener('resize', size);
     els.forEach(function(el, i){
       var w = (W < 640 ? 26 : 9) + Math.random() * (W < 640 ? 22 : 14); // vw
-      el.style.width = w + 'vw';
+      el.style.width = 'calc(' + w + 'vw * var(--bc-scale, 1))';
       var it = { el: el, x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .00022, vy: (Math.random() - .5) * .00022 };
       items.push(it);
       setTimeout(function(){ el.classList.add('in'); }, 120 + i * 90);
@@ -49,7 +49,8 @@
       items.forEach(function(it){
         var w = it.el.offsetWidth, h = it.el.offsetHeight || w;
         if(!reduce){
-          it.x += it.vx * dt; it.y += it.vy * dt;
+          var sp = window.YA_BC_SPEED != null ? window.YA_BC_SPEED : 1;
+          it.x += it.vx * dt * sp; it.y += it.vy * dt * sp;
           if(it.x < -.05 || it.x > 1.05) it.vx *= -1;
           if(it.y < -.05 || it.y > 1.05) it.vy *= -1;
         }
@@ -185,5 +186,43 @@
     lb.querySelector('.pv').addEventListener('click', function(){ show(at - 1); });
     lb.querySelector('.nx').addEventListener('click', function(){ show(at + 1); });
     addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key === 'ArrowLeft') show(at - 1); if(e.key === 'ArrowRight') show(at + 1); });
+  }
+
+  /* Project log: dates, duration, role, team and course from js/project-log.js */
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function pd(s){ var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function dur(a, b){
+    var days = Math.round((pd(b) - pd(a)) / 864e5) + 1;
+    if(days < 14) return days + (days === 1 ? ' day' : ' days');
+    var w = Math.round(days / 7); if(w <= 10) return w + ' weeks';
+    var m = Math.round(days / 30.4); return m + (m === 1 ? ' month' : ' months');
+  }
+  function span(a, b){
+    var x = pd(a), y = pd(b);
+    if(x.getFullYear() === y.getFullYear() && x.getMonth() === y.getMonth()) return MONTHS[x.getMonth()] + ' ' + x.getFullYear();
+    if(x.getFullYear() === y.getFullYear()) return MONTHS[x.getMonth()] + ' – ' + MONTHS[y.getMonth()] + ' ' + y.getFullYear();
+    return MONTHS[x.getMonth()] + ' ' + x.getFullYear() + ' – ' + MONTHS[y.getMonth()] + ' ' + y.getFullYear();
+  }
+  window.YA_RENDER_LOG = function(log){
+    var slug = (location.pathname.match(/work\/([^.\/]+)\.html/) || [])[1], dl = document.querySelector('.cs-top .dl, .rw-body .dl');
+    if(!slug || !dl) return;
+    dl.querySelectorAll('[data-log]').forEach(function(n){ n.remove(); });
+    var e = (log || {})[slug]; if(!e) return;
+    var rows = [];
+    if(e.start && e.end){ rows.push(['Dates', span(e.start, e.end)]); rows.push(['Duration', dur(e.start, e.end)]); }
+    if(e.role) rows.push(['Role', e.role]);
+    if(e.team) rows.push(['Team', e.team]);
+    if(e.course) rows.push(['Course', e.course]);
+    rows.forEach(function(r){
+      var dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.textContent = r[0]; dd.textContent = r[1]; dt.setAttribute('data-log', ''); dd.setAttribute('data-log', '');
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+  };
+  window.YA_RENDER_LOG(window.PROJECT_LOG);
+
+  /* Edit panel: only on your own computer, or with ?edit in the address */
+  if(location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]edit\b/.test(location.search)){
+    var s = document.createElement('script'); s.src = (document.querySelector('script[src$="js/site.js"]').getAttribute('src').replace('site.js', 'tune.js')); document.body.appendChild(s);
   }
 })();

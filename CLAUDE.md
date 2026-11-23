@@ -6,11 +6,12 @@ Portfolio website for a Designer targeting headhunters.
 The website should function as a curated visual archive. It must be minimal, editorial, and image-focused. The work should always be the primary focus.
 
 ## Stack
-- Plain HTML and CSS only
+- Plain HTML, CSS and vanilla JavaScript (js/site.js; js/tune.js is the local edit panel)
 - No frameworks
 - No libraries
 - No build tools
-- No JavaScript unless explicitly requested
+- Fonts from Adobe Fonts (kit hpl6gyc, allowed on yenlikabdissattar.github.io and localhost)
+- DESIGN.md is the source of truth for layout, type, colour and components
 
 ## Structure
 - One main scrollable landing page
@@ -87,7 +88,8 @@ Each project page must include:
 Use placeholder text where needed.
 
 ## Typography
-- Serif typeface only
+- Helvetica: Neue Haas Grotesk Text for text, Neue Haas Grotesk Display for big type (Helvetica Neue as fallback)
+- Two sizes, small or big; only quotes are italic (Times New Roman italic)
 - Sharp, contemporary, restrained
 - Not flashy or decorative
 - Clear hierarchy

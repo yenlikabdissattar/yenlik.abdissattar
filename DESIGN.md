@@ -67,7 +67,7 @@ Main column = B to D (4–12). Title = A to C (1–9).
 
 ## 3. Typography
 
-One family, Helvetica Neue (Helvetica, Arial). Weights 400 and 500.
+Helvetica, served from Adobe Fonts so every computer sees it: Neue Haas Grotesk Text (400, 500) for text and Neue Haas Grotesk Display (500) for big type. Fallback: Helvetica Neue, Helvetica, Arial. The kit only loads on yenlikabdissattar.github.io and localhost; opening a file directly falls back to Helvetica Neue.
 
 | Style | Size / line | Weight | Tracking | Use |
 |---|---|---|---|---|
@@ -155,6 +155,9 @@ index.html            landing, index, about and contact
 cv.html / cv.pdf      one-page CV in the same system
 work/<project>.html   one case study per project
 css/site.css          tokens, grid, type, components, themes
+css/tokens.css        your overrides from the edit panel (loaded after site.css)
+js/tune.js            local edit panel: sliders, colours, project calendar (press E)
+js/project-log.js     project dates, duration, role, team, course (from the edit panel)
 js/site.js            contents menu, floating contours, page preview, filter, films, viewer
 media/bc-*.webp       blind contours for the landing
 rmedia/               images: WebP at 1600px and 800px (srcset), JPEG originals
@@ -162,3 +165,13 @@ DESIGN.md             this file
 ```
 
 Adding a project: copy a page in `work/`, replace its text and images, add a card to the Index grid in `index.html` (with its `data-cat` and `data-peek`), and a link in the Contents menu on every page.
+
+---
+
+## 10. Editing locally
+
+Open the site from your computer (double-click index.html, or run `python3 -m http.server` in the folder and open localhost:8000 so the web font loads). Press **E**.
+
+- **Design tab:** sliders for margin, gutter, cards per row, big text, text and small sizes, plate padding, blind contour size and speed, and colour pickers. Changes show live on every page and are remembered on that computer. **Download tokens.css** and replace `css/tokens.css` to make them permanent, then push.
+- **Projects tab:** a timeline of all projects (2024–2026) and, for each project, a calendar: click the first day, then the last. Add role, team and course. The case study pages show Dates, Duration, Role, Team and Course. **Download project-log.js** and replace `js/project-log.js`, then push.
+- The panel never loads on the live site unless you add `?edit` to the address.
