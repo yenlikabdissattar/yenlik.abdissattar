@@ -303,7 +303,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .eye svg{display:block;width:100%;height:100%}
 
 /* The face in the middle; the main projects around it; its eyes follow you */
-.landing .contour{position:absolute;left:50%;top:calc(var(--head) + 2svh);height:calc(100svh - var(--head) - 2svh - 112px);aspect-ratio:749/900;transform:translateX(-50%);z-index:1}
+.landing .contour{position:absolute;left:50%;top:calc(var(--head) + 2svh);height:calc(100svh - var(--head) - 2svh - 112px);aspect-ratio:981/1400;transform:translateX(-50%);z-index:1}
 .landing .contour img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .orbits{--cy:calc(var(--head) + (100svh - var(--head) - 112px) / 2);--rx:min(33vw,500px);--ry:min(36svh,320px)}
 .orbit{position:absolute;left:50%;top:var(--cy);z-index:2;width:clamp(112px,9.5vw,148px);transform:translate(calc(var(--x) * var(--rx) - 50%),calc(var(--y) * var(--ry) - 50%));transition:transform .35s var(--ease)}
@@ -333,3 +333,4 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .block .row .plate{aspect-ratio:3/2}
 .block .row.tall .plate{aspect-ratio:3/4}
 @media (max-width:640px){ .step .row.tall{max-width:none} }
+.landing .contour .eye{width:3.3%}
