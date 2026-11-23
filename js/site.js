@@ -6,9 +6,14 @@
   var btn = document.querySelector('.burger'), menu = document.getElementById('menu'), t;
   function setMenu(open){ if(!menu) return; menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); }
   if(btn && menu){
-    btn.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+    var hoverAt = 0;
+    btn.addEventListener('click', function(){
+      var open = menu.classList.contains('open');
+      if(open && Date.now() - hoverAt < 900) return; // opened by hover a moment ago: a click keeps it open
+      setMenu(!open);
+    });
     if(matchMedia('(hover:hover)').matches){
-      btn.addEventListener('mouseenter', function(){ clearTimeout(t); setMenu(true); });
+      btn.addEventListener('mouseenter', function(){ clearTimeout(t); if(!menu.classList.contains('open')) hoverAt = Date.now(); setMenu(true); });
       [btn, menu].forEach(function(el){
         el.addEventListener('mouseleave', function(){ t = setTimeout(function(){ setMenu(false); }, 260); });
         el.addEventListener('mouseenter', function(){ clearTimeout(t); });
