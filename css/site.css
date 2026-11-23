@@ -495,7 +495,6 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .e-k{grid-column:7/10;font-size:var(--sm);line-height:var(--sm-lh)}
 .e-c{grid-column:10/12;font-size:var(--sm);line-height:var(--sm-lh);color:rgba(17,17,17,.5)}
 .e-y{grid-column:12;text-align:right;font-size:var(--sm);line-height:var(--sm-lh)}
-.entries:hover .entry:not(:hover){opacity:.3}
 .entry:hover .e-plate img{transform:scale(1.06)}
 .entry:hover .e-t{color:var(--accent)}
 .entry:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
