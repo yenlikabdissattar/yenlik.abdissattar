@@ -1,163 +1,165 @@
 # DESIGN.md — Yenlik Abdissattar portfolio
 
-The site is built like a grid-system document: every screen is a landscape "sheet" on one 12-column grid, with a running head, the content, and a running foot. Content always snaps to the grid, and spacing does all the separating (no divider lines, no faded text).
+A museum archive, a magazine index: one 12-column grid, two text sizes, and one plate that every image sits on. Every page uses the same parts in the same order, so fourteen very different projects read as one collection.
 
-References: Grid System Templates 001/002 (template.systems), A2 Architecture Presentation Grid, A4 Architecture + Photography Grid System, Marketing Academy brand guidelines (typography section).
+References: Grid System Templates 001/002 (template.systems), A2 Architecture Presentation Grid, A4 Architecture + Photography Grid System, Marketing Academy brand guidelines (typography).
 
 ---
 
-## 1. Layout
+## 1. Principles
+
+1. **One system, not fourteen moods.** The project changes; the frame never does. Same header, same title block, same plate, same order of sections.
+2. **Small or big.** Text is either small (labels, meta, captions) or big (titles, the email). Paragraphs sit between them at 14px. Nothing else.
+3. **The plate unifies.** Images are not shown raw at their own scale and background; each sits contained on a plate with even padding, like objects on museum mounts.
+4. **Tight.** One continuous index on the home page, no empty rows, spacing in steps of 8.
+5. **Quiet motion.** The blind contours drift on the landing, the hero enters once, films loop silently. Nothing fades in as you scroll.
+
+---
+
+## 2. Layout
 
 ### Grid
 
-| | Desktop (> 1024px) | Tablet (641–1024px) | Mobile (≤ 640px) |
+| | Desktop > 1024 | Tablet 641–1024 | Mobile ≤ 640 |
 |---|---|---|---|
 | Columns | 12 | 8 | 4 |
-| Outer margin `--m` | clamp(16px, 2.2vw, 32px) | same | same |
-| Gutter `--g` | clamp(12px, 1.25vw, 20px) | same | same |
-| Vertical unit `--u` | 8px | 8px | 8px |
+| Margin `--m` | clamp(16px, 2vw, 28px) | same | same |
+| Gutter `--g` | clamp(10px, 1vw, 16px) | same | same |
+| Header `--head` | 52px | 52px | 52px |
 
-All vertical spacing is a multiple of 8px (8, 16, 24, 32, 40, 48, 96).
+### Four slots
 
-Press **G** (or click "Grid (G)" in the running head) to show the column overlay on any page.
+The page reads in four slots of three columns. Everything starts on one of these lines.
 
-### Column anchors
-
-The page is read in four slots of three columns. Everything lines up to these:
-
-| Slot | Columns | Used for |
+| Slot | Columns | Holds |
 |---|---|---|
-| A | 1–3 | Labels: "Overview", "Process", step text column starts here |
-| B | 4–6 | Second info column |
-| C | 7–9 | Body text, intros |
-| D | 10–12 | Meta, availability, context |
+| A | 1–3 | Section labels (Overview, Process, Outcome), step text, "Contents" |
+| B | 4–6 | Name in the header; start of the main column |
+| C | 7–9 | Current section in the header |
+| D | 10–12 | Meta list, brief and approach, "Contact" |
 
-Common wider spans: 1–6 / 7–12 (halves), 1–8 + 9–12 (title + number), 1–4 + 5–12 (label/text + image).
+Main column = B to D (4–12). Title = A to C (1–9).
 
-### Sheet
+### Home page
 
-```
-┌ running head: Name | Section | Detail | Grid toggle / (page no.) ┐
-│                                                                   │
-│  content on the 12-column grid                                    │
-│                                                                   │
-└ running foot: detail | detail | detail | (page no.)               ┘
-```
+1. **Landing** — one screen, white. The fifteen blind contours drift slowly and fade as you scroll. Bottom left, small: "Under three minutes blind contours". Bottom right, small: discipline line.
+2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, Film and Motion, AI, Art) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
+3. **Contact** — the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
 
-- A sheet is at least one screen tall (`min-height: 100svh`); long sheets (`.auto`) grow with their content.
-- Running head and foot sit in the four slots (columns 1, 4, 7, 10), in 11px medium.
-- Page numbers are in brackets: home sheets (001)–(005), case study sheets (04.1), (04.2)…
-- The last sheet of every page is inverse (black), for contact or the next project.
+### Case study page (every project)
 
-### Home page — five sheets
+1. **Title block** — number (small), title (big, A–C), subtitle (small); meta list in D: No., Section, Discipline, Year, Context, Tools, credits.
+2. **Hero** — full width, 16:9 plate. Films fill it edge to edge and loop.
+3. **Overview** — label in A, summary in B–C (14px), Brief and Approach stacked in D (small).
+4. **Process** — label in A; numbered steps. Step number, title and one or two sentences in A (they stay in view while you scroll); images in B–D as equal plates, one to three per row.
+5. **Outcome** — label in A; plates three per row in B–D. Click any plate to open the viewer (arrows, Esc).
+6. **Reflection** — only when there is one.
+7. **Next** — "Next, 05" small in A, the next title big in B–D; footer.
 
-1. **(001) Cover**: name as display type (cols 1–8) with "(001)" (cols 9–12); four discipline labels in the four slots; latest work as a full-width image; intro (1–6), study (7–9), availability (10–12).
-2. **(002) Index**: every project as a row: no. (col 1), title (2–6), discipline (7–9), context and year (10–12).
-3. **(003) Work**: three tiers with fixed image ratios so every row is even:
-   - Featured: 2 per row, 6 columns each, 3:2
-   - Film, motion and type: 3 per row, 4 columns each, 4:3
-   - Studies: 4 per row, 3 columns each, 1:1
-4. **(004) Profile**: heading (1–6), statement (7–12), then Education / Experience / Tools / Languages in the four slots.
-5. **(005) Contact**: inverse; availability line and the email set as display type.
+### Exceptions, on purpose
 
-### Case study page — up to six sheets
-
-1. **Cover**: title, project number, subtitle, meta list (Year, Discipline, Context, Tools, Credits), hero.
-   - *Wide hero* (landscape work): title 1–8, number 9–12, subtitle 1–6, meta 7–12, hero full width.
-   - *Tall hero* (portrait work, vertical film): number and title top-left, subtitle and meta bottom-left (1–6), hero 7–12.
-2. **Overview**: label (1–4), one-sentence summary as lead text (5–12), then Brief (5–8) and Approach (9–12).
-3. **Process**: numbered steps. Step number, title and one or two sentences in 1–4 (sticky while you scroll), images in 5–12. One image fills 5–12; two or three share it equally.
-4. **Outcome**: the finished work in rows. 1 image = 12 cols, 2 = 6+6, 3 = 4+4+4, 4 = 3+3+3+3. Images are never cropped here.
-5. **Reflection** (only when there is one): label (1–4), text (5–12).
-6. **Next**: inverse sheet linking to the next case study, with its thumbnail (7–12) and title as display type.
+- **Art** (Drawing, Colour Design, Illustration): plates are white, so the work sits on the page itself.
+- **RunwAI**: the page is black. The runway film fills the left half, full height, and stays while you scroll; on the right, the title block, then the magazine cover with the pages beside it, then the process film.
 
 ---
 
-## 2. Typography
+## 3. Typography
 
-One family, Helvetica Neue (fallback Helvetica, Arial). Weights: 400 and 500 only.
+One family, Helvetica Neue (Helvetica, Arial). Weights 400 and 500.
 
-| Style | Size / line height | Weight | Tracking | Used for |
+| Style | Size / line | Weight | Tracking | Use |
 |---|---|---|---|---|
-| Display | clamp(52px, 9vw, 156px) / 0.9 | 500 | −0.045em | Name, project titles, (numbers), email |
-| H2 | clamp(28px, 3.4vw, 52px) / 1.0 | 500 | −0.03em | Sheet headings: Index, Featured, Process |
-| Lead | clamp(22px, 2.1vw, 34px) / 1.12 | 400 | −0.02em | Subtitles, summaries, step titles |
-| Body | 15px / 21px | 400 | 0 | Paragraphs, lists |
-| Micro | 11px / 14px | 500 | +0.01em | Running heads, labels, captions, numbers |
+| Big | clamp(44px, 7.4vw, 128px) / 0.9 | 500 | −0.045em | Titles, "Index", the email |
+| Text | 14px / 20px | 400 | 0 | Summaries and paragraphs |
+| Small | 12px / 16px | 400, 500 for labels | 0 | Header, labels, meta, steps, cards |
+| Quote | inherits | 400 italic | 0 | Times New Roman italic, quotations only |
 
-Rules:
-- Text is always full ink: hierarchy comes from size and weight, never from grey or opacity.
-- Numbers use tabular figures and brackets: (001), (04), 04/14.
-- Body text never runs wider than one slot pair (6 columns).
-- Sentence case everywhere; no all-caps.
+Rules: only quotes are italic. No grey text; hierarchy is size and weight. No all-caps. Numbers are tabular (01, 11 / 14).
 
 ---
 
-## 3. Colour
+## 4. Colour
 
 | Token | Value | Role |
 |---|---|---|
-| `--paper` | #ffffff | Background |
-| `--ink` | #111111 | All text, inverse sheets |
-| `--accent` | #293785 | Hover, links, focus, selection, grid overlay |
-| `--accent-2` | #496da2 | Hover on inverse (black) sheets |
-| `--frame` | #f1f1ef | Behind images that do not fill their cell |
+| `--paper` | #ffffff | Page |
+| `--ink` | #111111 | All text |
+| `--plate` | #f2f2f0 | Ground behind every image (white on Art pages, #161616 on RunwAI) |
+| `--accent` | #293785 | Hover, active filter, focus, selection |
+| `--accent-2` | #496da2 | Reserve |
 
-Black and white carry the page; blue appears only on interaction.
-
----
-
-## 4. Images and motion
-
-- Thumbnails crop to their tier's ratio (3:2, 4:3, 1:1). Case study images keep their own proportions.
-- Captions sit 8px below the image in micro type.
-- Films are muted, loop, and play only while on screen; controls stay visible.
-- Sections fade up 16px on first view; nothing moves if the visitor prefers reduced motion. Thumbnails scale 2.5% on hover.
+Black and white carry the site. Blue appears only when you interact.
 
 ---
 
-## 5. Text voice
+## 5. Components
 
-- Plain, short sentences. One idea per sentence.
-- Every project has: a one-line subtitle, a one-sentence summary, a brief (the problem), an approach (how), and steps of one or two sentences each.
-- Credit collaborators and sources in the meta list (Photography, Text, Sound).
-- No claims of results that cannot be shown.
+| Component | Rule |
+|---|---|
+| Header | Fixed. A: three lines + "Contents". B: name. C: current section. D: Contact. Clear over the landing, light after. |
+| Contents | Opens from the three lines on click, or on hover with a mouse. Six columns: the five sections with their projects, then Information. Esc closes. |
+| Card | 4:3 preview, number, title, year, discipline. Hover: lifts 2px, image zooms 3%, title turns blue, page preview appears. |
+| Filter | Text buttons; the active one is medium weight and underlined; other cards dim to 12%. |
+| Plate | 4:3 (16:9 for heroes and films), padding 7%, image contained, never cropped. |
+| Film | Muted, looping, no controls, plays only while on screen. Served from Cloudinary. |
+| Viewer | Full screen on the page colour; Previous / Next / Close; arrows and Esc. |
+| Link | Underline draws in on hover. |
 
 ---
 
-## 6. Projects
+## 6. Motion
 
-| No. | Project | Discipline | Year | Context | Tier |
+| What | How |
+|---|---|
+| Blind contours | Drift at random speeds, bounce at the edges, fade in one by one on load, fade out on scroll. Still under reduced motion. |
+| Title and hero | Rise 14px and fade in once, 0.9s. |
+| Hover | 0.35s lift, 0.7s image zoom, 0.2s colour. |
+| Films | Loop silently in view, pause out of view. |
+
+---
+
+## 7. Text
+
+- Plain sentences, one idea each. Paragraphs at most three sentences.
+- Every project: subtitle, one-sentence summary, brief, approach, steps of one or two sentences.
+- Credit sources and collaborators in the meta list.
+- Nothing under images: no captions.
+
+---
+
+## 8. Projects
+
+| No. | Project | Section | Discipline | Year | Preview |
 |---|---|---|---|---|---|
-| 01 | Wander | Book design | 2026 | Editorial design | Featured |
-| 02 | Snippets | Visual systems | 2026 | Visual Systems, Yonsei University | Featured |
-| 03 | Distort Noise | App design, UX/UI | 2026 | — | Featured |
-| 04 | TIME | Editorial, UX/UI | 2025 | Communicating with Type | Featured |
-| 05 | Silence of the Dawn | Documentary film | 2025 | — | Film, motion and type |
-| 06 | Dust | Motion graphics, editorial | 2025 | — | Film, motion and type |
-| 07 | Fly Me to the Moon | Expressive typography, motion | 2025 | Communicating with Type | Film, motion and type |
-| 08 | Baskerville | Typography, poster, book cover | 2025 | Communicating with Type | Film, motion and type |
-| 09 | RunwAI | AI, film, editorial | 2025 | — | Film, motion and type |
-| 10 | Gazebo | Image-making, motion | 2025 | — | Film, motion and type |
-| 11 | Digital Tools | Motion, 3D, interactive | 2025 | Introduction to Digital Tools | Studies |
-| 12 | Colour Design | Colour, painting | 2025 | Colour Design | Studies |
-| 13 | Drawing | Drawing | 2025 | Basic Drawing | Studies |
-| 14 | Illustration | Illustration | 2025 | Illustration for Designers, NTU ADM | Studies |
-| 15 | VESSEL | Interactive AI installation | — | Yonsei exhibition | Index only (no images yet) |
+| 01 | Wander | Editorial Design | Book design | 2026 | Book mockup |
+| 02 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
+| 03 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
+| 04 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
+| 05 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
+| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film loop |
+| 07 | Dust | Film and Motion | Motion graphics, editorial | 2025 | Film loop |
+| 08 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film loop |
+| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film loop |
+| 10 | Digital Tools | Film and Motion | Motion, 3D, interactive | 2025 | Bus stop mockup |
+| 11 | RunwAI | AI | AI, film, editorial | 2025 | Film loop |
+| 12 | Drawing | Art | Drawing | 2025 | Still life |
+| 13 | Colour Design | Art | Colour, painting | 2025 | Gouache |
+| 14 | Illustration | Art | Illustration | 2025 | Postcard |
 
-Left out on purpose: ARTFORUM (magazine, app and cover illustration).
+Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose).
 
 ---
 
-## 7. Files
+## 9. Files
 
 ```
-index.html              home (five sheets)
-work/<project>.html     one case study per project
-css/site.css            the whole system: tokens, grid, type, components
-js/site.js              grid overlay, fade-in, autoplay films
-rmedia/                 images (≤1800px) and films
-DESIGN.md               this file
+index.html            landing, index, contact
+work/<project>.html   one case study per project
+css/site.css          tokens, grid, type, components, themes
+js/site.js            contents menu, floating contours, page preview, filter, films, viewer
+media/bc-*.webp       blind contours for the landing
+rmedia/               images, max 1600px
+DESIGN.md             this file
 ```
 
-To add a project: copy a page in `work/`, change the text and images, add a card to the right tier in `index.html` (sheet 003) and a row to the Index (sheet 002).
+Adding a project: copy a page in `work/`, replace its text and images, add a card to the Index grid in `index.html` (with its `data-cat` and `data-peek`), and a link in the Contents menu on every page.
