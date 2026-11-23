@@ -105,7 +105,9 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 
 /* ---------- Home: landing ---------- */
 .landing{position:relative;height:100svh;overflow:hidden}
-.landing .float{position:absolute;left:0;top:0;mix-blend-mode:multiply;opacity:0;will-change:transform;pointer-events:none;user-select:none}
+.landing .float{position:absolute;left:0;top:0;opacity:0;will-change:transform;pointer-events:none;user-select:none}
+.landing .float img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.landing .float{isolation:auto}
 .landing .float.in{opacity:1;transition:opacity 1.6s ease}
 .landing .note{position:absolute;left:var(--m);bottom:var(--m);font-size:var(--sm);line-height:var(--sm-lh)}
 .landing .note.r{left:auto;right:var(--m);text-align:right}
@@ -294,3 +296,15 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .portrait{aspect-ratio:3/4;overflow:hidden;background:var(--plate)}
 .portrait img{width:100%;height:100%;object-fit:cover}
 .about-links{display:flex;flex-direction:column;gap:8px}
+
+/* Watching eyes: each face's pupils follow the pointer */
+.eye{position:absolute;width:3.6%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--paper)}
+.eye i{position:absolute;left:18%;top:18%;width:64%;height:64%;border-radius:50%;background:var(--ink);transform:translate(var(--px,0),var(--py,0));transition:transform .12s linear}
+
+/* The pointer in the middle of the landing, with the five ways in */
+.pointer-nav{position:absolute;left:50%;top:46%;width:0;height:0;z-index:3;--r:clamp(96px,11vw,160px)}
+.pointer-nav .arrow{position:absolute;left:-12px;top:-17px;width:24px;height:34px;transform-origin:50% 50%;transform:rotate(var(--rot,0deg));transition:transform .18s var(--ease);filter:drop-shadow(0 2px 3px rgba(0,0,0,.15))}
+.pointer-nav a{position:absolute;left:0;top:0;white-space:nowrap;font-size:var(--sm);line-height:var(--sm-lh);font-weight:500;padding:12px 14px;background:var(--paper);
+  transform:rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a))) translate(-50%,-50%);transition:color .2s}
+.pointer-nav a:hover,.pointer-nav a:focus-visible{color:var(--accent)}
+@media (max-width:640px){ .pointer-nav{top:40%;--r:104px} }

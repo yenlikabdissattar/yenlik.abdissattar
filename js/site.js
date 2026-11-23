@@ -37,7 +37,8 @@
     function size(){ W = landing.clientWidth; H = landing.clientHeight; }
     size(); addEventListener('resize', size);
     els.forEach(function(el, i){
-      var w = (W < 640 ? 26 : 9) + Math.random() * (W < 640 ? 22 : 14); // vw
+      var face = el.classList.contains('has-eyes');
+      var w = W < 640 ? (face ? 34 : 24) + Math.random() * 16 : (face ? 14 : 9) + Math.random() * (face ? 9 : 8); // vw: faces larger, so their eyes read
       el.style.width = 'calc(' + w + 'vw * var(--bc-scale, 1))';
       var it = { el: el, x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .00022, vy: (Math.random() - .5) * .00022 };
       items.push(it);
@@ -62,6 +63,44 @@
     requestAnimationFrame(frame);
     addEventListener('scroll', function(){ if(idle && scrollY < innerHeight){ idle = false; last = performance.now(); requestAnimationFrame(frame); } }, {passive:true});
   }
+
+  /* Watching eyes and the pointer in the middle: both look at your cursor */
+  var eyes = [].slice.call(document.querySelectorAll('.eye')), nav = document.querySelector('.pointer-nav');
+  var arrow = nav && nav.querySelector('.arrow'), mx = innerWidth / 2, my = innerHeight / 3, held = null, looking = false;
+  function look(){
+    looking = false;
+    eyes.forEach(function(e){
+      var r = e.getBoundingClientRect(); if(!r.width) return;
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2, dx = mx - cx, dy = my - cy, d = Math.hypot(dx, dy) || 1;
+      var k = Math.min(r.width * .26, d / 10) / d;
+      e.firstChild.style.setProperty('--px', (dx * k).toFixed(1) + 'px'); e.firstChild.style.setProperty('--py', (dy * k).toFixed(1) + 'px');
+    });
+    if(arrow){
+      var a = arrow.getBoundingClientRect(), tx = mx, ty = my;
+      if(held){ var h = held.getBoundingClientRect(); tx = h.left + h.width / 2; ty = h.top + h.height / 2; }
+      var ang = Math.atan2(ty - (a.top + a.height / 2), tx - (a.left + a.width / 2)) * 180 / Math.PI;
+      arrow.style.setProperty('--rot', (ang + 124).toFixed(1) + 'deg'); // the drawn tip points at -124°
+    }
+  }
+  function queue(){ if(!looking){ looking = true; requestAnimationFrame(look); } }
+  if(eyes.length || arrow){
+    addEventListener('pointermove', function(e){ mx = e.clientX; my = e.clientY; queue(); }, {passive:true});
+    addEventListener('pointerdown', function(e){ mx = e.clientX; my = e.clientY; queue(); }, {passive:true});
+    (function tick(){ if(scrollY < innerHeight) queue(); setTimeout(tick, 120); })(); // keep eyes on you while the faces drift
+    if(nav) nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('mouseenter', function(){ held = a; queue(); }); a.addEventListener('focus', function(){ held = a; queue(); });
+      a.addEventListener('mouseleave', function(){ held = null; queue(); }); a.addEventListener('blur', function(){ held = null; queue(); });
+    });
+  }
+
+  /* Editorial, Video and AI open the index filtered to that section */
+  var ROUTE = {editorial: '1', video: '4', ai: '3'};
+  function route(){
+    var k = location.hash.replace('#', ''), f = ROUTE[k]; if(!f) return;
+    var b = document.querySelector('.flt[data-f="' + f + '"]'); if(b) b.click();
+    var t = document.getElementById('ix-h'); if(t) t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  }
+  addEventListener('hashchange', route); setTimeout(route, 0);
 
   /* Page preview: hovering a project shows its case study in miniature */
   var peek = document.querySelector('.peek');
