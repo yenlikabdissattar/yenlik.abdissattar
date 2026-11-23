@@ -75,6 +75,11 @@
       var k = Math.min(r.width * .26, d / 10) / d;
       e.firstChild.style.setProperty('--px', (dx * k).toFixed(1) + 'px'); e.firstChild.style.setProperty('--py', (dy * k).toFixed(1) + 'px');
     });
+    document.querySelectorAll('.orbit .obj').forEach(function(o){ // objects turn a little toward you
+      var r = o.getBoundingClientRect(); if(!r.width) return;
+      var nx = Math.max(-1, Math.min(1, (mx - (r.left + r.width / 2)) / 500)), ny = Math.max(-1, Math.min(1, (my - (r.top + r.height / 2)) / 400));
+      o.style.setProperty('--ty', (nx * 16).toFixed(1) + 'deg'); o.style.setProperty('--tx', (-ny * 10).toFixed(1) + 'deg');
+    });
     if(arrow){
       var a = arrow.getBoundingClientRect(), tx = mx, ty = my;
       if(held){ var h = held.getBoundingClientRect(); tx = h.left + h.width / 2; ty = h.top + h.height / 2; }

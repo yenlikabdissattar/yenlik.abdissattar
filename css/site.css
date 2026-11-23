@@ -305,7 +305,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 /* The face in the middle; the main projects around it; its eyes follow you */
 .landing .contour{position:absolute;left:50%;top:calc(var(--head) + 2svh);height:calc(100svh - var(--head) - 2svh - 112px);aspect-ratio:981/1400;transform:translateX(-50%);z-index:1}
 .landing .contour img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
-.orbits{--cy:calc(var(--head) + (100svh - var(--head) - 112px) / 2);--rx:min(33vw,500px);--ry:min(36svh,320px)}
+.orbits{--cy:calc(var(--head) + (100svh - var(--head) - 112px) / 2);--rx:min(33vw,500px);--ry:min(38svh,340px)}
 .orbit{position:absolute;left:50%;top:var(--cy);z-index:2;width:clamp(112px,9.5vw,148px);transform:translate(calc(var(--x) * var(--rx) - 50%),calc(var(--y) * var(--ry) - 50%));transition:transform .35s var(--ease)}
 .orbit .o-img{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--plate)}
 .orbit .o-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
@@ -384,3 +384,64 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .block .lab{padding-top:6px}
 @media (max-width:640px){ .cs .row.tall{max-width:none} }
 .tag::after{content:"";position:absolute;left:50%;bottom:7px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#e2ded6;box-shadow:inset 0 1px 2px rgba(0,0,0,.45);z-index:2}
+
+/* ---------- Landing objects: each project as the thing itself ---------- */
+.orbit{width:auto}
+.o-stage{position:relative;display:flex;align-items:flex-end;justify-content:center;width:200px;height:168px;perspective:900px}
+.o-shadow{position:absolute;left:18%;right:18%;bottom:-6px;height:14px;background:radial-gradient(closest-side,rgba(0,0,0,.22),transparent);filter:blur(3px);z-index:-1}
+.orbit .o-t{text-align:center;margin-top:14px}
+.obj{position:relative;transform-style:preserve-3d;transition:transform .5s var(--ease);
+  transform:rotateX(calc(var(--bx,8deg) + var(--tx,0deg))) rotateY(calc(var(--by,-26deg) + var(--ty,0deg)))}
+.orbit:hover .obj{--bx:2deg}
+
+/* book and magazines: six faces */
+.book{width:var(--w);height:var(--h)}
+.bk{position:absolute;display:block;background:#f4f3ef no-repeat center/cover}
+.bk.f{inset:0;transform:translateZ(calc(var(--d) / 2));box-shadow:inset 3px 0 6px rgba(0,0,0,.18)}
+.bk.f::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,.22),transparent 35%,transparent 70%,rgba(0,0,0,.12))}
+.bk.b{inset:0;transform:rotateY(180deg) translateZ(calc(var(--d) / 2));background:#e9e7e1}
+.bk.s{top:0;left:50%;width:var(--d);height:100%;margin-left:calc(var(--d) / -2);transform:rotateY(-90deg) translateZ(calc(var(--w) / 2));background:#141414}
+.bk.p{top:0;left:50%;width:var(--d);height:100%;margin-left:calc(var(--d) / -2);transform:rotateY(90deg) translateZ(calc(var(--w) / 2));
+  background:repeating-linear-gradient(90deg,#f7f6f2 0 1px,#dedbd3 1px 2px)}
+.bk.t{left:0;top:50%;width:100%;height:var(--d);margin-top:calc(var(--d) / -2);transform:rotateX(90deg) translateZ(calc(var(--h) / 2));
+  background:repeating-linear-gradient(0deg,#f7f6f2 0 1px,#dedbd3 1px 2px)}
+.bk.u{left:0;top:50%;width:100%;height:var(--d);margin-top:calc(var(--d) / -2);transform:rotateX(-90deg) translateZ(calc(var(--h) / 2));background:#d8d5cd}
+.is-mag .bk.s{background:#2b2b2b}
+.orbit:nth-child(-n+3) .obj{--by:24deg}
+
+/* phone */
+.phone{--by:-18deg;width:80px;height:164px}
+.ph-body{position:absolute;inset:0;border-radius:18px;background:#0d0d0d;padding:5px;transform:translateZ(4px);box-shadow:inset 0 0 0 1px #2c2c2c}
+.ph-screen{display:block;width:100%;height:100%;border-radius:14px;background:#000 no-repeat center/cover}
+.ph-screen::after{content:"";position:absolute;inset:5px;border-radius:14px;background:linear-gradient(120deg,rgba(255,255,255,.16),transparent 40%)}
+.ph-island{position:absolute;left:50%;top:10px;width:26px;height:7px;margin-left:-13px;border-radius:4px;background:#000}
+.ph-side{position:absolute;inset:0;border-radius:18px;background:#3a3a3c;transform:translateZ(-4px)}
+.orbit:nth-child(2) .phone{--by:18deg}
+
+/* the calendar on its hook */
+.hang{width:100px;height:164px;--bx:0deg;--by:0deg}
+.hook.mini{position:absolute;left:50%;top:-4px;width:14px;height:22px;transform:translateX(-50%);filter:drop-shadow(2px 3px 2px rgba(0,0,0,.25))}
+.hg-rig{position:absolute;left:0;right:0;top:10px;transform-origin:50% 0;animation:sway 5.5s ease-in-out infinite;filter:drop-shadow(4px 8px 6px rgba(0,0,0,.18))}
+.hg-tag{display:block;margin:0 auto;width:66%;aspect-ratio:12/6.6;background:#f2f0ea no-repeat center/cover}
+.hg-ring{display:block;margin:-6px auto 0;width:12px;height:18px;border-radius:50%;border:1.5px solid #9a9da1}
+.hg-card{display:block;margin-top:-6px;width:100%;aspect-ratio:1;background:#fff no-repeat center/cover}
+@keyframes sway{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(2.2deg)}}
+.orbit:hover .hg-rig{animation-duration:1.6s}
+
+/* the cinema */
+.cinema{width:200px;height:150px;--bx:0deg;--by:0deg;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.cn-screen{position:relative;display:block;width:100%;aspect-ratio:2.2/1;background:#050505;overflow:hidden;box-shadow:0 0 0 3px #111,0 18px 40px -12px rgba(41,55,133,.45)}
+.cn-screen video{width:100%;height:100%;object-fit:cover;display:block}
+.cn-glow{display:block;width:120%;height:34px;margin-top:-2px;background:radial-gradient(60% 100% at 50% 0,rgba(140,170,220,.28),transparent 70%)}
+.cn-seats{display:flex;gap:4px;margin-top:-18px}
+.cn-seats i{display:block;width:20px;height:22px;border-radius:7px 7px 2px 2px;background:#141414}
+.cn-seats i:nth-child(odd){transform:translateY(2px)}
+
+@media (max-height:820px) and (min-width:641px){ .o-stage{zoom:.8} .orbits{--ry:min(37svh,300px)} }
+@media (max-height:700px) and (min-width:641px){ .o-stage{zoom:.66} }
+@media (max-width:640px){
+  .o-stage{zoom:.5;width:200px;margin:0 auto}
+  .orbit .o-t{margin-top:4px;text-align:center}
+  .orbits{gap:4px var(--g);bottom:186px}
+}
+@media (prefers-reduced-motion:reduce){ .hg-rig{animation:none} }
