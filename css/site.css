@@ -480,17 +480,44 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 @media (max-width:640px){ .pk{--s:62vw} .pk-stage{height:60svh} }
 @media (prefers-reduced-motion:reduce){ .pk-hinge,.pk{transition:none!important} }
 
-/* Index v5: one wall of identical plates, five across, catalogue line under each */
-.entries{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--g);row-gap:40px;padding:0 var(--m)}
-.entry{display:block;transition:opacity .35s var(--ease)}
-.e-plate{display:block;aspect-ratio:4/5;overflow:hidden;background:#f3f3f1}
-.e-plate img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-.e-t{display:flex;gap:10px;margin-top:12px;font-size:var(--sm);line-height:var(--sm-lh);font-weight:500}
-.e-n{font-weight:400;min-width:1.6em;color:rgba(17,17,17,.5)}
-.e-k{display:flex;justify-content:space-between;gap:8px;margin-left:calc(1.6em + 10px);font-size:var(--sm);line-height:var(--sm-lh);color:rgba(17,17,17,.5)}
-.entries:hover .entry:not(:hover){opacity:.32}
-.entry:hover .e-plate img{transform:scale(1.03)}
+/* Index v6: a catalogue list on the 12-column grid; number, plate, title, discipline, section, year */
+.entries{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:var(--g)}
+.e-head,.entry{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:center}
+.e-head{font-size:var(--sm);line-height:var(--sm-lh);color:rgba(17,17,17,.5);padding-bottom:12px}
+.e-head span:nth-child(1){grid-column:1}.e-head span:nth-child(2){grid-column:2}.e-head span:nth-child(3){grid-column:3/7}
+.e-head span:nth-child(4){grid-column:7/10}.e-head span:nth-child(5){grid-column:10/12}.e-head span:nth-child(6){grid-column:12;text-align:right}
+.entry{padding:8px 0;transition:opacity .3s var(--ease)}
+.e-n{grid-column:1;font-size:var(--sm);line-height:var(--sm-lh);color:rgba(17,17,17,.5)}
+.e-plate{grid-column:2;display:block;width:56px;aspect-ratio:4/5;overflow:hidden;background:#f3f3f1}
+.e-plate img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.e-t{grid-column:3/7;display:flex;flex-direction:column;font-size:var(--tx);line-height:var(--tx-lh,24px);font-weight:500;transition:color .2s}
+.e-s{font-size:var(--sm);line-height:var(--sm-lh);font-weight:400;color:rgba(17,17,17,.5)}
+.e-k{grid-column:7/10;font-size:var(--sm);line-height:var(--sm-lh)}
+.e-c{grid-column:10/12;font-size:var(--sm);line-height:var(--sm-lh);color:rgba(17,17,17,.5)}
+.e-y{grid-column:12;text-align:right;font-size:var(--sm);line-height:var(--sm-lh)}
+.entries:hover .entry:not(:hover){opacity:.3}
+.entry:hover .e-plate img{transform:scale(1.06)}
 .entry:hover .e-t{color:var(--accent)}
-.entry:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.entry:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .entry.dim{display:none}
-@media (max-width:820px){ .entries{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px} }
+@media (max-width:1024px){ .e-t{grid-column:3/6} .e-k{grid-column:6/8} .e-c,.e-head span:nth-child(5){display:none} .e-y{grid-column:8} .e-head span:nth-child(3){grid-column:3/6} .e-head span:nth-child(4){grid-column:6/8} .e-head span:nth-child(6){grid-column:8} }
+@media (max-width:640px){ .e-head{display:none} .e-n{display:none} .e-plate{grid-column:1;width:52px} .e-t{grid-column:2/4} .e-k{display:none} .e-y{grid-column:4} }
+
+/* Try the app: the live app in a phone, at its real size, scaled to fit */
+.app-block{align-items:start}
+.app-stage{display:grid;place-items:center}
+.device{--k:.86;width:calc(390px * var(--k) + 20px);height:calc(844px * var(--k) + 20px);padding:10px;border-radius:calc(56px * var(--k));background:#0d0d0d;
+  box-shadow:inset 0 0 0 1px #2c2c2c,0 30px 60px -20px rgba(17,17,17,.35);overflow:hidden}
+.device iframe{display:block;width:390px;height:844px;border:0;border-radius:calc(46px);transform:scale(var(--k));transform-origin:0 0;background:#000}
+@media (max-height:900px){ .device{--k:.74} }
+@media (max-height:740px){ .device{--k:.64} }
+@media (max-width:640px){ .device{--k:.76} }
+
+/* landing: the two apps stand side by side as one stop on the orbit */
+.orbit.pair{display:flex;gap:4px}
+.pair .o-stage{width:96px}
+.pair-a{display:block}
+.pair-a:hover .obj{--bx:2deg}
+.pair-a:hover .o-t{color:var(--accent)}
+.phone.ps{--by:18deg}
+
