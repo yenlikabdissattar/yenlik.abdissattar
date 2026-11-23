@@ -298,20 +298,38 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .about-links{display:flex;flex-direction:column;gap:8px}
 
 /* Watching eyes: each face's pupils follow the pointer */
-.eye{position:absolute;width:3.6%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--paper)}
-.eye i{position:absolute;left:18%;top:18%;width:64%;height:64%;border-radius:50%;background:var(--ink);transform:translate(var(--px,0),var(--py,0));transition:transform .12s linear}
+.eye{position:absolute;width:4.6%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--paper) 48%,transparent 70%)}
+.eye i{position:absolute;inset:8%;display:block;transform:translate(var(--px,0),var(--py,0));transition:transform .14s linear}
+.eye svg{display:block;width:100%;height:100%}
 
-/* The pointer in the middle of the landing, with the five ways in */
-.pointer-nav{position:absolute;left:50%;top:46%;width:0;height:0;z-index:3;--r:clamp(96px,11vw,160px)}
-.pointer-nav .arrow{position:absolute;left:-12px;top:-17px;width:24px;height:34px;transform-origin:50% 50%;transform:rotate(var(--rot,0deg));transition:transform .18s var(--ease);filter:drop-shadow(0 2px 3px rgba(0,0,0,.15))}
-.pointer-nav a{position:absolute;left:0;top:0;white-space:nowrap;font-size:var(--sm);line-height:var(--sm-lh);font-weight:500;padding:12px 14px;background:var(--paper);
-  transform:rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a))) translate(-50%,-50%);transition:color .2s}
-.pointer-nav a:hover,.pointer-nav a:focus-visible{color:var(--accent)}
-@media (max-width:640px){ .pointer-nav{top:40%;--r:104px} }
-
-/* One blind contour, still, on the right of the first screen; its eyes follow you */
-.landing .contour{position:absolute;right:var(--m);top:calc(var(--head) + 2vh);height:calc(100svh - var(--head) - 2vh - 150px);aspect-ratio:749/900;z-index:1}
+/* The face in the middle; the main projects around it; its eyes follow you */
+.landing .contour{position:absolute;left:50%;top:calc(var(--head) + 2svh);height:calc(100svh - var(--head) - 2svh - 112px);aspect-ratio:749/900;transform:translateX(-50%);z-index:1}
 .landing .contour img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
-.landing .contour .eye{width:3.4%}
-@media (max-width:900px){ .landing .contour{height:auto;width:58vw;right:-2vw;top:calc(var(--head) + 8px)} }
-@media (max-width:640px){ .landing .contour{width:66vw;top:calc(var(--head) + 36px)} .pointer-nav{top:58%} }
+.orbits{--cy:calc(var(--head) + (100svh - var(--head) - 112px) / 2);--rx:min(33vw,500px);--ry:min(36svh,320px)}
+.orbit{position:absolute;left:50%;top:var(--cy);z-index:2;width:clamp(112px,9.5vw,148px);transform:translate(calc(var(--x) * var(--rx) - 50%),calc(var(--y) * var(--ry) - 50%));transition:transform .35s var(--ease)}
+.orbit .o-img{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--plate)}
+.orbit .o-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.orbit .o-t{display:block;margin-top:6px;font-size:var(--sm);line-height:var(--sm-lh);font-weight:500;transition:color .2s}
+.orbit:hover .o-img img{transform:scale(1.04)}
+.orbit:hover .o-t{color:var(--accent)}
+.landing .intro .intro-line{background:none;font-weight:400}
+.intro-links{flex-wrap:wrap;gap:4px 20px}
+@media (max-width:640px){
+  .landing .contour{height:auto;width:62vw;top:calc(var(--head) + 28px)}
+  .orbits{position:absolute;left:var(--m);right:var(--m);bottom:196px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px var(--g)}
+  .orbit{position:static;transform:none;width:auto}
+}
+
+/* Index: image and title only */
+.card .meta{grid-template-columns:1fr auto}
+.card .k,.card .n{display:none}
+
+/* Case studies: compact images in the middle columns */
+.step .row .plate{aspect-ratio:3/2}
+.step .row.tall .plate{aspect-ratio:3/4}
+.step{padding:12px 0}
+.step+.step{margin-top:16px}
+.step .row.tall{max-width:72%}
+.block .row .plate{aspect-ratio:3/2}
+.block .row.tall .plate{aspect-ratio:3/4}
+@media (max-width:640px){ .step .row.tall{max-width:none} }
