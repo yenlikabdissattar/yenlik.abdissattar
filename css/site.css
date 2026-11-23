@@ -5,7 +5,7 @@
   /* Colour — each has one job */
   --paper:#ffffff;              /* page background */
   --ink:#111111;                /* all text, icons, the lines of the menu */
-  --plate:#f2f2f0;              /* ground behind images that don't fill their frame */
+  --plate:#ffffff;              /* images sit straight on the page: no grey frames */
   --accent:#293785;             /* interaction only: hover, focus, active filter, selection */
   --accent-2:#496da2;           /* interaction on black (RunwAI) */
   --shade:rgba(17,17,17,.12);   /* the one shadow: menu, preview, flipbook */
@@ -334,3 +334,53 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .block .row.tall .plate{aspect-ratio:3/4}
 @media (max-width:640px){ .step .row.tall{max-width:none} }
 .landing .contour .eye{width:3.3%}
+
+/* ---------- Snippets: the calendar hanging on a hook ---------- */
+.wall{position:relative;height:min(92svh,980px);overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:pan-y;
+  background:radial-gradient(120% 90% at 30% 10%,#f8f7f4 0%,#efede8 55%,#e6e3dc 100%)}
+.wall::after{content:"";position:absolute;inset:auto 0 0 0;height:18%;background:linear-gradient(transparent,rgba(0,0,0,.04));pointer-events:none}
+.wall-scene{position:absolute;left:50%;top:8%;--card:min(48vw,66svh,520px);width:var(--card);transform:translateX(-50%);perspective:1600px}
+.hook{position:absolute;left:50%;top:0;width:30px;height:46px;transform:translate(-50%,-40%);z-index:5;filter:drop-shadow(3px 6px 4px rgba(0,0,0,.28))}
+.rig{position:absolute;left:0;top:0;width:100%;transform-origin:50% 0;filter:drop-shadow(10px 18px 14px rgba(0,0,0,.18)) drop-shadow(2px 4px 3px rgba(0,0,0,.12));cursor:grab}
+.rig:active{cursor:grabbing}
+.tag{position:relative;margin:0 auto;width:62%;aspect-ratio:12/6.6;background:#f2f0ea;overflow:hidden;border-radius:2px}
+.tag canvas{display:block;width:100%;height:100%}
+.tag::before{content:"";position:absolute;left:50%;top:7px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#e2ded6;box-shadow:inset 0 1px 2px rgba(0,0,0,.45);z-index:2}
+.ring{position:relative;margin:-14px auto 0;width:34px;height:52px;border-radius:50%;border:3px solid transparent;
+  background:linear-gradient(#0000,#0000) padding-box,linear-gradient(160deg,#f4f4f4,#8f9296 40%,#e8e9ea 60%,#6d7075) border-box;z-index:3}
+.card-pivot{position:relative;margin-top:-12px;transform-origin:50% 0;transform-style:preserve-3d}
+.cal-stack{position:relative;width:100%;aspect-ratio:1;transform-style:preserve-3d}
+.cal-sheet{position:absolute;inset:0;background:#fff no-repeat center/cover;transform-origin:50% 0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:1px}
+.cal-sheet::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 30%,transparent 75%,rgba(0,0,0,.05))}
+.cal-sheet::before{content:"";position:absolute;left:50%;top:9px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#ddd9d0;box-shadow:inset 0 1px 2px rgba(0,0,0,.4);z-index:2}
+.cal-sheet.top{transition:transform .75s cubic-bezier(.45,.05,.2,1),opacity .75s}
+.cal-sheet.top.lift{transform:rotateX(-112deg);opacity:0}
+.cal-sheet.top.drop{transition:none;transform:rotateX(-112deg);opacity:0}
+.wall-bar{position:absolute;left:var(--m);right:var(--m);bottom:var(--m);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:var(--sm);line-height:var(--sm-lh)}
+.wall-bar button{min-height:44px;font-size:var(--sm);font-weight:500}
+.wall-bar button:hover{color:var(--accent)}
+.wall-bar .wb-next{justify-self:end}
+.wall-bar .wb-count{text-align:center;font-variant-numeric:tabular-nums}
+.wall-hint{position:absolute;left:var(--m);top:var(--m);font-size:var(--sm);line-height:var(--sm-lh)}
+@media (max-width:640px){ .wall{height:86svh} .wall-scene{--card:72vw;top:9%} }
+@media (prefers-reduced-motion:reduce){ .cal-sheet.top{transition:opacity .3s} .cal-sheet.top.lift{transform:none} }
+
+/* ---------- Case studies v4: strong and clean ---------- */
+/* images at their own shape, straight on the page */
+.cs .plate,.rw-body .plate{background:none;padding:0;aspect-ratio:auto!important;display:block}
+.cs .plate img{width:100%;height:auto;max-height:none;mix-blend-mode:normal}
+.cs .plate.film{background:#000;aspect-ratio:16/9!important}
+.cs .row{align-items:start}
+.cs .row.tall{max-width:56%}
+.flip{background:none;padding-top:var(--s4)}
+/* the summary reads first, in display type */
+.block p.mid:not(.sm){font-family:var(--display);font-size:clamp(22px,2.3vw,34px);line-height:1.18;letter-spacing:-.015em;max-width:22em}
+/* steps: a big number, a short title, one line, then the pictures */
+.step{padding:var(--s3) 0;align-items:start}
+.step+.step{margin-top:var(--s4)}
+.step-text .n{font-family:var(--display);font-size:clamp(40px,4.4vw,64px);line-height:.9;letter-spacing:-.04em;font-weight:500;margin-bottom:var(--s2)}
+.step-text h3{margin-bottom:var(--s1)}
+.steps{margin-top:var(--s2)}
+.block .lab{padding-top:6px}
+@media (max-width:640px){ .cs .row.tall{max-width:none} }
+.tag::after{content:"";position:absolute;left:50%;bottom:7px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#e2ded6;box-shadow:inset 0 1px 2px rgba(0,0,0,.45);z-index:2}

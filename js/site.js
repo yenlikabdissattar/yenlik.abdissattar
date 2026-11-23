@@ -230,6 +230,76 @@
     size(); render(); addEventListener('resize', size);
   });
 
+  /* Snippets on the wall: the tag and the month card swing from a hook; click for the next month */
+  document.querySelectorAll('.wall[data-months]').forEach(function(wall){
+    var months = JSON.parse(wall.getAttribute('data-months')), pre = wall.getAttribute('data-pre') || '';
+    var NAMES = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+    var rig = wall.querySelector('.rig'), pivot = wall.querySelector('.card-pivot'), canvas = wall.querySelector('.tag canvas');
+    var top = wall.querySelector('.cal-sheet.top'), under = wall.querySelector('.cal-sheet.under');
+    var count = wall.querySelector('.wb-count'), at = 1, busy = false;
+    function src(i){ return 'url(' + pre + 'rmedia/' + months[(i + 12) % 12] + ')'; }
+    function tag(i){
+      var r = canvas.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1), w = Math.max(200, r.width * dpr), h = w * 6.6 / 12;
+      canvas.width = w; canvas.height = h; var c = canvas.getContext('2d'), name = NAMES[(i + 12) % 12];
+      c.fillStyle = '#f2f0ea'; c.fillRect(0, 0, w, h);
+      c.fillStyle = '#1f7a3a'; c.font = '900 ' + (h * .36) + 'px "Helvetica Neue","Arial Black",Arial,sans-serif'; c.textBaseline = 'alphabetic';
+      var tw = c.measureText(name).width;
+      [-.42, .08, .58].forEach(function(o, k){ var y = h * (.36 + k * .33); for(var x = -tw * (o + 1); x < w; x += tw) c.fillText(name, x, y); });
+      // halftone: knock out a fine dot grid so it reads like the printed tag
+      c.globalCompositeOperation = 'destination-out'; var s = Math.max(3, w / 90);
+      for(var yy = 0; yy < h; yy += s) for(var xx = (yy / s % 2) * s / 2; xx < w; xx += s){ c.beginPath(); c.arc(xx, yy, s * .22, 0, 6.283); c.fill(); }
+      c.globalCompositeOperation = 'destination-over'; c.fillStyle = '#f2f0ea'; c.fillRect(0, 0, w, h); c.globalCompositeOperation = 'source-over';
+    }
+    function label(){ count.textContent = String((at + 12) % 12 + 1).padStart(2, '0') + ' / 12  ' + NAMES[(at + 12) % 12].charAt(0) + NAMES[(at + 12) % 12].slice(1).toLowerCase(); }
+    function show(){ top.style.backgroundImage = src(at); under.style.backgroundImage = src(at + 1); tag(at); label(); }
+    function next(){
+      if(busy) return; busy = true; kick(.35);
+      top.classList.add('lift');
+      setTimeout(function(){ at++; top.classList.add('drop'); top.classList.remove('lift'); show(); void top.offsetWidth; top.classList.remove('drop'); busy = false; }, 760);
+    }
+    function prev(){
+      if(busy) return; busy = true; at--; kick(-.3);
+      under.style.backgroundImage = src(at + 1); top.classList.add('drop'); top.style.backgroundImage = src(at); tag(at); label();
+      void top.offsetWidth; top.classList.remove('drop'); setTimeout(function(){ busy = false; }, 760);
+    }
+    wall.querySelector('.wb-next').addEventListener('click', next); wall.querySelector('.wb-prev').addEventListener('click', prev);
+    wall.setAttribute('tabindex', '0');
+    wall.addEventListener('keydown', function(e){ if(e.key === 'ArrowRight'){ e.preventDefault(); next(); } if(e.key === 'ArrowLeft'){ e.preventDefault(); prev(); } });
+
+    /* swing: two linked pendulums (tag on the hook, card on the ring) */
+    var a1 = 0, v1 = 0, a2 = 0, v2 = 0, y2 = 0, drag = null, last = performance.now(), lx = null, lt = 0;
+    function kick(f){ v2 += f * .02; v1 += f * .006; }
+    function step(now){
+      var dt = Math.min(32, now - last) / 16.67; last = now;
+      if(drag){ var t = drag.target; v2 += ((t - a2) * .25 - v2 * .5) * dt; }
+      var acc1 = (-a1 * .012 - v1 * .035 + (a2 - a1) * .004), acc2 = (-a2 * .02 - v2 * .03 - acc1 * 1.2);
+      v1 += acc1 * dt; v2 += acc2 * dt; a1 += v1 * dt; a2 += v2 * dt;
+      y2 += ((v2 * 380) - y2) * .1;
+      if(!reduce){
+        rig.style.transform = 'rotate(' + (a1 * 57.3).toFixed(2) + 'deg)';
+        pivot.style.transform = 'rotate(' + ((a2 - a1) * 57.3).toFixed(2) + 'deg) rotateY(' + Math.max(-28, Math.min(28, y2)).toFixed(2) + 'deg)';
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    // a breath of air now and then, so it never looks frozen
+    setInterval(function(){ if(!drag && Math.abs(v2) < .002) kick((Math.random() - .5) * .5); }, 3800);
+    wall.addEventListener('pointermove', function(e){
+      var now = performance.now(), r = pivot.getBoundingClientRect();
+      if(lx !== null && !drag && e.clientX > r.left - 30 && e.clientX < r.right + 30 && e.clientY > r.top && e.clientY < r.bottom){
+        var vx = (e.clientX - lx) / Math.max(8, now - lt); v2 += Math.max(-.02, Math.min(.02, vx * .01));
+      }
+      lx = e.clientX; lt = now;
+      if(drag){ var rr = wall.querySelector('.wall-scene').getBoundingClientRect(); drag.moved = drag.moved || Math.abs(e.clientX - drag.x) > 5;
+        drag.target = Math.max(-.6, Math.min(.6, (e.clientX - (rr.left + rr.width / 2)) / (rr.width * 1.6))); }
+    });
+    rig.addEventListener('pointerdown', function(e){ drag = {x: e.clientX, target: a2, moved: false}; rig.setPointerCapture && rig.setPointerCapture(e.pointerId); });
+    function up(){ if(!drag) return; var d = drag; drag = null; if(!d.moved) next(); }
+    rig.addEventListener('pointerup', up); rig.addEventListener('pointercancel', function(){ drag = null; });
+    addEventListener('resize', function(){ tag(at); });
+    show(); kick(.6);
+  });
+
   /* Lightbox for outcome and process plates */
   var lb = document.querySelector('.lb'), shots = [].slice.call(document.querySelectorAll('.plate.zoom img')), at = 0;
   function show(i){ at = (i + shots.length) % shots.length; lb.querySelector('img').src = shots[at].currentSrc || shots[at].src; lb.querySelector('img').alt = shots[at].alt; lb.querySelector('.ct').textContent = (at + 1) + ' / ' + shots.length; }
