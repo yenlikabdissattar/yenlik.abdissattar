@@ -112,60 +112,81 @@
     });
   }
 
-  /* Flipbooks: each leaf carries two pages; click, drag, swipe or use the arrows */
+  /* Flipbooks: drag a page and it follows the pointer; click, swipe or arrow keys also turn */
   document.querySelectorAll('.flip').forEach(function(root){
     var pages = JSON.parse(root.getAttribute('data-pages')), ratio = parseFloat(root.getAttribute('data-ratio')) || .72;
     var pre = root.getAttribute('data-pre') || '';
     var book = root.querySelector('.fb-book'), stage = root.querySelector('.fb-stage');
     var prevB = root.querySelector('.fb-prev'), nextB = root.querySelector('.fb-next'), count = root.querySelector('.fb-count');
     if(pages.length % 2) pages.push(['', 'blank']);
-    var n = pages.length / 2, at = 0, leaves = [];
-    function face(p, side){
-      var d = document.createElement('div'); d.className = 'face ' + side;
+    var n = pages.length / 2, at = 0, leaves = [], pw = 300;
+    var edgeL = document.createElement('div'), edgeR = document.createElement('div');
+    edgeL.className = 'fb-edge l'; edgeR.className = 'fb-edge r'; book.appendChild(edgeL); book.appendChild(edgeR);
+    function face(p, side, cover){
+      var d = document.createElement('div'); d.className = 'face ' + side + (cover ? ' cover' : '');
       if(!p[0] || p[1] === 'blank') d.className += ' blank';
       else { d.style.backgroundImage = 'url(' + pre + 'rmedia/' + p[0].replace(/\.jpg$/, '.webp') + ')'; if(p[1]) d.className += ' half-' + p[1]; }
       return d;
     }
     for(var i = 0; i < n; i++){
       var l = document.createElement('div'); l.className = 'leaf';
-      l.appendChild(face(pages[2*i], 'front')); l.appendChild(face(pages[2*i+1], 'back'));
+      l.appendChild(face(pages[2*i], 'front', i === 0)); l.appendChild(face(pages[2*i+1], 'back', i === n - 1));
       book.appendChild(l); leaves.push(l);
     }
     function size(){
-      var w = stage.clientWidth - 16, maxH = Math.min(innerHeight * .74, 760);
-      var pw = Math.min(w / 2, maxH * ratio); pw = Math.max(120, Math.floor(pw));
+      var w = stage.clientWidth - 24, maxH = Math.min(innerHeight * .8, 820);
+      pw = Math.max(120, Math.floor(Math.min(w / 2, maxH * ratio)));
       book.style.width = (pw * 2) + 'px'; book.style.height = Math.round(pw / ratio) + 'px';
     }
     function label(){
       if(at === 0) return 'Cover';
-      if(at === n) return 'Back';
-      return (2*at - 1) + '–' + (2*at) + ' / ' + (pages.length - 2);
+      if(at === n) return 'Back cover';
+      return 'Pages ' + (2*at - 1) + '–' + (2*at) + ' of ' + (pages.length - 2);
     }
     function render(moved){
       leaves.forEach(function(l, i){
-        var t = i < at; l.classList.toggle('turned', t); l.classList.remove('peek-r','peek-l');
-        l.style.zIndex = t ? i + 1 : n - i;
+        var t = i < at; l.classList.toggle('turned', t); l.style.zIndex = t ? i + 1 : n - i;
       });
       if(moved !== undefined){ var m = leaves[moved]; m.style.zIndex = n + 2; m.classList.remove('moving'); void m.offsetWidth; m.classList.add('moving'); }
       book.classList.toggle('at-start', at === 0); book.classList.toggle('at-end', at === n);
-      book.style.transform = at === 0 ? 'translateX(-25%)' : at === n ? 'translateX(25%)' : 'none';
+      book.style.setProperty('--shift', at === 0 ? '-25%' : at === n ? '25%' : '0%');
+      edgeL.style.width = (at === 0 ? 0 : 2 + 6 * at / n) + 'px';
+      edgeR.style.width = (at === n ? 0 : 2 + 6 * (n - at) / n) + 'px';
       prevB.disabled = at === 0; nextB.disabled = at === n; count.textContent = label();
     }
     function go(d){ var t = Math.max(0, Math.min(n, at + d)); if(t === at) return; var moved = d > 0 ? at : t; at = t; render(moved); }
     prevB.addEventListener('click', function(){ go(-1); }); nextB.addEventListener('click', function(){ go(1); });
-    var sx = null, dragged = false;
-    book.addEventListener('pointerdown', function(e){ sx = e.clientX; dragged = false; });
-    book.addEventListener('pointerup', function(e){
-      if(sx === null) return; var dx = e.clientX - sx; sx = null;
-      if(Math.abs(dx) > 40){ go(dx < 0 ? 1 : -1); return; }
-      var r = book.getBoundingClientRect(); go(e.clientX > r.left + r.width / 2 ? 1 : -1);
-    });
-    book.addEventListener('mousemove', function(e){
+
+    /* Drag: the page rotates with the pointer and finishes the turn past a third */
+    var drag = null;
+    book.addEventListener('pointerdown', function(e){
       var r = book.getBoundingClientRect(), right = e.clientX > r.left + r.width / 2;
-      leaves.forEach(function(l){ l.classList.remove('peek-r','peek-l'); });
-      if(right && at < n) leaves[at].classList.add('peek-r'); else if(!right && at > 0) leaves[at-1].classList.add('peek-l');
+      var leaf = right ? leaves[at] : leaves[at - 1];
+      drag = {x: e.clientX, right: right, leaf: leaf, p: 0, moved: false};
+      if(leaf){ leaf.style.transition = 'none'; leaf.style.zIndex = n + 3; }
+      book.setPointerCapture && book.setPointerCapture(e.pointerId);
     });
-    book.addEventListener('mouseleave', function(){ leaves.forEach(function(l){ l.classList.remove('peek-r','peek-l'); }); });
+    book.addEventListener('pointermove', function(e){
+      if(!drag || !drag.leaf) return;
+      var dx = e.clientX - drag.x; if(Math.abs(dx) > 6) drag.moved = true;
+      if(!drag.moved) return;
+      var p = Math.max(0, Math.min(1, (drag.right ? -dx : dx) / (pw * 1.4))); drag.p = p;
+      var ang = drag.right ? -180 * p : -180 + 180 * p;
+      drag.leaf.style.transform = 'rotateY(' + ang + 'deg)';
+      drag.leaf.style.setProperty('--sh', (Math.sin(p * Math.PI) * .45).toFixed(3));
+    });
+    function end(){
+      if(!drag) return; var d = drag; drag = null;
+      if(d.leaf){ d.leaf.style.transition = ''; d.leaf.style.transform = ''; d.leaf.style.removeProperty('--sh'); }
+      if(!d.moved){ go(d.right ? 1 : -1); return; }
+      if(d.p > .3) go(d.right ? 1 : -1); else render();
+    }
+    book.addEventListener('pointerup', end); book.addEventListener('pointercancel', end);
+    book.addEventListener('mousemove', function(e){
+      if(drag) return;
+      var r = book.getBoundingClientRect(); book.classList.toggle('hint-r', e.clientX > r.left + r.width / 2 && at < n); book.classList.toggle('hint-l', e.clientX <= r.left + r.width / 2 && at > 0);
+    });
+    book.addEventListener('mouseleave', function(){ book.classList.remove('hint-r', 'hint-l'); });
     root.addEventListener('keydown', function(e){ if(e.key === 'ArrowRight'){ e.preventDefault(); go(1); } if(e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); } });
     size(); render(); addEventListener('resize', size);
   });

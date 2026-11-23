@@ -1,177 +1,146 @@
 # DESIGN.md — Yenlik Abdissattar portfolio
 
-A museum archive, a magazine index: one 12-column grid, two text sizes, and one plate that every image sits on. Every page uses the same parts in the same order, so fourteen very different projects read as one collection.
+**Direction: a quiet archive.** One 12-column grid, black and white, Helvetica, and a strict budget for how much each page shows. The work is the only colour. Fewer, larger pictures; short text; nothing repeated. Interaction is where the blue appears and where the site comes alive: the drifting blind contours, the hover preview, and books you can turn in 3D.
 
-References: Grid System Templates 001/002 (template.systems), A2 Architecture Presentation Grid, A4 Architecture + Photography Grid System, Marketing Academy brand guidelines (typography).
+Built from the project's own brand (white, #111, #293785, Helvetica, the blind contours), the Swiss grid-template references, and two reviews (art director, front-end designer). Not compared against example sites.
 
----
-
-## 1. Principles
-
-1. **One system, not fourteen moods.** The project changes; the frame never does. Same header, same title block, same plate, same order of sections.
-2. **Small or big.** Text is either small (labels, meta, captions) or big (titles, the email). Paragraphs sit between them at 14px. Nothing else.
-3. **The plate unifies.** Images are not shown raw at their own scale and background; each sits contained on a plate with even padding, like objects on museum mounts.
-4. **Tight.** One continuous index on the home page, no empty rows, spacing in steps of 8.
-5. **Quiet motion.** The blind contours drift on the landing, the hero enters once, films loop silently. Nothing fades in as you scroll.
+Tokens live in `css/site.css` (`:root`). Your local overrides go in `css/tokens.css`.
 
 ---
 
-## 2. Layout
+## 1. Content budget — the main rule
 
-### Grid
+The site had too much: 33–38 images on some pages, the same spreads shown three times, tool lists twice. Every page now follows this budget.
 
-| | Desktop > 1024 | Tablet 641–1024 | Mobile ≤ 640 |
-|---|---|---|---|
-| Columns | 12 | 8 | 4 |
-| Margin `--m` | clamp(16px, 2vw, 28px) | same | same |
-| Gutter `--g` | clamp(10px, 1vw, 16px) | same | same |
-| Header `--head` | 52px | 52px | 52px |
+| Page | Budget |
+|---|---|
+| Home | Landing (name, one line, four links). Index: 10 projects, Wander and Distort Noise large. About: photo, three sentences, CV and LinkedIn. Email. Nothing else; lists live in the CV. |
+| Case study | Title, subtitle, at most 4 meta rows plus credits. One hero. Flipbook if it is a book or magazine. Overview: one summary sentence, Brief and Approach under 35 words each. Process: at most 4 steps, at most 2 images a step, one sentence a step. Outcome: at most 3 images, or none when the flipbook shows the finished piece. |
+| Foundations | 4 chapters × 3 images. |
+| Whole case study | At most 10 images outside the flipbook. |
 
-### Four slots
+If something new goes in, something comes out.
 
-The page reads in four slots of three columns. Everything starts on one of these lines.
+---
 
-| Slot | Columns | Holds |
+## 2. Colour
+
+| Token | Value | Role |
 |---|---|---|
-| A | 1–3 | Section labels (Overview, Process, Outcome), step text, "Contents" |
-| B | 4–6 | Name in the header; start of the main column |
-| C | 7–9 | Current section in the header |
-| D | 10–12 | Meta list, brief and approach, "Contact" |
+| `--paper` | #ffffff | Page background |
+| `--ink` | #111111 | All text and the menu lines. Contrast on paper 18.9:1 |
+| `--plate` | #f2f2f0 | Ground behind images that don't fill their frame; behind the flipbook |
+| `--accent` | #293785 | Interaction only: hover, focus ring, active filter, selection. 10.6:1 on paper |
+| `--accent-2` | #496da2 | Interaction on the black RunwAI page |
+| `--shade` | rgba(17,17,17,.12) | The one shadow: menu, hover preview |
 
-Main column = B to D (4–12). Title = A to C (1–9).
-
-### Home page
-
-1. **Landing** — one screen, white. The fifteen blind contours drift slowly behind the name in big type, one line on what she does and is looking for, and three links (See the work, CV, Email). Top right, small: "Under three minutes blind contours". Everything fades as you scroll.
-2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, AI, Film and Motion, Foundations) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
-3. **About and contact** — a short About with CV links, then the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
-
-### Case study page (every project)
-
-1. **Title block** — number (small), title (big, A–C), subtitle (small); meta list in D: No., Section, Discipline, Year, Context, Tools, credits.
-2. **Hero** — full width, 16:9 plate. Films fill it edge to edge and loop.
-3. **Overview** — label in A, summary in B–C (14px), Brief and Approach stacked in D (small).
-4. **Process** — label in A; numbered steps. Step number, title and one or two sentences in A (they stay in view while you scroll); images in B–D as equal plates, one to three per row.
-5. **Outcome** — label in A; plates three per row in B–D. Click any plate to open the viewer (arrows, Esc).
-6. **Reflection** — only when there is one.
-7. **Next** — "Next, 05" small in A, the next title big in B–D; footer.
-
-### Exceptions, on purpose
-
-- **Foundations** (drawing, colour, illustration, digital tools): one page of four chapters, each a big title, one paragraph and nine plates. Plates are white, so the work sits on the page itself.
-- **Companion piece**: Wander ends with Dust and 9 Panels, the motion and print work built on the same idea.
-- **Flip through**: Wander, TIME and RunwAI can be turned page by page in 3D.
-- **RunwAI**: the page is black. The runway film fills the left half, full height, and stays while you scroll; on the right, the title block, then the magazine cover with the pages beside it, then the process film.
+Themes: Foundations sets `--plate` to white. RunwAI sets paper #0b0b0b, ink #f1f1f1, plate #161616. No other colours. No gradients except the flipbook's light.
 
 ---
 
 ## 3. Typography
 
-Helvetica, served from Adobe Fonts so every computer sees it: Neue Haas Grotesk Text (400, 500) for text and Neue Haas Grotesk Display (500) for big type. Fallback: Helvetica Neue, Helvetica, Arial. The kit only loads on yenlikabdissattar.github.io and localhost; opening a file directly falls back to Helvetica Neue.
+Helvetica, from Adobe Fonts (kit `hpl6gyc`): **Neue Haas Grotesk Text** for text, **Neue Haas Grotesk Display** for big type. Fallback Helvetica Neue, Helvetica, Arial.
 
-| Style | Size / line | Weight | Tracking | Use |
-|---|---|---|---|---|
-| Big | clamp(44px, 7.4vw, 128px) / 0.9 | 500 | −0.045em | Titles, "Index", the email |
-| Text | 14px / 20px | 400 | 0 | Summaries and paragraphs |
-| Small | 12px / 16px | 400, 500 for labels | 0 | Header, labels, meta, steps, cards |
-| Quote | inherits | 400 italic | 0 | Times New Roman italic, quotations only |
+| Token | Size / line | Weight | Use |
+|---|---|---|---|
+| `--big` | clamp(44px, 7.4vw, 128px) / 0.9, tracking −0.04em | Display 500 | Titles, "Index", the email |
+| `--tx` | 16px / 24px | Text 400 | Summaries, paragraphs. Lines up to `--measure` (34em, about 65 characters) |
+| `--sm` | 12px / 16px | Text 400, 500 for labels | Header, labels, meta, steps, cards, buttons |
 
-Rules: only quotes are italic. No grey text; hierarchy is size and weight. No all-caps. Numbers are tabular (01, 11 / 14).
-
----
-
-## 4. Colour
-
-| Token | Value | Role |
-|---|---|---|
-| `--paper` | #ffffff | Page |
-| `--ink` | #111111 | All text |
-| `--plate` | #f2f2f0 | Ground behind every image (white on Art pages, #161616 on RunwAI) |
-| `--accent` | #293785 | Hover, active filter, focus, selection |
-| `--accent-2` | #496da2 | Reserve |
-
-Black and white carry the site. Blue appears only when you interact.
+Small or big; text only for reading. Only quotes are italic (Times New Roman). No grey text, no capitals for effect. Numbers tabular: 01, Pages 3–4 of 28.
 
 ---
 
-## 5. Components
+## 4. Space and grid
+
+| | Desktop > 1024 | Tablet | Mobile ≤ 640 |
+|---|---|---|---|
+| Columns | 12 | 8 | 4 |
+| Margin `--m` | clamp(16px, 2vw, 28px) | same | same |
+| Gutter `--g` | clamp(10px, 1vw, 16px) | same | same |
+
+Space scale, 8px steps only: `--s1` 8 · `--s2` 16 · `--s3` 24 · `--s4` 32 · `--s6` 48 · `--s8` 64 · `--s12` 96 · `--s16` 128. Between sections: `--section` (96px).
+
+Four slots of three columns: **A** 1–3 labels and step text · **B** 4–6 · **C** 7–9 · **D** 10–12 meta, brief, links. Main column B–D. Titles A–C.
+
+---
+
+## 5. Shape and depth
+
+Square corners (`--radius: 0`) everywhere except the flipbook's covers (3px, like board). One shadow (`--shade`) for things that float: menu, hover preview. The flipbook has its own shadow under the book.
+
+---
+
+## 6. Components
 
 | Component | Rule |
 |---|---|
-| Header | Fixed. A: three lines + "Contents". B: name. C: current section. D: Contact. Clear over the landing, light after. |
-| Contents | Opens from the three lines on click, or on hover with a mouse. Six columns: the five sections with their projects, then Information. Esc closes. |
-| Card | 4:3 preview, number, title, year, discipline. Hover: lifts 2px, image zooms 3%, title turns blue, page preview appears. |
-| Filter | Text buttons; the active one is medium weight and underlined; other cards dim to 12%. |
-| Plate | 4:3 (16:9 for heroes and films, 3:4 for rows of phone screens or portraits), padding 7%, image contained. Mockup photos close to the plate's shape fill it edge to edge (`bleed`), so there is never a box inside a box; white grounds melt into the plate. |
-| Film | Muted, looping, no controls, plays only while on screen. Previews loop an 8-second clip from a chosen still; project films skip black intros and offer "Watch the full film with sound". Served from Cloudinary at 1280px. |
-| Viewer | Full screen on the page colour; Previous / Next / Close; arrows and Esc. |
-| Link | Underline draws in on hover. |
+| Header | Fixed, 52px. A: three lines + Contents. B: name. C: section. D: CV, Contact. Clear over the landing. |
+| Contents menu | Opens on click or hover; six columns (five sections, Information). Esc closes. |
+| Link | Small, medium weight; an underline draws in on hover; colour turns blue. 44px tap height on phones. |
+| Card | 4:3 image (3:2 for the two leads), number, title, year, discipline. Hover: lifts 2px, image zooms 3%, page preview follows the cursor. |
+| Filter | Text buttons; active is medium and underlined; other cards leave the grid. |
+| Plate | 4:3 (16:9 heroes and films, 3:4 rows of phone screens). Image contained with `--plate-pad` (7%). Mockup photos fill the frame edge to edge. Click opens the viewer. |
+| Film | Muted, looping, no controls. Previews loop 8 seconds from a chosen still; project films skip black intros and link to the full film with sound. |
+| Flipbook | See section 7. |
+| Viewer | Full screen on the page colour; Previous, Next, Close; arrows and Esc; focus moves in and back. |
+| Footer | Name, email, LinkedIn, Back to top, in the four slots. |
 
 ---
 
-## 6. Motion
+## 7. The flipbook
 
-| What | How |
-|---|---|
-| Blind contours | Drift at random speeds, bounce at the edges, fade in one by one on load, fade out on scroll. Still under reduced motion. |
-| Title and hero | Rise 14px and fade in once, 0.9s. |
-| Hover | 0.35s lift, 0.7s image zoom, 0.2s colour. |
-| Films | Loop silently in view, pause out of view. |
+Books and magazines (Wander, TIME, RunwAI) are shown as an object you can handle, placed straight under the hero.
 
----
-
-## 7. Text
-
-- Plain sentences, one idea each. Paragraphs at most three sentences.
-- Every project: subtitle, one-sentence summary, brief, approach, steps of one or two sentences.
-- Credit sources and collaborators in the meta list.
-- Nothing under images: no captions.
+- **On a table:** the book tilts back 10° and straightens to 4° when you point at it; a soft shadow lies under it.
+- **Drag to turn:** press on a page and drag; the page rotates with the pointer and completes the turn past a third. Click, swipe, arrow keys and Previous / Next also turn.
+- **Depth:** page-block edges at both sides grow and shrink as you read; a gutter shadow on every page; light passes across the turning page.
+- **Covers:** slightly rounded fore-edges; the book opens from the centre, closed on its cover, and centres itself when closed at the back.
+- **Counter:** Cover, Pages 3–4 of 28, Back cover.
+- Reduced motion: no tilt, no animation; pages still turn.
 
 ---
 
-## 8. Projects
+## 8. Imagery and motion
 
-| No. | Project | Section | Discipline | Year | Preview |
-|---|---|---|---|---|---|
-| 01 | Wander (with Dust and 9 Panels) | Editorial Design | Book design | 2026 | Book mockup |
-| 02 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
-| 03 | RunwAI | AI | AI, film, editorial | 2025 | Film clip |
-| 04 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
-| 05 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
-| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film clip |
-| 07 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film clip |
-| 08 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
-| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film clip |
-| 10 | Foundations | Foundations | Coursework | 2025 | Gouache |
-
-Order is by strength, not by section. Film previews loop an 8-second clip that starts on a chosen still. Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose). Old addresses for Dust, Drawing, Colour Design, Illustration and Digital Tools forward to their new pages.
+- One image per idea. No captions under images. Credits in the meta list.
+- Process images are the work itself (boards cropped of their titles, screens, stills), not slides.
+- Motion: blind contours drift on the landing and fade on scroll; titles rise once on load; hover responses 0.2–0.7s; nothing fades in as you scroll.
 
 ---
 
-## 9. Files
+## 9. Projects
+
+| No. | Project | Section | Year | Shows |
+|---|---|---|---|---|
+| 01 | Wander, with Dust and 9 Panels | Editorial Design | 2026 | Flipbook, 4 steps, companion film |
+| 02 | Distort Noise | Interface | 2026 | 4 steps of screens, outcome |
+| 03 | RunwAI | AI | 2025 | Film on black, flipbook, process film |
+| 04 | TIME | Editorial Design | 2025 | Flipbook, 2 steps |
+| 05 | Snippets | Editorial Design | 2026 | 3 steps, 3 outcome |
+| 06 | Silence of the Dawn | Film and Motion | 2025 | Film, 3 steps of stills |
+| 07 | Fly Me to the Moon | Film and Motion | 2025 | Film, 3 steps |
+| 08 | Baskerville | Editorial Design | 2025 | 2 steps, outcome |
+| 09 | Gazebo | Film and Motion | 2025 | Film |
+| 10 | Foundations | Foundations | 2025 | 4 chapters × 3 |
+
+Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose).
+
+---
+
+## 10. Files and local editing
 
 ```
-index.html            landing, index, about and contact
-cv.html / cv.pdf      one-page CV in the same system
+index.html            landing, index, about, contact
 work/<project>.html   one case study per project
-css/site.css          tokens, grid, type, components, themes
-css/tokens.css        your overrides from the edit panel (loaded after site.css)
-js/tune.js            local edit panel: sliders, colours, project calendar (press E)
-js/project-log.js     project dates, duration, role, team, course (from the edit panel)
-js/site.js            contents menu, floating contours, page preview, filter, films, viewer
-media/bc-*.webp       blind contours for the landing
-rmedia/               images: WebP at 1600px and 800px (srcset), JPEG originals
-DESIGN.md             this file
+cv.html / cv.pdf      one-page CV
+css/site.css          tokens and components
+css/tokens.css        your overrides from the edit panel
+js/site.js            menu, contours, preview, filter, films, flipbook, viewer
+js/tune.js            local edit panel (press E)
+js/project-log.js     project dates, duration, role, team, course
+rmedia/               images: WebP 1600 and 800px, JPEG originals
 ```
 
-Adding a project: copy a page in `work/`, replace its text and images, add a card to the Index grid in `index.html` (with its `data-cat` and `data-peek`), and a link in the Contents menu on every page.
-
----
-
-## 10. Editing locally
-
-Open the site from your computer (double-click index.html, or run `python3 -m http.server` in the folder and open localhost:8000 so the web font loads). Press **E**.
-
-- **Design tab:** sliders for margin, gutter, cards per row, big text, text and small sizes, plate padding, blind contour size and speed, and colour pickers. Changes show live on every page and are remembered on that computer. **Download tokens.css** and replace `css/tokens.css` to make them permanent, then push.
-- **Projects tab:** a timeline of all projects (2024–2026) and, for each project, a calendar: click the first day, then the last. Add role, team and course. The case study pages show Dates, Duration, Role, Team and Course. **Download project-log.js** and replace `js/project-log.js`, then push.
-- The panel never loads on the live site unless you add `?edit` to the address.
+Open the site locally (`python3 -m http.server`, then localhost:8000) and press **E**. Design tab: sliders and colours, then Download tokens.css into `css/`. Projects tab: calendar per project, then Download project-log.js into `js/`. Push to publish.

@@ -2,23 +2,35 @@
    One system for every page: 12 columns, two text sizes, one plate. Rules in DESIGN.md. */
 
 :root{
-  --paper:#ffffff;
-  --ink:#111111;
-  --plate:#f2f2f0;              /* the ground every image sits on */
-  --accent:#293785;
-  --accent-2:#496da2;
+  /* Colour — each has one job */
+  --paper:#ffffff;              /* page background */
+  --ink:#111111;                /* all text, icons, the lines of the menu */
+  --plate:#f2f2f0;              /* ground behind images that don't fill their frame */
+  --accent:#293785;             /* interaction only: hover, focus, active filter, selection */
+  --accent-2:#496da2;           /* interaction on black (RunwAI) */
+  --shade:rgba(17,17,17,.12);   /* the one shadow: menu, preview, flipbook */
 
+  /* Grid */
   --cols:12;
   --m:clamp(16px,2vw,28px);     /* outer margin */
   --g:clamp(10px,1vw,16px);     /* gutter */
-  --head:52px;                  /* fixed header height */
+  --head:52px;                  /* fixed header */
 
+  /* Space — 8px steps, nothing in between */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s6:48px; --s8:64px; --s12:96px; --s16:128px;
+  --section:var(--s12);         /* between sections of a page */
+
+  /* Type — small or big, plus text for reading */
   --sans:"neue-haas-grotesk-text","Helvetica Neue",Helvetica,Arial,sans-serif;
   --display:"neue-haas-grotesk-display","Helvetica Neue",Helvetica,Arial,sans-serif;
   --serif:"Times New Roman",Times,serif;   /* quotes only, always italic */
-  --sm:12px; --sm-lh:16px;      /* small: labels, meta, captions of the system */
-  --tx:14px; --tx-lh:20px;      /* text: paragraphs */
-  --big:clamp(44px,7.4vw,128px);/* big: titles, the email */
+  --sm:12px; --sm-lh:16px;      /* small: labels, meta, navigation, captions of the system */
+  --tx:16px; --tx-lh:24px;      /* text: summaries and paragraphs, 60–70 characters a line */
+  --big:clamp(44px,7.4vw,128px);/* big: titles, "Index", the email */
+  --measure:34em;               /* longest line of text */
+
+  /* Shape */
+  --radius:0;                   /* square everywhere */
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (max-width:1024px){ :root{ --cols:8; } }
@@ -131,7 +143,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 
 /* Page preview on hover */
 .peek{position:fixed;left:0;top:0;z-index:60;width:320px;background:var(--paper);padding:14px;pointer-events:none;opacity:0;
-  transform:translate3d(-999px,-999px,0) scale(.97);transition:opacity .2s;box-shadow:0 12px 40px rgba(0,0,0,.12)}
+  transform:translate3d(-999px,-999px,0) scale(.97);transition:opacity .2s;box-shadow:0 12px 40px var(--shade)}
 .peek.on{opacity:1}
 .peek .ph{display:flex;justify-content:space-between;font-size:11px;line-height:14px;margin-bottom:14px}
 .peek .pt{font-size:34px;line-height:.92;font-weight:500;letter-spacing:-.04em;margin-bottom:10px}
@@ -156,7 +168,8 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .dl dt{font-weight:500}
 .dl dd{margin:0}
 .hero{margin-top:24px}
-.block{margin-top:96px;row-gap:24px}
+.block{margin-top:var(--section);row-gap:var(--s3)}
+.block p.mid,.block .mid-text{max-width:var(--measure)}
 .block .lab{font-size:var(--sm);line-height:var(--sm-lh);font-weight:500}
 .sub p+p{margin-top:16px}
 .sub .b{display:block;font-size:var(--sm);line-height:var(--sm-lh);margin-bottom:4px}
@@ -207,26 +220,38 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} .landing .float{opacity:1} }
 
-/* ---------- Flipbook: magazines you can turn in 3D ---------- */
-.flip{display:flex;flex-direction:column;align-items:center;gap:20px;padding:48px 0 8px;background:var(--plate);user-select:none;-webkit-user-select:none}
-.fb-stage{perspective:2600px;width:100%;display:flex;justify-content:center;overflow:hidden;padding:12px 0 28px}
-.fb-book{position:relative;transition:transform .9s var(--ease);transform-style:preserve-3d;cursor:pointer;touch-action:pan-y}
-.fb-book::before{content:"";position:absolute;left:6%;right:6%;bottom:-18px;height:24px;background:radial-gradient(closest-side,rgba(0,0,0,.22),transparent);filter:blur(4px);z-index:-1;transition:left .9s var(--ease),right .9s var(--ease)}
-.fb-book.at-start::before{left:53%} .fb-book.at-end::before{right:53%}
-.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.3,.65,.2,1)}
+/* ---------- Flipbook: a book on a table you can turn in 3D ---------- */
+.flip{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s8) 0 var(--s3);background:var(--plate);user-select:none;-webkit-user-select:none}
+.fb-stage{perspective:2200px;perspective-origin:50% 20%;width:100%;display:flex;justify-content:center;overflow:hidden;padding:var(--s2) 0 var(--s6)}
+.fb-book{--shift:-25%;position:relative;transform-style:preserve-3d;transform:translateX(var(--shift)) rotateX(10deg);transform-origin:50% 100%;
+  transition:transform .9s var(--ease);cursor:grab;touch-action:pan-y}
+.fb-book:hover{transform:translateX(var(--shift)) rotateX(4deg)}
+.fb-book:active{cursor:grabbing}
+.fb-book::before{content:"";position:absolute;left:4%;right:4%;bottom:-26px;height:34px;background:radial-gradient(closest-side,rgba(0,0,0,.28),transparent);filter:blur(6px);transform:translateZ(-1px);transition:left .9s var(--ease),right .9s var(--ease)}
+.fb-book.at-start::before{left:52%} .fb-book.at-end::before{right:52%}
+/* page block edges, thicker on the side you have more pages */
+.fb-edge{position:absolute;top:3px;bottom:3px;background:repeating-linear-gradient(90deg,#d9d9d6 0 1px,#fbfbf9 1px 2px);transition:width .9s var(--ease)}
+.fb-edge.l{right:100%;transform-origin:right center;border-radius:2px 0 0 2px}
+.fb-edge.r{left:100%;border-radius:0 2px 2px 0}
+.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.32,.62,.18,1)}
 .leaf.turned{transform:rotateY(-180deg)}
-.leaf.peek-r{transform:rotateY(-9deg)}
-.leaf.peek-l{transform:rotateY(-171deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff no-repeat center/cover;overflow:hidden}
 .face.back{transform:rotateY(180deg)}
 .face.half-l{background-size:200% 100%;background-position:left center}
 .face.half-r{background-size:200% 100%;background-position:right center}
 .face.blank{background:#f7f7f5}
+.face.cover{box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.face.front.cover{border-radius:0 3px 3px 0} .face.back.cover{border-radius:3px 0 0 3px}
+/* gutter shadow on every page */
 .face::after{content:"";position:absolute;inset:0;pointer-events:none}
-.face.front::after{background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.04) 6%,transparent 14%)}
-.face.back::after{background:linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,.04) 6%,transparent 14%)}
-.leaf.moving .face::after{animation:shade 1.1s ease}
-@keyframes shade{50%{background-color:rgba(0,0,0,.12)}}
+.face.front::after{background:linear-gradient(90deg,rgba(0,0,0,.2),rgba(0,0,0,.05) 5%,transparent 13%,transparent 92%,rgba(255,255,255,.12))}
+.face.back::after{background:linear-gradient(270deg,rgba(0,0,0,.2),rgba(0,0,0,.05) 5%,transparent 13%,transparent 92%,rgba(255,255,255,.12))}
+/* light across the turning page: set while dragging, animated on a click */
+.face::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:var(--sh,0);transition:opacity .2s}
+.face.front::before{background:linear-gradient(270deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(255,255,255,.25) 80%,transparent)}
+.face.back::before{background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(255,255,255,.25) 80%,transparent)}
+.leaf.moving .face::before{animation:turnlight 1.1s ease}
+@keyframes turnlight{0%{opacity:0}45%{opacity:.45}100%{opacity:0}}
 .fb-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:min(100%,560px);font-size:var(--sm);line-height:var(--sm-lh);padding:0 var(--m)}
 .fb-bar button{min-height:44px;font-size:var(--sm)}
 .fb-bar button:hover{color:var(--accent)}
@@ -234,7 +259,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .fb-bar .fb-next{justify-self:end}
 .fb-bar .fb-count{font-variant-numeric:tabular-nums;text-align:center}
 .theme-black .flip{background:#161616}
-@media (prefers-reduced-motion:reduce){ .leaf,.fb-book{transition:none} }
+@media (prefers-reduced-motion:reduce){ .leaf,.fb-book{transition:none} .fb-book,.fb-book:hover{transform:translateX(var(--shift))} }
 
 /* Landing statement over the contours */
 .landing .intro{position:absolute;left:var(--m);right:var(--m);bottom:var(--m);row-gap:16px;align-items:end;pointer-events:none}
