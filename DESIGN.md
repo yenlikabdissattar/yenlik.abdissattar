@@ -42,9 +42,9 @@ Main column = B to D (4–12). Title = A to C (1–9).
 
 ### Home page
 
-1. **Landing** — one screen, white. The fifteen blind contours drift slowly and fade as you scroll. Bottom left, small: "Under three minutes blind contours". Bottom right, small: discipline line.
-2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, Film and Motion, AI, Art) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
-3. **Contact** — the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
+1. **Landing** — one screen, white. The fifteen blind contours drift slowly behind the name in big type, one line on what she does and is looking for, and three links (See the work, CV, Email). Top right, small: "Under three minutes blind contours". Everything fades as you scroll.
+2. **Index** — "Index" in big type, then the section filter (All, Editorial Design, Interface, AI, Film and Motion, Foundations) and one grid of all projects: 4 per row, same-size 4:3 previews. Editorial projects use their mockups; films play muted on loop. Hovering a project shows its page in miniature (title, summary, hero, three process images) next to the cursor.
+3. **About and contact** — a short About with CV links, then the email in big type; Studying, Experience, Tools, Languages in the four slots; footer.
 
 ### Case study page (every project)
 
@@ -58,7 +58,9 @@ Main column = B to D (4–12). Title = A to C (1–9).
 
 ### Exceptions, on purpose
 
-- **Art** (Drawing, Colour Design, Illustration): plates are white, so the work sits on the page itself.
+- **Foundations** (drawing, colour, illustration, digital tools): one page of four chapters, each a big title, one paragraph and nine plates. Plates are white, so the work sits on the page itself.
+- **Companion piece**: Wander ends with Dust and 9 Panels, the motion and print work built on the same idea.
+- **Flip through**: Wander, TIME and RunwAI can be turned page by page in 3D.
 - **RunwAI**: the page is black. The runway film fills the left half, full height, and stays while you scroll; on the right, the title block, then the magazine cover with the pages beside it, then the process film.
 
 ---
@@ -131,29 +133,26 @@ Black and white carry the site. Blue appears only when you interact.
 
 | No. | Project | Section | Discipline | Year | Preview |
 |---|---|---|---|---|---|
-| 01 | Wander | Editorial Design | Book design | 2026 | Book mockup |
-| 02 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
-| 03 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
-| 04 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
-| 05 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
-| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film loop |
-| 07 | Dust | Film and Motion | Motion graphics, editorial | 2025 | Film loop |
-| 08 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film loop |
-| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film loop |
-| 10 | Digital Tools | Film and Motion | Motion, 3D, interactive | 2025 | Bus stop mockup |
-| 11 | RunwAI | AI | AI, film, editorial | 2025 | Film loop |
-| 12 | Drawing | Art | Drawing | 2025 | Still life |
-| 13 | Colour Design | Art | Colour, painting | 2025 | Gouache |
-| 14 | Illustration | Art | Illustration | 2025 | Postcard |
+| 01 | Wander (with Dust and 9 Panels) | Editorial Design | Book design | 2026 | Book mockup |
+| 02 | Distort Noise | Interface | App design, UX/UI | 2026 | Screens |
+| 03 | RunwAI | AI | AI, film, editorial | 2025 | Film clip |
+| 04 | TIME | Editorial Design | Editorial, UX/UI | 2025 | Magazine mockup |
+| 05 | Snippets | Editorial Design | Visual systems | 2026 | Calendar mockup |
+| 06 | Silence of the Dawn | Film and Motion | Documentary film | 2025 | Film clip |
+| 07 | Fly Me to the Moon | Film and Motion | Expressive typography, motion | 2025 | Film clip |
+| 08 | Baskerville | Editorial Design | Typography, poster, book cover | 2025 | Poster mockup |
+| 09 | Gazebo | Film and Motion | Image-making, motion | 2025 | Film clip |
+| 10 | Foundations | Foundations | Coursework | 2025 | Gouache |
 
-Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose).
+Order is by strength, not by section. Film previews loop an 8-second clip that starts on a chosen still. Not shown: VESSEL (no images yet), ARTFORUM (left out on purpose). Old addresses for Dust, Drawing, Colour Design, Illustration and Digital Tools forward to their new pages.
 
 ---
 
 ## 9. Files
 
 ```
-index.html            landing, index, contact
+index.html            landing, index, about and contact
+cv.html / cv.pdf      one-page CV in the same system
 work/<project>.html   one case study per project
 css/site.css          tokens, grid, type, components, themes
 js/site.js            contents menu, floating contours, page preview, filter, films, viewer

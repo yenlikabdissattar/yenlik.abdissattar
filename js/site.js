@@ -104,7 +104,11 @@
       if(e.isIntersecting && !reduce){ if(v.preload === 'none') v.preload = 'auto'; var p = v.play(); if(p && p.catch) p.catch(function(){}); }
       else v.pause();
     }); }, {threshold: .25});
-    document.querySelectorAll('video[data-loop]').forEach(function(v){ vo.observe(v); });
+    document.querySelectorAll('video[data-loop]').forEach(function(v){
+      var st = parseFloat(v.getAttribute('data-start'));
+      if(st) v.addEventListener('loadedmetadata', function(){ if(v.currentTime < 1) v.currentTime = st; }, {once:true}); // open on the chosen still, not a black intro
+      vo.observe(v);
+    });
   }
 
   /* Flipbooks: each leaf carries two pages; click, drag, swipe or use the arrows */

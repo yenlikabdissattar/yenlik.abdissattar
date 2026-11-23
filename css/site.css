@@ -234,3 +234,15 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .fb-bar .fb-count{font-variant-numeric:tabular-nums;text-align:center}
 .theme-black .flip{background:#161616}
 @media (prefers-reduced-motion:reduce){ .leaf,.fb-book{transition:none} }
+
+/* Landing statement over the contours */
+.landing .intro{position:absolute;left:var(--m);right:var(--m);bottom:var(--m);row-gap:16px;align-items:end;pointer-events:none}
+.landing .intro a{pointer-events:auto}
+.landing .intro .big{mix-blend-mode:multiply}
+.intro-line{font-size:var(--tx);line-height:var(--tx-lh);background:color-mix(in srgb,var(--paper) 82%,transparent)}
+.intro-links{display:flex;gap:20px;justify-content:flex-end}
+.intro-links a{min-height:44px;display:inline-flex;align-items:center}
+.landing .note.r{bottom:auto;top:calc(var(--head) + 8px)}
+@media (max-width:640px){ .landing .note.r{display:block;left:var(--m);right:auto;text-align:left} .intro-links{justify-content:flex-start} }
+/* RunwAI on phones: title before the film */
+@media (max-width:900px){ .rw-body{order:-1;padding-bottom:24px} .rw-film{height:70svh} }
