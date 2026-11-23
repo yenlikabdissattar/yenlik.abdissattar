@@ -102,6 +102,64 @@
     document.querySelectorAll('video[data-loop]').forEach(function(v){ vo.observe(v); });
   }
 
+  /* Flipbooks: each leaf carries two pages; click, drag, swipe or use the arrows */
+  document.querySelectorAll('.flip').forEach(function(root){
+    var pages = JSON.parse(root.getAttribute('data-pages')), ratio = parseFloat(root.getAttribute('data-ratio')) || .72;
+    var pre = root.getAttribute('data-pre') || '';
+    var book = root.querySelector('.fb-book'), stage = root.querySelector('.fb-stage');
+    var prevB = root.querySelector('.fb-prev'), nextB = root.querySelector('.fb-next'), count = root.querySelector('.fb-count');
+    if(pages.length % 2) pages.push(['', 'blank']);
+    var n = pages.length / 2, at = 0, leaves = [];
+    function face(p, side){
+      var d = document.createElement('div'); d.className = 'face ' + side;
+      if(!p[0] || p[1] === 'blank') d.className += ' blank';
+      else { d.style.backgroundImage = 'url(' + pre + 'rmedia/' + p[0] + ')'; if(p[1]) d.className += ' half-' + p[1]; }
+      return d;
+    }
+    for(var i = 0; i < n; i++){
+      var l = document.createElement('div'); l.className = 'leaf';
+      l.appendChild(face(pages[2*i], 'front')); l.appendChild(face(pages[2*i+1], 'back'));
+      book.appendChild(l); leaves.push(l);
+    }
+    function size(){
+      var w = stage.clientWidth - 16, maxH = Math.min(innerHeight * .74, 760);
+      var pw = Math.min(w / 2, maxH * ratio); pw = Math.max(120, Math.floor(pw));
+      book.style.width = (pw * 2) + 'px'; book.style.height = Math.round(pw / ratio) + 'px';
+    }
+    function label(){
+      if(at === 0) return 'Cover';
+      if(at === n) return 'Back';
+      return (2*at - 1) + '–' + (2*at) + ' / ' + (pages.length - 2);
+    }
+    function render(moved){
+      leaves.forEach(function(l, i){
+        var t = i < at; l.classList.toggle('turned', t); l.classList.remove('peek-r','peek-l');
+        l.style.zIndex = t ? i + 1 : n - i;
+      });
+      if(moved !== undefined){ var m = leaves[moved]; m.style.zIndex = n + 2; m.classList.remove('moving'); void m.offsetWidth; m.classList.add('moving'); }
+      book.classList.toggle('at-start', at === 0); book.classList.toggle('at-end', at === n);
+      book.style.transform = at === 0 ? 'translateX(-25%)' : at === n ? 'translateX(25%)' : 'none';
+      prevB.disabled = at === 0; nextB.disabled = at === n; count.textContent = label();
+    }
+    function go(d){ var t = Math.max(0, Math.min(n, at + d)); if(t === at) return; var moved = d > 0 ? at : t; at = t; render(moved); }
+    prevB.addEventListener('click', function(){ go(-1); }); nextB.addEventListener('click', function(){ go(1); });
+    var sx = null, dragged = false;
+    book.addEventListener('pointerdown', function(e){ sx = e.clientX; dragged = false; });
+    book.addEventListener('pointerup', function(e){
+      if(sx === null) return; var dx = e.clientX - sx; sx = null;
+      if(Math.abs(dx) > 40){ go(dx < 0 ? 1 : -1); return; }
+      var r = book.getBoundingClientRect(); go(e.clientX > r.left + r.width / 2 ? 1 : -1);
+    });
+    book.addEventListener('mousemove', function(e){
+      var r = book.getBoundingClientRect(), right = e.clientX > r.left + r.width / 2;
+      leaves.forEach(function(l){ l.classList.remove('peek-r','peek-l'); });
+      if(right && at < n) leaves[at].classList.add('peek-r'); else if(!right && at > 0) leaves[at-1].classList.add('peek-l');
+    });
+    book.addEventListener('mouseleave', function(){ leaves.forEach(function(l){ l.classList.remove('peek-r','peek-l'); }); });
+    root.addEventListener('keydown', function(e){ if(e.key === 'ArrowRight'){ e.preventDefault(); go(1); } if(e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); } });
+    size(); render(); addEventListener('resize', size);
+  });
+
   /* Lightbox for outcome and process plates */
   var lb = document.querySelector('.lb'), shots = [].slice.call(document.querySelectorAll('.plate.zoom img')), at = 0;
   function show(i){ at = (i + shots.length) % shots.length; lb.querySelector('img').src = shots[at].currentSrc || shots[at].src; lb.querySelector('img').alt = shots[at].alt; lb.querySelector('.ct').textContent = (at + 1) + ' / ' + shots.length; }
