@@ -20,7 +20,8 @@
   .b{font-weight:500}
   header{margin-bottom:9mm}
   header .meta{margin-top:5mm;row-gap:1mm}
-  header .meta div{grid-column:span 3}
+  header .meta div{grid-column:span 3;overflow-wrap:anywhere}
+  @media (max-width:640px){header .meta div{grid-column:span 6;margin-bottom:2mm}.a{grid-column:1/-1}.r{grid-column:1/-1}.proj{grid-template-columns:1fr}.big{font-size:28pt}}
   section{margin-top:6mm}
   section>.a{font-size:8pt;font-weight:500;padding-top:.6mm}
   .item{display:grid;grid-template-columns:1fr auto;column-gap:4mm}

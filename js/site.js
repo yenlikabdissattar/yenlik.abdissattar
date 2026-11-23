@@ -73,7 +73,7 @@
         peek.innerHTML = '<div class="ph"><span>Case study ' + d.n + '</span><span>' + d.cat + '</span></div>' +
           '<div class="pt">' + d.t + '</div><div class="pl">' + d.l + '</div>' +
           '<div class="plate"><img src="' + (/^http/.test(d.h) ? d.h : pre + 'rmedia/' + d.h) + '" alt=""></div>' +
-          '<div class="pp">' + d.p.map(function(s){ return '<div class="plate"><img src="' + pre + 'rmedia/' + s + '" alt=""></div>'; }).join('') + '</div>';
+          '<div class="pp">' + d.p.map(function(s){ return '<div class="plate"><img src="' + (/^http/.test(s) ? s : pre + 'rmedia/' + s) + '" alt=""></div>'; }).join('') + '</div>';
         peek.classList.add('on');
       });
       c.addEventListener('mouseleave', function(){ peek.classList.remove('on'); });
@@ -122,7 +122,7 @@
     function face(p, side){
       var d = document.createElement('div'); d.className = 'face ' + side;
       if(!p[0] || p[1] === 'blank') d.className += ' blank';
-      else { d.style.backgroundImage = 'url(' + pre + 'rmedia/' + p[0] + ')'; if(p[1]) d.className += ' half-' + p[1]; }
+      else { d.style.backgroundImage = 'url(' + pre + 'rmedia/' + p[0].replace(/\.jpg$/, '.webp') + ')'; if(p[1]) d.className += ' half-' + p[1]; }
       return d;
     }
     for(var i = 0; i < n; i++){
@@ -172,12 +172,14 @@
   /* Lightbox for outcome and process plates */
   var lb = document.querySelector('.lb'), shots = [].slice.call(document.querySelectorAll('.plate.zoom img')), at = 0;
   function show(i){ at = (i + shots.length) % shots.length; lb.querySelector('img').src = shots[at].currentSrc || shots[at].src; lb.querySelector('img').alt = shots[at].alt; lb.querySelector('.ct').textContent = (at + 1) + ' / ' + shots.length; }
-  function closeLb(){ if(lb) lb.classList.remove('open'); }
+  var opener = null;
+  function closeLb(){ if(lb && lb.classList.contains('open')){ lb.classList.remove('open'); if(opener) opener.focus(); } }
+  function openLb(i, from){ opener = from; show(i); lb.classList.add('open'); lb.querySelector('.x').focus(); }
   if(lb){
     shots.forEach(function(img, i){
       var p = img.parentNode; p.setAttribute('role','button'); p.setAttribute('tabindex','0'); p.setAttribute('aria-label','Open image ' + (i+1));
-      p.addEventListener('click', function(){ show(i); lb.classList.add('open'); });
-      p.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); show(i); lb.classList.add('open'); } });
+      p.addEventListener('click', function(){ openLb(i, p); });
+      p.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(i, p); } });
     });
     lb.querySelector('.x').addEventListener('click', closeLb);
     lb.querySelector('.pv').addEventListener('click', function(){ show(at - 1); });

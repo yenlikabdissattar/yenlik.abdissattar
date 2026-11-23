@@ -122,7 +122,7 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .flt .num{margin-left:2px}
 .flt:hover{color:var(--accent)}
 .flt[aria-pressed="true"]{font-weight:500;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 6px)/100% 1px no-repeat}
-.card.dim{opacity:.12;pointer-events:none}
+.card.dim{display:none}
 .card{transition:transform .35s var(--ease),opacity .35s}
 .archive{padding-bottom:24px}
 .email{font-size:min(var(--big),6vw)!important}
@@ -132,9 +132,9 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .peek{position:fixed;left:0;top:0;z-index:60;width:320px;background:var(--paper);padding:14px;pointer-events:none;opacity:0;
   transform:translate3d(-999px,-999px,0) scale(.97);transition:opacity .2s;box-shadow:0 12px 40px rgba(0,0,0,.12)}
 .peek.on{opacity:1}
-.peek .ph{display:flex;justify-content:space-between;font-size:10px;line-height:12px;margin-bottom:14px}
+.peek .ph{display:flex;justify-content:space-between;font-size:11px;line-height:14px;margin-bottom:14px}
 .peek .pt{font-size:34px;line-height:.92;font-weight:500;letter-spacing:-.04em;margin-bottom:10px}
-.peek .pl{font-size:10px;line-height:13px;margin-bottom:12px}
+.peek .pl{font-size:11px;line-height:15px;margin-bottom:12px}
 .peek .pp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
 .peek .plate{padding:6%}
 .peek .pp .plate{aspect-ratio:1}
@@ -245,4 +245,21 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .landing .note.r{bottom:auto;top:calc(var(--head) + 8px)}
 @media (max-width:640px){ .landing .note.r{display:block;left:var(--m);right:auto;text-align:left} .intro-links{justify-content:flex-start} }
 /* RunwAI on phones: title before the film */
-@media (max-width:900px){ .rw-body{order:-1;padding-bottom:24px} .rw-film{height:70svh} }
+@media (max-width:900px){ .rw-film{height:70svh} }
+
+/* Review fixes */
+.plate:not(.film) img{mix-blend-mode:multiply}          /* white mockup grounds melt into the plate */
+.theme-black .plate img{mix-blend-mode:normal}
+.row.tall .plate{aspect-ratio:3/4;padding:6%}            /* phone screens and portraits fill their plates */
+.card.lead{grid-column:span 6}
+.card.lead .plate{aspect-ratio:3/2}
+@media (max-width:1024px){ .card.lead{grid-column:span 4} .card.lead .plate{aspect-ratio:4/3} }
+@media (max-width:640px){ .card.lead{grid-column:1/-1} }
+.watch{margin-top:10px}
+.menu.open{box-shadow:0 24px 48px rgba(0,0,0,.08)}
+@media (max-width:640px){
+  .head a,.foot a,.info .d a,.next a.sm{display:inline-flex;align-items:center;min-height:44px}
+  .foot{row-gap:0}
+}
+.plate.bleed{padding:0}
+.plate.bleed img{width:100%;height:100%;max-height:none;object-fit:cover;mix-blend-mode:normal}

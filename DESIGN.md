@@ -102,8 +102,8 @@ Black and white carry the site. Blue appears only when you interact.
 | Contents | Opens from the three lines on click, or on hover with a mouse. Six columns: the five sections with their projects, then Information. Esc closes. |
 | Card | 4:3 preview, number, title, year, discipline. Hover: lifts 2px, image zooms 3%, title turns blue, page preview appears. |
 | Filter | Text buttons; the active one is medium weight and underlined; other cards dim to 12%. |
-| Plate | 4:3 (16:9 for heroes and films), padding 7%, image contained, never cropped. |
-| Film | Muted, looping, no controls, plays only while on screen. Served from Cloudinary. |
+| Plate | 4:3 (16:9 for heroes and films, 3:4 for rows of phone screens or portraits), padding 7%, image contained. Mockup photos close to the plate's shape fill it edge to edge (`bleed`), so there is never a box inside a box; white grounds melt into the plate. |
+| Film | Muted, looping, no controls, plays only while on screen. Previews loop an 8-second clip from a chosen still; project films skip black intros and offer "Watch the full film with sound". Served from Cloudinary at 1280px. |
 | Viewer | Full screen on the page colour; Previous / Next / Close; arrows and Esc. |
 | Link | Underline draws in on hover. |
 
@@ -157,7 +157,7 @@ work/<project>.html   one case study per project
 css/site.css          tokens, grid, type, components, themes
 js/site.js            contents menu, floating contours, page preview, filter, films, viewer
 media/bc-*.webp       blind contours for the landing
-rmedia/               images, max 1600px
+rmedia/               images: WebP at 1600px and 800px (srcset), JPEG originals
 DESIGN.md             this file
 ```
 
