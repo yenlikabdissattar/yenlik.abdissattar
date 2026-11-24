@@ -389,3 +389,16 @@
     set();
   });
 })();
+
+/* Landing: the VESSEL pot turns slowly on its own and follows the cursor across the page */
+(function(){
+  var s = document.querySelector('.pot-sprite'); if(!s) return;
+  var N = 36, a = 0, aim = 0, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('pointermove', function(e){ aim = (e.clientX / innerWidth - .5) * 120; });
+  (function tick(){
+    if(!still) a += .25;                       // idle turn, degrees per frame
+    var deg = ((a + aim) % 360 + 360) % 360, f = Math.round(deg / 360 * N) % N;
+    s.style.backgroundPosition = (f * 100 / (N - 1)) + '% 0';
+    requestAnimationFrame(tick);
+  })();
+})();

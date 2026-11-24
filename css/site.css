@@ -520,3 +520,16 @@ q,blockquote,.quote{font-family:var(--serif);font-style:italic}
 .pair-a:hover .o-t{color:var(--accent)}
 .phone.ps{--by:18deg}
 
+
+/* wide apps (VESSEL) sit in a laptop screen: 1280 x 800 at its real size, scaled to fit */
+.device.laptop{--k:.72;width:calc(1280px * var(--k) + 20px);height:calc(800px * var(--k) + 20px);
+  border-radius:14px;padding:10px;margin-top:24px}
+.device.laptop iframe{width:1280px;height:800px;border-radius:4px}
+@media (max-width:1300px){ .device.laptop{--k:.6} }
+@media (max-width:1000px){ .device.laptop{--k:.48} }
+@media (max-width:820px){ .device.laptop{--k:.4} }
+@media (max-width:640px){ .device.laptop{--k:.26;padding:6px;border-radius:10px} }
+
+/* landing: VESSEL as its real 3D pot, a 36-frame turn rendered from the exhibition app */
+.pot{width:104px;height:115px;--by:0deg;--bx:0deg}
+.pot-sprite{display:block;width:100%;height:100%;background:url(../rmedia/obj-vessel-sprite.webp) 0 0/3600% 100% no-repeat}
